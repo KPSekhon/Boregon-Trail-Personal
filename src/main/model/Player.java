@@ -21,7 +21,16 @@ public class Player {
     // MODIFIES: this
     // EFFECTS: adds input hp to player's overall hp
     public void addHP(int hp) {
-        heartPoints.addHP(hp);
+        this.heartPoints.addHP(hp);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: removes hp points from player's current hp
+    // unless input is higher than current hp, then
+    // hp is set to 0
+    public int loseHP(int hp) {
+        this.heartPoints.removeHP(hp);
+        return heartPoints.getHp();
     }
 
     // MODIFIES: this
@@ -31,9 +40,15 @@ public class Player {
     }
 
     // MODIFIES: this
-    // EFFECTS: removes input m amount from wallet
-    public void spendMoney(int m) {
-        this.wallet -= m;
+    // EFFECTS: removes input m amount from wallet and produces,
+    // if amount does not exceed wallet amount, otherwise produces false
+    public boolean spendMoney(int m) {
+        if (m > this.wallet) {
+            return false;
+        } else {
+            this.wallet -= m;
+            return true;
+        }
     }
 
     // MODIFIES: this
@@ -43,9 +58,14 @@ public class Player {
     }
 
     // MODIFIES: this
-    // EFFECTS: removes item from inventory
-    public void loseItem(Item item) {
-        inventory.remove(item);
+    // EFFECTS: removes item from inventory, if item is inventory
+    // and produces true, otherwise produces false
+    public boolean loseItem(Item item) {
+        if (hasItem(item)) {
+            inventory.remove(item);
+            return true;
+        }
+        return false;
     }
 
     // MODIFIES: monster
@@ -80,6 +100,14 @@ public class Player {
 
     public int getWallet() {
         return this.wallet;
+    }
+
+    public int getPlayerHP() {
+        return this.heartPoints.getHp();
+    }
+
+    public int getInventorySize() {
+        return this.inventory.size();
     }
 
 }
