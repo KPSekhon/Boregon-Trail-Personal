@@ -1,18 +1,17 @@
 package ui;
-// This class is to run the game
-// very heavily influenced by the Teller App
-// https://www.youtube.com/watch?v=j99EeUjvLVQ&list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV&index=5&ab_channel=RyiSnow
-// Linked video was used to determine how to implement choices based on chosen actions
-// The video also has a heavy influence on this class
 
 
 import model.KentuckyRifle;
 import model.Knife;
 import model.Player;
 import model.Sword;
-
-
 import java.util.Scanner;
+
+// This class is used to run the game
+// very heavily influenced by the Teller App
+// https://www.youtube.com/watch?v=j99EeUjvLVQ&list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV&index=5&ab_channel=RyiSnow
+// Linked video was used to determine how to implement choices based on chosen actions
+// The video also has a heavy influence on this class
 
 public class Game {
     private Scanner in = new Scanner(System.in);
@@ -46,7 +45,7 @@ public class Game {
                 processChoice(command);
             }
         }
-        System.out.println("\n You died");
+        System.out.println("\n Game Over...");
     }
 
     // MODIFIES: this
@@ -117,7 +116,7 @@ public class Game {
     //MODIFIES: this
     //EFFECTS: process user choice
     private void processChoice(String command) {
-        if (command.equals(nextPosition1) ) {
+        if (command.equals(nextPosition1)) {
             selectPosition(nextPosition1);
         } else if (command.equals(nextPosition2)) {
             selectPosition(nextPosition2);
