@@ -3,9 +3,10 @@
 ## User Stories
 
 *User Stories* list:
-- A
-- item 2
-- item 3
+- As a user, I want to select an item and add it to my inventory
+- As a user, I want to see my choices reflected in the story
+- As a user, I want to move further in the map and progress in the story
+- As a user, I want to be able to use an item
 
 
 
