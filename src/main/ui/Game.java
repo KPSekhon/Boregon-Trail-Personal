@@ -1,6 +1,9 @@
 package ui;
 // This class is to run the game
 // very heavily influenced by the Teller App
+// https://www.youtube.com/watch?v=j99EeUjvLVQ&list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV&index=5&ab_channel=RyiSnow
+// Linked video was used to determine how to implement choices based on chosen actions
+// The video also has a heavy influence on this class
 
 
 import model.KentuckyRifle;
@@ -32,7 +35,7 @@ public class Game {
         String command;
 
         while (alive) {
-            setup();
+            setupName();
             command = in.next();
             command = command.toLowerCase();
             showChoices();
@@ -114,24 +117,19 @@ public class Game {
     //MODIFIES: this
     //EFFECTS: process user choice
     private void processChoice(String command) {
-        switch (command) {
-            case "case1":
-                selectPosition(nextPosition1);
-                break;
-            case "case2":
-                selectPosition(nextPosition2);
-                break;
-            case "case3":
-                selectPosition(nextPosition3);
-                break;
-            case "case4":
-                selectPosition(nextPosition4);
-                break;
-            case "case5":
-                selectPosition(nextPosition5);
-                break;
+        if (command.equals(nextPosition1) ) {
+            selectPosition(nextPosition1);
+        } else if (command.equals(nextPosition2)) {
+            selectPosition(nextPosition2);
+        } else if (command.equals(nextPosition3)) {
+            selectPosition(nextPosition3);
+        } else if (command.equals(nextPosition4)) {
+            selectPosition(nextPosition4);
+        } else if (command.equals(nextPosition5)) {
+            selectPosition(nextPosition5);
         }
     }
+
 
     // EFFECTS: displays options to player
     private void showChoices() {
@@ -143,7 +141,7 @@ public class Game {
         System.out.println(nextPosition5);
     }
 
-    private void setup() {
+    private void setupName() {
         String command;
         System.out.println("What would you like to name your character?");
         command = in.next();
