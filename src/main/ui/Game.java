@@ -36,9 +36,8 @@ public class Game {
 
         while (alive) {
             setupName();
+            setupWeapon();
             command = in.next();
-            command = command.toLowerCase();
-            showChoices();
 
             if (command.equals("q")) {
                 alive = false;
@@ -54,7 +53,7 @@ public class Game {
     // influenced by video (linked)
     private void selectPosition(String nextPosition) {
         switch (nextPosition) {
-            case "Kentucky Rifle with 4 bullets":
+            case "Kentucky Rifle":
                 setupWeaponKentucky();
                 break;
             case "Sword":
@@ -80,13 +79,17 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "look at inventory";
+        showChoices();
+        String command;
+        command = in.next();
+        processChoice(command);
     }
 
     private void setupWeaponKnife() {
         Knife knife = new Knife();
         player.addItem(knife);
         player.spendMoney(knife.getCost());
-        System.out.println("\t You have" + player.getWallet() + " dollars in your wallet remaining");
+        System.out.println("\t You have " + player.getWallet() + " dollars in your wallet remaining");
         System.out.println(player.getName() + " is a cautious person but they need to get to Oregon City \n"
                 + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
                 + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
@@ -96,6 +99,10 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "look at inventory";
+        showChoices();
+        String command;
+        command = in.next();
+        processChoice(command);
     }
 
     private void setupWeaponSword() {
@@ -112,6 +119,10 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "look at inventory";
+        showChoices();
+        String command;
+        command = in.next();
+        processChoice(command);
     }
 
 
@@ -148,8 +159,11 @@ public class Game {
         String command;
         System.out.println("What would you like to name your character?");
         command = in.next();
-        command = command.toLowerCase();
         this.player = new Player(command);
+    }
+
+    private void setupWeapon() {
+        String command;
         System.out.println("What would weapon would you like? \n"
                 + "you have " + player.getWallet() + " dollars in your wallet");
         KentuckyRifle kentuckyRifle = new KentuckyRifle();
@@ -161,6 +175,8 @@ public class Game {
         nextPosition1 = "Kentucky Rifle";
         nextPosition2 = "Knife";
         nextPosition3 = "Sword";
+        showChoices();
+        command = in.next();
         processChoice(command);
     }
 }
