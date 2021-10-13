@@ -16,6 +16,12 @@ public class MonsterTest {
         setup();
         assertEquals("Hytos", m.getName());
         assertEquals(20,m.getInitialHP());
+        boolean b = false;
+        int l = m.attackChooser();
+        if (l == 1 || l == 2 || l == 3)  {
+            b = true;
+        }
+        assertTrue(b);
     }
 
     @Test

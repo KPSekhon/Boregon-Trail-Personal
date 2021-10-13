@@ -13,11 +13,12 @@ public class Monster {
         heartPoints = new HeartPoints(20);
         name = "Hytos";
         initialHealth = new HeartPoints(20);
+        attack = attackChooser();
     }
 
     //MODIFIES: this
     //EFFECTS: chooses amount of damage to do
-    public int attackChooser(Player player) {
+    public int attackChooser() {
         Random d = new Random();
         int attackAmount = attack;
         for (int i = 0; i < 7; i++) {
