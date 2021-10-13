@@ -1,4 +1,5 @@
 package model;
+// this class is for a marbles bag item, a collectible item
 
 public class MarblesBag extends Item {
     public MarblesBag() {

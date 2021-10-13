@@ -1,10 +1,12 @@
 package model;
 
 import java.util.Random;
+// this class if for a sword item, a weapon
 
 public class Sword extends Item {
     public Sword() {
         super("Sword", 6, 6, true);
+        typeWeapon = true;
     }
 
     @Override

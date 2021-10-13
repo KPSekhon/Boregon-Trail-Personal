@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Random;
+// this class is for the tile challenge, an event in the main story
 
 public class TileChallenge {
     private Player player;

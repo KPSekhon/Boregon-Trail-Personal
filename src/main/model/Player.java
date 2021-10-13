@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+// this class is for the main PLayer
 
 public class Player {
     private HeartPoints heartPoints;
@@ -71,6 +72,14 @@ public class Player {
     // getters and setters
     public void setName(String s) {
         this.name = s;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getWallet() {
+        return this.wallet;
     }
 
 }

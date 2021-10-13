@@ -1,8 +1,10 @@
 package model;
+// This class is for an Elf Sword item
 
 public class ElfSword extends Item {
     public ElfSword() {
         super("Elf Sword", 0, 50, true);
+        typeWeapon = true;
     }
 
     @Override

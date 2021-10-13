@@ -1,4 +1,5 @@
 package model;
+// This class is a general abstract class for items
 
 public abstract class Item {
     protected String name;
@@ -13,6 +14,7 @@ public abstract class Item {
         setHeartValue(heartValue);
         setName(name);
         setCost(cost);
+        typeWeapon = this.typeWeapon;
     }
 
     // MODIFIES: this

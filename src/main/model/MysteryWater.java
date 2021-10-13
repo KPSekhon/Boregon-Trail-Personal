@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Random;
+// this class is a mysterious water bottle that can heal or reduce a player's HP by +/- 2
 
 public class MysteryWater extends Item {
 
@@ -8,6 +9,7 @@ public class MysteryWater extends Item {
         super("Mysterious Water Bottle", 0, 0, false);
         heartValue = new HeartPoints(randomHealthTrait());
     }
+
 
     @Override
     public int damageChooser() {
