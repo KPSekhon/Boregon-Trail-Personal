@@ -29,6 +29,7 @@ public class Game {
 
     // MODIFIES: this
     // EFFECTS: processes user input
+    // influenced by TellerApp
     private void runGame() {
         boolean alive = true;
         String command;
@@ -50,6 +51,7 @@ public class Game {
 
     // MODIFIES: this
     // EFFECTS: completes command chosen by user
+    // influenced by video (linked)
     private void selectPosition(String nextPosition) {
         switch (nextPosition) {
             case "Kentucky Rifle with 4 bullets":
@@ -115,6 +117,7 @@ public class Game {
 
     //MODIFIES: this
     //EFFECTS: process user choice
+    // influenced by video (linked) and TellerApp
     private void processChoice(String command) {
         if (command.equals(nextPosition1)) {
             selectPosition(nextPosition1);
@@ -131,6 +134,7 @@ public class Game {
 
 
     // EFFECTS: displays options to player
+    // influenced by TellerApp and video (linked)
     private void showChoices() {
         System.out.println("\n You have the following options");
         System.out.println(nextPosition1);
