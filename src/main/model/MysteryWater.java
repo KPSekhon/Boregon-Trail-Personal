@@ -21,9 +21,9 @@ public class MysteryWater extends Item {
         int val;
         int det = 0;
         for (int i = 0; i < 5; i++) {
-            det = 1 + b.nextInt(1);
+            det = 1 + b.nextInt(2);
         }
-        if (det == 0) {
+        if (det == 1) {
             val = -2;
         } else {
             val = 2;
