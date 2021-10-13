@@ -62,6 +62,11 @@ public class Player {
         addHP(heal);
     }
 
+    //EFFECTS: produces true if player has item in inventory
+    // ,false otherwise
+    public boolean hasItem(Item item) {
+        return inventory.contains(item);
+    }
 
     // getters and setters
     public void setName(String s) {
