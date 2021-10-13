@@ -1,4 +1,4 @@
-# Borgon Trail - My Personal Project
+# Boregon Trail - My Personal Project
 
 ## User Stories
 
