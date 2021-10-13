@@ -8,6 +8,7 @@ import model.Knife;
 import model.Player;
 import model.Sword;
 
+
 import java.util.Scanner;
 
 public class Game {
@@ -143,7 +144,7 @@ public class Game {
     }
 
     private void setup() {
-        String command = "";
+        String command;
         System.out.println("What would you like to name your character?");
         command = in.next();
         command = command.toLowerCase();
