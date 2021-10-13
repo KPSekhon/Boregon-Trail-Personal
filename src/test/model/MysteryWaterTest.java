@@ -13,7 +13,11 @@ public class MysteryWaterTest {
         assertEquals(0, mw.getCost());
         assertEquals(0, mw.getDamage());
         assertFalse(mw.typeWeapon);
-        boolean b = mw.randomHealthTrait() == -2 || mw.randomHealthTrait() == 2;
+        boolean b = false;
+        int m = mw.randomHealthTrait();
+        if (m == -2 || m == 2 )  {
+            b = true;
+        }
         assertTrue(b);
     }
 

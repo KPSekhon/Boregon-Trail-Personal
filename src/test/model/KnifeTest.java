@@ -20,10 +20,14 @@ public class KnifeTest {
 
     @Test
     public void testDamageChooser() {
-        boolean b = k.damageChooser() == 1 || k.damageChooser() == 2
-                || k.damageChooser() == 3;
+        boolean b = false;
+        int l = k.damageChooser();
+        if (l == 1 || l == 2 || l == 3)  {
+            b = true;
+        }
         assertTrue(b);
-    }
+        }
+
 
     @Test
     public void testIsTypeWeapon() {

@@ -33,7 +33,7 @@ public class Monster {
     // returns true if it can, returns false if entered HP exceeds
     // monster current HP and set HP to 0
     public boolean loseHP(int hp) {
-        return heartPoints.removeHP(hp);
+        return  heartPoints.removeHP(hp);
     }
 
     //MODIFIES: this

@@ -52,9 +52,14 @@ public class Player {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds item to inventory
+    // EFFECTS: adds item to inventory,
+    // if item is a weapon, that item is set to
+    // current weapon
     public void addItem(Item item) {
         inventory.add(item);
+        if (item.isTypeWeapon()) {
+            weapon = item;
+        }
     }
 
     // MODIFIES: this
@@ -69,10 +74,15 @@ public class Player {
     }
 
     // MODIFIES: monster
-    // EFFECTS: applies weapon damage onto monster
-    public void useWeapon(Monster monster) {
-        int hurt = weapon.damageChooser();
-        monster.loseHP(hurt);
+    // EFFECTS: applies weapon damage onto monster if you are using weapon
+    // and returns true, otherwise returns false
+    public boolean useWeapon(Monster monster) {
+        if (weapon.isTypeWeapon()) {
+            int hurt = weapon.damageChooser();
+            monster.loseHP(hurt);
+            return true;
+        }
+        return false;
     }
 
     //MODIFIES: this
@@ -108,6 +118,10 @@ public class Player {
 
     public int getInventorySize() {
         return this.inventory.size();
+    }
+
+    public String getWeaponName() {
+        return weapon.getName();
     }
 
 }
