@@ -64,6 +64,8 @@ public class Game {
                 break;
             case "wait for saviour to arrive" :
                 waitForSaviour();
+            case "start the trail":
+                startTheTrail();
         }
     }
 
@@ -101,6 +103,21 @@ public class Game {
             nextPosition4 = "use " + player.getInventoryItem(4).getName();
         }
         nextPosition5 = "return";
+    }
+
+    private void startTheTrail() {
+        System.out.println("While " + player.getName() + " is walking, a wizard pops out of nowhere."
+                + "\n The wizard says for just 4 dollars they will give a magic potion that will "
+                + "\nkeep you nourished and safe for the rest of your trip.");
+        nextPosition1 = "Buy the supposed potion";
+        nextPosition2 = "Leave the thing alone";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        showChoices();
+        String command;
+        command = in.nextLine();
+        processChoice(command);
     }
 
     private void setupWeaponKentucky() {
