@@ -97,6 +97,8 @@ public class Game {
                 monsterEncounterAdditional();
             case "fight Hytos":
                 fightMonster();
+            case "return to crossroad":
+                returnToCrossroad();
         }
     }
 
@@ -151,8 +153,9 @@ public class Game {
 
     private void monsterEncounterInitial() {
         String trollYell = " Oye " + player.getName() + " , no one crosses Hytos's Canyon Bridge!!!";
-        System.out.println("A troll appears and yells" + trollYell
-                + "the troll starts to charge at you");
+        System.out.println("A troll appears and yells" + " Oye " + player.getName()
+                + " , no one crosses Hytos's Canyon Bridge!!!"
+                + "\n The troll starts to charge at you");
         nextPosition1 = "fight Hytos";
         nextPosition2 = "run for your life";
         nextPosition3 = "";
@@ -181,7 +184,7 @@ public class Game {
         nextPosition3 = "head to Canyon Bridge";
         nextPosition4 = "look at inventory";
         nextPosition5 = "";
-        position = "run for your life";
+        position = "return to crossroad";
         userInput();
     }
 
