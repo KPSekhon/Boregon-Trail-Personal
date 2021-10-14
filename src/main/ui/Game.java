@@ -80,6 +80,10 @@ public class Game {
                 blueRiver();
             case "drink the water":
                 drinkMysteryWater();
+            case "head east":
+                stooleRock();
+            case "read the writing":
+                readTheWriting();
         }
     }
 
@@ -155,6 +159,26 @@ public class Game {
         nextPosition4 = "";
         nextPosition5 = "";
         userInput();
+    }
+
+    private void stooleRock() {
+        System.out.println(player.getName() + " comes across a place called"
+                + "\n" + " and see a writing engraved on the wall");
+        nextPosition1 = "read the writing";
+        nextPosition2 = position;
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+    }
+
+    private void readTheWriting() {
+        System.out.println("The writing reads, “The path to Boregon Trail will have no avail "
+                + "unless you are willing to face challenges from folk tale");
+        nextPosition1 = position;
+        nextPosition2 = "";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
     }
 
 
