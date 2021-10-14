@@ -147,11 +147,13 @@ public class Game {
         System.out.println(player.getName() + " has decided to drink the water");
         int b = mysteryWater.getHeartValue();
         if (b == 2) {
+            player.loseHP(b);
             System.out.println(player.getName() + " has gained 2 HP"
-                    + "\n" + player.getName() + " has" + player.getPlayerHP() + " remaining");
+                    + "\n" + player.getName() + " has " + player.getPlayerHP() + " HP remaining");
         } else if (b == -2) {
+            player.loseHP(b);
             System.out.println(player.getName() + " has lost 2 HP"
-                    + "\n" + player.getName() + " has" + player.getPlayerHP() + " remaining");
+                    + "\n" + player.getName() + " has " + player.getPlayerHP() + " HP remaining");
         }
         nextPosition1 = position;
         nextPosition2 = "";
@@ -169,6 +171,7 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";
+        userInput();
     }
 
     private void readTheWriting() {
@@ -179,6 +182,7 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";
+        userInput();
     }
 
 
@@ -321,7 +325,7 @@ public class Game {
     // EFFECTS: displays options to player
     // influenced by TellerApp and video (linked)
     private void showChoices() {
-        System.out.println(player.getName() + " has the following options");
+        System.out.println(player.getName() + " has the following options:");
         System.out.println(nextPosition1);
         System.out.println(nextPosition2);
         System.out.println(nextPosition3);

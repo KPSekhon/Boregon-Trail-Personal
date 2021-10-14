@@ -5,7 +5,7 @@ public class ImmortalPotion extends Item {
     private HeartPoints heartPoints = new HeartPoints(27);
 
     public ImmortalPotion() {
-        super("Temporary Immortal Potion", 4,0,false);
+        super("Temporary Immortal Potion", 3,0,false);
         setHeartValue(heartPoints);
     }
 
