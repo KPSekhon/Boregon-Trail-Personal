@@ -3,6 +3,7 @@ package ui;
 
 import model.*;
 
+import java.util.Random;
 import java.util.Scanner;
 
 // This class is used to run the game
@@ -19,12 +20,8 @@ public class Game {
     String nextPosition4;
     String nextPosition5;
     Player player;
-    Item inventoryItem1 = player.getInventoryItem(0);
-    Item inventoryItem2 = player.getInventoryItem(1);
-    Item inventoryItem3 = player.getInventoryItem(2);
-    Item inventoryItem4 = player.getInventoryItem(3);
-    Item inventoryItem5 = player.getInventoryItem(4);
     String position;
+    boolean alive = true;
 
     // EFFECTS: runs the game
     public Game() {
@@ -35,7 +32,6 @@ public class Game {
     // EFFECTS: processes user input
     // influenced by TellerApp
     private void runGame() {
-        boolean alive = true;
         String command;
 
         while (alive) {
@@ -66,6 +62,8 @@ public class Game {
             case "Knife":
                 setupWeaponKnife();
                 break;
+            case "wait for saviour to arrive" :
+                waitForSaviour();
         }
     }
 
@@ -82,25 +80,25 @@ public class Game {
     }
 
     private void inventoryChecker() {
-        if (inventoryItem2.getHeartValue() == 0) {
+        if (player.getInventoryItem(1).getHeartValue() == 0) {
             nextPosition1 = "";
         } else {
-            nextPosition1 = "use " + inventoryItem2;
+            nextPosition1 = "use " + player.getInventoryItem(1).getName();
         }
-        if (inventoryItem3.getHeartValue() == 0) {
+        if (player.getInventoryItem(2).getHeartValue() == 0) {
             nextPosition2 = "";
         } else {
-            nextPosition2 = "use " + inventoryItem3;
+            nextPosition2 = "use " + player.getInventoryItem(2).getName();
         }
-        if (inventoryItem4.getHeartValue() == 0) {
+        if (player.getInventoryItem(3).getHeartValue() == 0) {
             nextPosition3 = "";
         } else {
-            nextPosition3 = "use " + inventoryItem4;
+            nextPosition3 = "use " + player.getInventoryItem(3).getName();
         }
-        if (inventoryItem5.getHeartValue() == 0) {
+        if (player.getInventoryItem(4).getHeartValue() == 0) {
             nextPosition4 = "";
         } else {
-            nextPosition4 = "use " + inventoryItem5;
+            nextPosition4 = "use " + player.getInventoryItem(4).getName();
         }
         nextPosition5 = "return";
     }
@@ -121,7 +119,7 @@ public class Game {
         nextPosition5 = "";
         showChoices();
         String command;
-        command = in.next();
+        command = in.nextLine();
         processChoice(command);
     }
 
@@ -141,8 +139,28 @@ public class Game {
         nextPosition5 = "";
         showChoices();
         String command;
-        command = in.next();
+        command = in.nextLine();
         processChoice(command);
+    }
+
+    private void waitForSaviour() {
+        System.out.println("So " + player.getName() + " has chosen to wait for a saviour to arrive. Unfortunately");
+        int value = 0;
+        Random b = new Random();
+        for (int i = 0; i < 5; i++) {
+            value = 1 + b.nextInt(3);
+        }
+        if (value == 1) {
+            System.out.println(player.getName() + " was trampled by a horse");
+        } else if (value == 2) {
+            System.out.println(player.getName() + " was trampled by a carriage going at high speeds");
+        } else if (value == 3) {
+            System.out.println(player.getName() + "sat on a a rock and then was killed by a sinkhole that appeared"
+                    + "\n out of nowhere");
+        } else {
+            System.out.println(player.getName() + " was trampled by a horse");
+        }
+        alive = false;
     }
 
     private void setupWeaponSword() {
@@ -161,7 +179,7 @@ public class Game {
         nextPosition5 = "";
         showChoices();
         String command;
-        command = in.next();
+        command = in.nextLine();
         processChoice(command);
     }
 
