@@ -62,10 +62,16 @@ public class Game {
             case "Knife":
                 setupWeaponKnife();
                 break;
-            case "wait for saviour to arrive" :
+            case "wait for saviour to arrive":
                 waitForSaviour();
             case "start the trail":
                 startTheTrail();
+            case "Buy the supposed potion":
+                purchaseImmortalPotion();
+            case "head to the crossroad":
+                crossroad();
+            case "Leave the thing alone":
+                crossroad();
         }
     }
 
@@ -105,10 +111,34 @@ public class Game {
         nextPosition5 = "return";
     }
 
+    private void crossroad() {
+        // too tired come back later
+    }
+
+
+    private void purchaseImmortalPotion() {
+        ImmortalPotion ip = new ImmortalPotion();
+        if (player.getWallet() < ip.getCost()) {
+            System.out.println("The wizards laughs at you and calls you a peasant, then disappears"
+                    + "\n never to be seen again");
+        } else {
+            System.out.println("The wizards says ahh, you have come to your senses");
+            player.spendMoney(ip.getCost());
+            player.addItem(ip);
+            System.out.println("\t You have " + player.getWallet() + " dollars in your wallet remaining");
+        }
+        nextPosition1 = "head to the crossroad";
+        nextPosition2 = "";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+    }
+
     private void startTheTrail() {
         System.out.println("While " + player.getName() + " is walking, a wizard pops out of nowhere."
                 + "\n The wizard says for just 4 dollars they will give a magic potion that will "
                 + "\nkeep you nourished and safe for the rest of your trip.");
+        System.out.println("\t You have " + player.getWallet() + " dollars in your wallet remaining");
         nextPosition1 = "Buy the supposed potion";
         nextPosition2 = "Leave the thing alone";
         nextPosition3 = "";
