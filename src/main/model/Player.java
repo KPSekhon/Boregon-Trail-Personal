@@ -124,6 +124,10 @@ public class Player {
         return weapon.getName();
     }
 
+    public Item getWeapon() {
+        return weapon;
+    }
+
     public Item getInventoryItem(int i) {
         return inventory.get(i);
     }

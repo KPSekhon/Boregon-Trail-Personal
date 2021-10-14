@@ -107,6 +107,8 @@ public class Game {
             case "fight Hytos":
                 fightMonster();
                 break;
+            case "attack Hytos":
+                attackMonster();
         }
     }
 
@@ -147,8 +149,8 @@ public class Game {
     private void fightMonster() {
         int monsterAttack = monster.attackChooser();
         player.loseHP(monsterAttack);
-        System.out.println(monster.getName() + " attacks"
-                + player.getName() + " for" + monsterAttack + " HP");
+        System.out.println(monster.getName() + " attacks "
+                + player.getName() + " for " + monsterAttack + " HP");
         System.out.println(player.getName() + " has " + player.getPlayerHP() + " HP remaining");
         nextPosition1 = "attack Hytos";
         nextPosition2 = "run for your life";
@@ -158,9 +160,32 @@ public class Game {
         userInput();
     }
 
+    private void attackMonster() {
+        int attack = player.getWeapon().damageChooser();
+        System.out.println(player.getName() + " attacks " + monster.getName()
+                + "\n for " + attack + " HP");
+        monster.loseHP(attack);
+        System.out.println(monster.getName() + " has " + monster.getHP() + " HP remaining");
+        if (monster.getHP() > 0) {
+            nextPosition1 = "fight Hytos";
+            nextPosition2 = "run for your life";
+            nextPosition3 = "";
+            nextPosition4 = "";
+            nextPosition5 = "";
+            userInput();
+        } else if (monster.getHP() < 1) {
+            nextPosition1 = "move forwards";
+            nextPosition2 = "";
+            nextPosition3 = "";
+            nextPosition4 = "";
+            nextPosition5 = "";
+            position = "move forwards";
+            userInput();
+        }
+    }
+
 
     private void monsterEncounterInitial() {
-        String trollYell = " Oye " + player.getName() + " , no one crosses Hytos's Canyon Bridge!!!";
         System.out.println("A troll appears and yells" + " Oye " + player.getName()
                 + " , no one crosses Hytos's Canyon Bridge!!!"
                 + "\n The troll starts to charge at you");
@@ -177,7 +202,7 @@ public class Game {
         String trollYell = " Oye " + player.getName() + " ,didn't I tell ya already, no one crosses Canyon Bridge!!!";
         System.out.println("A troll appears and yells" + trollYell
                 + "the troll starts to charge at you");
-        nextPosition1 = "fight the troll";
+        nextPosition1 = "fight Hytos";
         nextPosition2 = "run for your life";
         nextPosition3 = "";
         nextPosition4 = "";
