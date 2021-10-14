@@ -72,6 +72,10 @@ public class Game {
                 crossroad();
             case "Leave the thing alone":
                 crossroad();
+            case "look at inventory":
+                lookAtInventory();
+            case "return to the crossroad":
+                crossroad();
         }
     }
 
@@ -81,10 +85,7 @@ public class Game {
             System.out.println(player.getInventoryItem(i).getName());
         }
         inventoryChecker();
-        showChoices();
-        String command;
-        command = in.next();
-        processChoice(command);
+        userInput();
     }
 
     private void inventoryChecker() {
@@ -108,11 +109,18 @@ public class Game {
         } else {
             nextPosition4 = "use " + player.getInventoryItem(4).getName();
         }
-        nextPosition5 = "return";
+        nextPosition5 = position;
+        userInput();
     }
 
     private void crossroad() {
-        // too tired come back later
+        System.out.println(player.getName() + " comes to a crossroad");
+        nextPosition1 = "head west";
+        nextPosition2 = "head east";
+        nextPosition3 = "head north";
+        nextPosition4 = "look at inventory";
+        position = "return to the crossroad";
+        userInput();
     }
 
 
@@ -125,6 +133,7 @@ public class Game {
             System.out.println("The wizards says ahh, you have come to your senses");
             player.spendMoney(ip.getCost());
             player.addItem(ip);
+            System.out.println(ip.getName() + " has been added to your inventory");
             System.out.println("\t You have " + player.getWallet() + " dollars in your wallet remaining");
         }
         nextPosition1 = "head to the crossroad";
@@ -132,6 +141,14 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";
+        userInput();
+    }
+
+    private void userInput() {
+        showChoices();
+        String command;
+        command = in.nextLine();
+        processChoice(command);
     }
 
     private void startTheTrail() {
@@ -144,16 +161,15 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";
-        showChoices();
-        String command;
-        command = in.nextLine();
-        processChoice(command);
+        userInput();
     }
 
     private void setupWeaponKentucky() {
         KentuckyRifle kentuckyRifle = new KentuckyRifle();
         player.addItem(kentuckyRifle);
         player.spendMoney(kentuckyRifle.getCost());
+        System.out.println(kentuckyRifle.getName() + " has been added to your inventory"
+                + "\n and it has been set as your default weapon");
         System.out.println("\t You have " + player.getWallet() + " dollars in your wallet remaining");
         System.out.println(player.getName() + " is a cautious person but they need to get to Oregon City \n"
                 + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
@@ -164,16 +180,15 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";
-        showChoices();
-        String command;
-        command = in.nextLine();
-        processChoice(command);
+        userInput();
     }
 
     private void setupWeaponKnife() {
         Knife knife = new Knife();
         player.addItem(knife);
         player.spendMoney(knife.getCost());
+        System.out.println(knife.getName() + " has been added to your inventory"
+                + "\n and it has been set as your default weapon");
         System.out.println("\t You have " + player.getWallet() + " dollars in your wallet remaining");
         System.out.println(player.getName() + " is a cautious person but they need to get to Oregon City \n"
                 + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
@@ -184,10 +199,7 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";
-        showChoices();
-        String command;
-        command = in.nextLine();
-        processChoice(command);
+        userInput();
     }
 
     private void waitForSaviour() {
@@ -214,6 +226,8 @@ public class Game {
         Sword sword = new Sword();
         player.addItem(sword);
         player.spendMoney(sword.getCost());
+        System.out.println(sword.getName() + " has been added to your inventory"
+                + "\n and it has been set as your default weapon");
         System.out.println("\t You have " + player.getWallet() + " dollars in your wallet remaining");
         System.out.println(player.getName() + " is a cautious person but they need to get to Oregon City \n"
                 + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
@@ -224,10 +238,7 @@ public class Game {
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";
-        showChoices();
-        String command;
-        command = in.nextLine();
-        processChoice(command);
+        userInput();
     }
 
 
@@ -268,7 +279,6 @@ public class Game {
     }
 
     private void setupWeapon() {
-        String command;
         System.out.println("What would weapon would you like? \n"
                 + "You have " + player.getWallet() + " dollars in your wallet");
         KentuckyRifle kentuckyRifle = new KentuckyRifle();
@@ -280,9 +290,7 @@ public class Game {
         nextPosition1 = "Kentucky Rifle";
         nextPosition2 = "Knife";
         nextPosition3 = "Sword";
-        showChoices();
-        command = in.nextLine();
-        processChoice(command);
+        userInput();
     }
 }
 

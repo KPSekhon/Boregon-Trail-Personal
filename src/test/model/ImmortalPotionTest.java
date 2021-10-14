@@ -13,7 +13,7 @@ public class ImmortalPotionTest {
     @Test
     public void testConstructor () {
         assertEquals("Temporary Immortal Potion",ip.getName());
-        assertEquals(999,ip.getCost());
+        assertEquals(4,ip.getCost());
         assertEquals(0, ip.getDamage());
         assertFalse(ip.typeWeapon);
         assertEquals(27, ip.getHeartValue());
