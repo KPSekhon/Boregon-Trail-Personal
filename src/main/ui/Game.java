@@ -65,40 +65,48 @@ public class Game {
                 break;
             case "wait for saviour to arrive":
                 waitForSaviour();
+                break;
             case "start the trail":
                 startTheTrail();
+                break;
             case "Buy the supposed potion":
                 purchaseImmortalPotion();
+                break;
             case "head to the crossroad":
-                crossroad();
+            case "return to the crossroad":
             case "Leave the thing alone":
                 crossroad();
+                break;
             case "look at inventory":
                 lookAtInventory();
-            case "return to the crossroad":
-                crossroad();
+                break;
             case "head west":
-                blueRiver();
-            case "drink the water":
-                drinkMysteryWater();
-            case "head east":
-                stooleRock();
-            case "head north":
-                monsterEncounterInitial();
-            case "read the writing":
-                readTheWriting();
-            case "run for your life":
-                returnToCrossroad();
             case "head to Blue River":
                 blueRiver();
+                break;
+            case "drink the water":
+                drinkMysteryWater();
+                break;
+            case "head east":
             case "head to Stoole Rock":
                 stooleRock();
-            case "head to Canyon Bridge":
-                monsterEncounterAdditional();
-            case "fight Hytos":
-                fightMonster();
+                break;
+            case "head north":
+                monsterEncounterInitial();
+                break;
+            case "read the writing":
+                readTheWriting();
+                break;
+            case "run for your life":
             case "return to crossroad":
                 returnToCrossroad();
+                break;
+            case "head to Canyon Bridge":
+                monsterEncounterAdditional();
+                break;
+            case "fight Hytos":
+                fightMonster();
+                break;
         }
     }
 
