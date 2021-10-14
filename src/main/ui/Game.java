@@ -122,22 +122,22 @@ public class Game {
     }
 
     private void inventoryChecker() {
-        if (player.getInventoryItem(1).getHeartValue() == 0) {
+        if (player.getInventoryItem(1) == null) {
             nextPosition1 = "";
         } else {
             nextPosition1 = "use " + player.getInventoryItem(1).getName();
         }
-        if (player.getInventoryItem(2).getHeartValue() == 0) {
+        if (player.getInventoryItem(2) == null) {
             nextPosition2 = "";
         } else {
             nextPosition2 = "use " + player.getInventoryItem(2).getName();
         }
-        if (player.getInventoryItem(3).getHeartValue() == 0) {
+        if (player.getInventoryItem(3) == null) {
             nextPosition3 = "";
         } else {
             nextPosition3 = "use " + player.getInventoryItem(3).getName();
         }
-        if (player.getInventoryItem(4).getHeartValue() == 0) {
+        if (player.getInventoryItem(4) == null) {
             nextPosition4 = "";
         } else {
             nextPosition4 = "use " + player.getInventoryItem(4).getName();

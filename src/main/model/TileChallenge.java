@@ -10,6 +10,7 @@ public class TileChallenge {
     private int tileThree = 3;
     private int tileFour = 4;
     private MarblesBag marblesBag;
+    String hint = "";
 
     TileChallenge() {
     }
@@ -37,35 +38,40 @@ public class TileChallenge {
         }
         if (tileFour == tileChangeOne || tileFour == tileChangeTwo) {
             tileFour = 0;
-        } else if (tileThree == tileChangeOne || tileThree == tileChangeTwo) {
+        }
+        if (tileThree == tileChangeOne || tileThree == tileChangeTwo) {
             tileThree = 0;
-        } else if (tileTwo == tileChangeOne || tileTwo == tileChangeTwo) {
+        }
+        if (tileTwo == tileChangeOne || tileTwo == tileChangeTwo) {
             tileTwo = 0;
-        } else if (tileOne == tileChangeOne || tileOne == tileChangeTwo) {
+        }
+        if (tileOne == tileChangeOne || tileOne == tileChangeTwo) {
             tileOne = 0;
         }
     }
 
     public String rollMarbles(Player player) {
-        String hint = "";
         if (player.hasItem(marblesBag)) {
             if (tileOne == 0) {
-                hint = hint + "juan is right";
-            } else if (tileTwo == 0) {
-                hint = hint + "unos,...";
-            } else if (tileThree == 0) {
-                hint = hint + "a triangle has ... sides";
-            } else if (tileFour == 0) {
-                hint = hint + "don't be such a square";
+                hint += "\n juan is right ";
+            }
+            if (tileTwo == 0) {
+                hint += "\n unos,... ";
+            }
+            if (tileThree == 0) {
+                hint += "\n a triangle has ... sides ";
+            }
+            if (tileFour == 0) {
+                hint += "\n don't be such a square ";
             }
         } else if (tileOne == 0) {
-            hint = "juan is right";
+            hint = "\n juan is right ";
         } else if (tileTwo == 0) {
-            hint = "unos,...";
+            hint = "\n unos,... ";
         } else if (tileThree == 0) {
-            hint = "a triangle has ... sides";
+            hint = "\n a triangle has ... sides ";
         } else if (tileFour == 0) {
-            hint = "don't be such a square";
+            hint = "\n don't be such a square ";
         }
         return hint;
     }
@@ -87,5 +93,9 @@ public class TileChallenge {
 
     public int getTileFour() {
         return tileFour;
+    }
+
+    public String getHint() {
+        return hint;
     }
 }

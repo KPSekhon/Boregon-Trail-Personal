@@ -14,7 +14,7 @@ public class MonsterTest {
     @Test
     public void testConstructor() {
         setup();
-        assertEquals("Hytos", m.getName());
+        assertEquals("Hytos the troll", m.getName());
         assertEquals(20,m.getInitialHP());
         boolean b = false;
         int l = m.attackChooser();
