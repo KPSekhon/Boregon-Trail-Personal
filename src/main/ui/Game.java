@@ -270,7 +270,7 @@ public class Game {
     private void setupWeapon() {
         String command;
         System.out.println("What would weapon would you like? \n"
-                + "you have " + player.getWallet() + " dollars in your wallet");
+                + "You have " + player.getWallet() + " dollars in your wallet");
         KentuckyRifle kentuckyRifle = new KentuckyRifle();
         Knife knife = new Knife();
         Sword sword = new Sword();
