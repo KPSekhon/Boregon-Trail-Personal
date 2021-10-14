@@ -124,4 +124,8 @@ public class Player {
         return weapon.getName();
     }
 
+    public Item getInventoryItem(int i) {
+        return inventory.get(i);
+    }
+
 }

@@ -1,10 +1,8 @@
 package ui;
 
 
-import model.KentuckyRifle;
-import model.Knife;
-import model.Player;
-import model.Sword;
+import model.*;
+
 import java.util.Scanner;
 
 // This class is used to run the game
@@ -21,6 +19,12 @@ public class Game {
     String nextPosition4;
     String nextPosition5;
     Player player;
+    Item inventoryItem1 = player.getInventoryItem(0);
+    Item inventoryItem2 = player.getInventoryItem(1);
+    Item inventoryItem3 = player.getInventoryItem(2);
+    Item inventoryItem4 = player.getInventoryItem(3);
+    Item inventoryItem5 = player.getInventoryItem(4);
+    String position;
 
     // EFFECTS: runs the game
     public Game() {
@@ -37,7 +41,7 @@ public class Game {
         while (alive) {
             setupName();
             setupWeapon();
-            command = in.next();
+            command = in.nextLine();
 
             if (command.equals("q")) {
                 alive = false;
@@ -65,20 +69,56 @@ public class Game {
         }
     }
 
+    private void lookAtInventory() {
+        System.out.println("You have the following items in your inventory");
+        for (int i = 0; i < player.getInventorySize(); i++) {
+            System.out.println(player.getInventoryItem(i).getName());
+        }
+        inventoryChecker();
+        showChoices();
+        String command;
+        command = in.next();
+        processChoice(command);
+    }
+
+    private void inventoryChecker() {
+        if (inventoryItem2.getHeartValue() == 0) {
+            nextPosition1 = "";
+        } else {
+            nextPosition1 = "use " + inventoryItem2;
+        }
+        if (inventoryItem3.getHeartValue() == 0) {
+            nextPosition2 = "";
+        } else {
+            nextPosition2 = "use " + inventoryItem3;
+        }
+        if (inventoryItem4.getHeartValue() == 0) {
+            nextPosition3 = "";
+        } else {
+            nextPosition3 = "use " + inventoryItem4;
+        }
+        if (inventoryItem5.getHeartValue() == 0) {
+            nextPosition4 = "";
+        } else {
+            nextPosition4 = "use " + inventoryItem5;
+        }
+        nextPosition5 = "return";
+    }
+
     private void setupWeaponKentucky() {
         KentuckyRifle kentuckyRifle = new KentuckyRifle();
         player.addItem(kentuckyRifle);
         player.spendMoney(kentuckyRifle.getCost());
-        System.out.println("\t You have" + player.getWallet() + " dollars in your wallet remaining");
+        System.out.println("\t You have " + player.getWallet() + " dollars in your wallet remaining");
         System.out.println(player.getName() + " is a cautious person but they need to get to Oregon City \n"
                 + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
                 + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
                 + "treacherous trail with an ironic name, the Boregon Trail.");
         nextPosition1 = "start the trail";
-        nextPosition2 = "";
+        nextPosition2 = "wait for saviour to arrive";
         nextPosition3 = "";
         nextPosition4 = "";
-        nextPosition5 = "look at inventory";
+        nextPosition5 = "";
         showChoices();
         String command;
         command = in.next();
@@ -95,10 +135,10 @@ public class Game {
                 + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
                 + "treacherous trail with an ironic name, the Boregon Trail.");
         nextPosition1 = "start the trail";
-        nextPosition2 = "";
+        nextPosition2 = "wait for saviour to arrive";
         nextPosition3 = "";
         nextPosition4 = "";
-        nextPosition5 = "look at inventory";
+        nextPosition5 = "";
         showChoices();
         String command;
         command = in.next();
@@ -115,10 +155,10 @@ public class Game {
                 + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
                 + "treacherous trail with an ironic name, the Boregon Trail.");
         nextPosition1 = "start the trail";
-        nextPosition2 = "";
+        nextPosition2 = "wait for saviour to arrive";
         nextPosition3 = "";
         nextPosition4 = "";
-        nextPosition5 = "look at inventory";
+        nextPosition5 = "";
         showChoices();
         String command;
         command = in.next();
@@ -147,7 +187,7 @@ public class Game {
     // EFFECTS: displays options to player
     // influenced by TellerApp and video (linked)
     private void showChoices() {
-        System.out.println("\n You have the following options");
+        System.out.println(player.getName() + " has the following options");
         System.out.println(nextPosition1);
         System.out.println(nextPosition2);
         System.out.println(nextPosition3);
@@ -176,7 +216,7 @@ public class Game {
         nextPosition2 = "Knife";
         nextPosition3 = "Sword";
         showChoices();
-        command = in.next();
+        command = in.nextLine();
         processChoice(command);
     }
 }

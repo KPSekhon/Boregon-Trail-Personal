@@ -21,4 +21,8 @@ public class TileChallengeTest {
         assertTrue(b);
     }
 
+    @Test
+    public void testAssignValue() {
+    }
+
 }

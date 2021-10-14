@@ -28,8 +28,8 @@ public class TileChallenge {
     //EFFECTS: changes values of randomly chosen tiles to zero,
     // to signify they are the correct tiles
     public void assignValue() {
-        int tileChangeOne = 0;
-        int tileChangeTwo = 0;
+        int tileChangeOne;
+        int tileChangeTwo;
         tileChangeOne = chooseRandomValue();
         tileChangeTwo = chooseRandomValue();
         while (tileChangeTwo == tileChangeOne) {
@@ -70,5 +70,22 @@ public class TileChallenge {
         return hint;
     }
 
+    // getters
 
+
+    public int getTileOne() {
+        return tileOne;
+    }
+
+    public int getTileThree() {
+        return tileThree;
+    }
+
+    public int getTileTwo() {
+        return tileTwo;
+    }
+
+    public int getTileFour() {
+        return tileFour;
+    }
 }
