@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class MysteryWater extends Item {
 
-    MysteryWater() {
+    public MysteryWater() {
         super("Mysterious Water Bottle", 0, 0, false);
         heartValue = new HeartPoints(randomHealthTrait());
     }

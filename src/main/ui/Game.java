@@ -76,6 +76,10 @@ public class Game {
                 lookAtInventory();
             case "return to the crossroad":
                 crossroad();
+            case "head west":
+                blueRiver();
+            case "drink the water":
+                drinkMysteryWater();
         }
     }
 
@@ -120,6 +124,36 @@ public class Game {
         nextPosition3 = "head north";
         nextPosition4 = "look at inventory";
         position = "return to the crossroad";
+        userInput();
+    }
+
+    private void blueRiver() {
+        System.out.println(player.getName() + " finds an extremely blue river"
+                + "\n" + player.getName() + " feels a bit thirsty");
+        nextPosition1 = "drink the water";
+        nextPosition2 = position;
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        userInput();
+    }
+
+    private void drinkMysteryWater() {
+        MysteryWater mysteryWater = new MysteryWater();
+        System.out.println(player.getName() + " has decided to drink the water");
+        int b = mysteryWater.getHeartValue();
+        if (b == 2) {
+            System.out.println(player.getName() + " has gained 2 HP"
+                    + "\n" + player.getName() + " has" + player.getPlayerHP() + " remaining");
+        } else if (b == -2) {
+            System.out.println(player.getName() + " has lost 2 HP"
+                    + "\n" + player.getName() + " has" + player.getPlayerHP() + " remaining");
+        }
+        nextPosition1 = position;
+        nextPosition2 = "";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
         userInput();
     }
 
@@ -290,6 +324,8 @@ public class Game {
         nextPosition1 = "Kentucky Rifle";
         nextPosition2 = "Knife";
         nextPosition3 = "Sword";
+        nextPosition4 = "";
+        nextPosition5 = "";
         userInput();
     }
 }
