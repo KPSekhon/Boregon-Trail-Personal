@@ -11,7 +11,7 @@ public class Monster {
 
     public Monster() {
         heartPoints = new HeartPoints(20);
-        name = "Hytos";
+        name = "Hytos the troll";
         initialHealth = new HeartPoints(20);
         attack = attackChooser();
     }

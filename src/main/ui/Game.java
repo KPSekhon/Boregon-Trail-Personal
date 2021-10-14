@@ -21,6 +21,7 @@ public class Game {
     String nextPosition5;
     Player player;
     String position;
+    Monster monster = new Monster();
     boolean alive = true;
 
     // EFFECTS: runs the game
@@ -82,8 +83,20 @@ public class Game {
                 drinkMysteryWater();
             case "head east":
                 stooleRock();
+            case "head north":
+                monsterEncounterInitial();
             case "read the writing":
                 readTheWriting();
+            case "run for your life":
+                returnToCrossroad();
+            case "head to Blue River":
+                blueRiver();
+            case "head to Stoole Rock":
+                stooleRock();
+            case "head to Canyon Bridge":
+                monsterEncounterAdditional();
+            case "fight Hytos":
+                fightMonster();
         }
     }
 
@@ -121,15 +134,68 @@ public class Game {
         userInput();
     }
 
+    private void fightMonster() {
+        int monsterAttack = monster.attackChooser();
+        player.loseHP(monsterAttack);
+        System.out.println(monster.getName() + " attacks"
+                + player.getName() + " for" + monsterAttack + " HP");
+        System.out.println(player.getName() + " has " + player.getPlayerHP() + " HP remaining");
+        nextPosition1 = "attack Hytos";
+        nextPosition2 = "run for your life";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        userInput();
+    }
+
+
+    private void monsterEncounterInitial() {
+        String trollYell = " Oye " + player.getName() + " , no one crosses Hytos's Canyon Bridge!!!";
+        System.out.println("A troll appears and yells" + trollYell
+                + "the troll starts to charge at you");
+        nextPosition1 = "fight Hytos";
+        nextPosition2 = "run for your life";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        userInput();
+    }
+
+    private void monsterEncounterAdditional() {
+        monster.resetHp();
+        String trollYell = " Oye " + player.getName() + " ,didn't I tell ya already, no one crosses Canyon Bridge!!!";
+        System.out.println("A troll appears and yells" + trollYell
+                + "the troll starts to charge at you");
+        nextPosition1 = "fight the troll";
+        nextPosition2 = "run for your life";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        userInput();
+    }
+
+    private void returnToCrossroad() {
+        System.out.println(player.getName() + " returns to a crossroad");
+        nextPosition1 = "head to Blue River";
+        nextPosition2 = "head to Stoole Rock";
+        nextPosition3 = "head to Canyon Bridge";
+        nextPosition4 = "look at inventory";
+        nextPosition5 = "";
+        position = "run for your life";
+        userInput();
+    }
+
     private void crossroad() {
         System.out.println(player.getName() + " comes to a crossroad");
         nextPosition1 = "head west";
         nextPosition2 = "head east";
         nextPosition3 = "head north";
         nextPosition4 = "look at inventory";
+        nextPosition5 = "";
         position = "return to the crossroad";
         userInput();
     }
+
 
     private void blueRiver() {
         System.out.println(player.getName() + " finds an extremely blue river"
