@@ -1,8 +1,10 @@
 package model;
 
+// This class runs all the heart points systems
 public class HeartPoints {
     protected int hp;
 
+    // EFFECTS: instantiates the heartpoints amount
     public HeartPoints(int hp) {
         setHp(hp);
     }

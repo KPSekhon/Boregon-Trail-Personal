@@ -8,6 +8,7 @@ public abstract class Item {
     protected boolean typeWeapon;
     protected HeartPoints heartValue;
 
+    // EFFECTS: instantiates an item with general item behaviour depending on type
     public Item(String name,int cost,int damage, boolean typeWeapon) {
         heartValue = new HeartPoints(0);
         setDamage(damage);

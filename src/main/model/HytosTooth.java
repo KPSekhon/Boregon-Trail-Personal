@@ -6,6 +6,7 @@ public class HytosTooth extends Item {
     }
 
     @Override
+    // EFFECTS: returns zero default damage, as it is not a weapon
     public int damageChooser() {
         return damage;
     }

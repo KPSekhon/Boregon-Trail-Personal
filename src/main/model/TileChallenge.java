@@ -12,6 +12,7 @@ public class TileChallenge {
     private MarblesBag marblesBag = new MarblesBag();
     String hint = "";
 
+    //EFFECTS: instantiates the tile challenge
     TileChallenge() {
     }
 

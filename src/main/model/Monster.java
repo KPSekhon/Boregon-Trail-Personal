@@ -9,6 +9,7 @@ public class Monster {
     private HeartPoints initialHealth;
     private int attack;
 
+    //EFFECTS: instantiates a new monster with specific value traits
     public Monster() {
         heartPoints = new HeartPoints(20);
         name = "Hytos the troll";
@@ -17,7 +18,7 @@ public class Monster {
     }
 
     //MODIFIES: this
-    //EFFECTS: chooses amount of damage to do
+    //EFFECTS: chooses amount of damage to be applied
     public int attackChooser() {
         Random d = new Random();
         int attackAmount = attack;

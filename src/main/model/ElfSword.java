@@ -1,6 +1,7 @@
 package model;
 // This class is for an Elf Sword item
 
+// EFFECTS: creates an Elf Sword
 public class ElfSword extends Item {
     public ElfSword() {
         super("Elf Sword", 0, 50, true);

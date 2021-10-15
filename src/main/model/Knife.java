@@ -3,6 +3,7 @@ package model;
 import java.util.Random;
 // This class is for a knife item, a weapon
 
+// EFFECTS: instantiates a knife item
 public class Knife extends Item {
     public Knife() {
         super("Knife", 3, 3, true);
@@ -10,6 +11,8 @@ public class Knife extends Item {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: chooses a damage amount for knife between 1 - 3
     public int damageChooser() {
         Random d = new Random();
         int damageAmount = damage;

@@ -12,6 +12,7 @@ public class Player {
     private List<Item> inventory;
     private Item weapon;
 
+    // EFFECTS: instantiates a player object
     public Player(String name) {
         this.wallet = 10;
         heartPoints = new HeartPoints(10);
@@ -125,6 +126,8 @@ public class Player {
         return weapon;
     }
 
+    // EFFECTS: return item with inputted index
+    // or returns false, if there is no item in inputted index
     public Item getInventoryItem(int i) {
         if (i > (getInventorySize() - 1)) {
             return new EmptyItem();

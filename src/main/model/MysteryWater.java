@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class MysteryWater extends Item {
 
+    // EFFECTS: instantiates a mystery water item
     public MysteryWater() {
         super("Mysterious Water Bottle", 0, 0, false);
         heartValue = new HeartPoints(randomHealthTrait());
@@ -12,10 +13,13 @@ public class MysteryWater extends Item {
 
 
     @Override
+    // EFFECTS: returns zero default damage, as it is not a weapon
     public int damageChooser() {
         return damage;
     }
 
+    //MODIFIES: this
+    //EFFECTS: determines the heartValue of item, either +2 or -2
     public int randomHealthTrait() {
         Random b = new Random();
         int val;
