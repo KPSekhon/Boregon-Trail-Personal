@@ -143,10 +143,13 @@ public class Game {
                 break;
             case "limp away rich":
                 unicornEnding();
+                break;
             case "accept the offer":
                 happyEnding();
+                break;
             case "continue to walk":
                 badEnding();
+                break;
         }
     }
 
@@ -190,7 +193,6 @@ public class Game {
             nextPosition4 = "use " + player.getInventoryItem(4).getName();
         }
         nextPosition5 = position;
-        userInput();
     }
 
     //MODIFIES: this
@@ -276,7 +278,7 @@ public class Game {
     // EFFECTS: ends the game and takes player to Oregon
     private void unicornEnding() {
         System.out.println(player.getName() + " encounters a sorceresses");
-        System.out.println("The sorceresses offers" + player.getName()
+        System.out.println("The sorceresses offers " + player.getName()
                 + " a ride on her flying horse to Oregon because she's going to visit "
                 + "her sister in Seattle anyways");
         nextPosition1 = "look at inventory";
