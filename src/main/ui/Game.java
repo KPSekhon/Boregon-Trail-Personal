@@ -31,7 +31,7 @@ public class Game {
 
     // MODIFIES: this
     // EFFECTS: processes user input
-    // influenced by TellerApp
+    // This method references code from the Teller App
     private void runGame() {
         String command;
 
@@ -51,7 +51,9 @@ public class Game {
 
     // MODIFIES: this
     // EFFECTS: completes command chosen by user to just before crossroad
-    // influenced by video (linked)
+    // This method references code from this link
+    // Link:
+    // https://www.youtube.com/watch?v=j99EeUjvLVQ&list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV&index=5&ab_channel=RyiSnow
     private void selectPosition(String nextPosition) {
         switch (nextPosition) {
             case "Kentucky Rifle":
@@ -78,7 +80,6 @@ public class Game {
 
     // MODIFIES: this
     // EFFECTS: completes command chosen by user to just before monster event
-
     private void selectPositionCrossroad(String nextPosition) {
         switch (nextPosition) {
             case "head to the crossroad":
@@ -216,6 +217,9 @@ public class Game {
 
     //MODIFIES: this
     //EFFECTS: applies chosen weapon's damage to monster HP and continues battle
+    // This method references similar code to fit this game's purpose from video (linked)
+    // Link:
+    // https://www.youtube.com/watch?v=j99EeUjvLVQ&list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV&index=5&ab_channel=RyiSnow
     private void attackMonster() {
         int attack = player.getWeapon().damageChooser();
         misfire(attack);
@@ -595,8 +599,10 @@ public class Game {
 
 
     //MODIFIES: this
-    //EFFECTS: process user choice
-    // influenced by video (linked) and TellerApp
+    //EFFECTS: process user input command
+    // This method references code from the Teller app and video (linked)
+    // Link:
+    // https://www.youtube.com/watch?v=j99EeUjvLVQ&list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV&index=5&ab_channel=RyiSnow
     private void processChoice(String command) {
         if (command.equals(nextPosition1)) {
             selectPosition(nextPosition1);
@@ -613,7 +619,9 @@ public class Game {
 
 
     // EFFECTS: displays options to player
-    // influenced by TellerApp and video (linked)
+    // This method references code from the Teller app and video (linked)
+    // Link:
+    // https://www.youtube.com/watch?v=j99EeUjvLVQ&list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV&index=5&ab_channel=RyiSnow
     private void showChoices() {
         System.out.println(player.getName() + " has the following options:");
         System.out.println(nextPosition1);
