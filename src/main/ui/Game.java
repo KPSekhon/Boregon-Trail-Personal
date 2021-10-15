@@ -115,6 +115,8 @@ public class Game {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: allows user to look at current inventory
     private void lookAtInventory() {
         System.out.println("You have the following items in your inventory");
         for (int i = 0; i < player.getInventorySize(); i++) {
@@ -124,7 +126,9 @@ public class Game {
         userInput();
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: allows user to look at current inventory, for items that they have picked up
+    // shows empty item slots, for slots that still have items to be added to
     private void inventoryChecker() {
         if (player.getInventoryItem(1) == null) {
             nextPosition1 = "";
@@ -150,6 +154,9 @@ public class Game {
         userInput();
     }
 
+    //MODIFIES: this
+    //EFFECTS: the player initiates battle and gets attacked by Hytos the troll
+    // if at some point player's HP is too low, ends program
     private void fightMonster() {
         int monsterAttack = monster.attackChooser();
         player.loseHP(monsterAttack);
@@ -169,6 +176,8 @@ public class Game {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: applies chosen weapon's damage to monster HP and continues battle
     private void attackMonster() {
         int attack = player.getWeapon().damageChooser();
         System.out.println(player.getName() + " attacks " + monster.getName()
@@ -193,6 +202,8 @@ public class Game {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: progresses player after defeating Hytos the troll
     private void victory() {
         HytosTooth hytosTooth = new HytosTooth();
         System.out.println("You were able to injure " + monster.getName() + " but they managed to get away."
@@ -209,6 +220,8 @@ public class Game {
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: displays message when monster initially encounters Hytos the Troll
     private void monsterEncounterInitial() {
         System.out.println("A troll appears and yells" + " Oye " + player.getName()
                 + " , no one crosses Hytos's Canyon Bridge!!!"
@@ -221,6 +234,8 @@ public class Game {
         userInput();
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays message when monster additionally encounters Hytos the Troll
     private void monsterEncounterAdditional() {
         monster.resetHp();
         String trollYell = " Oye " + player.getName() + " ,didn't I tell ya already, no one crosses Canyon Bridge!!!";
@@ -234,6 +249,8 @@ public class Game {
         userInput();
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays options if player chooses to run away from Hytos the Troll
     private void returnToCrossroad() {
         System.out.println(player.getName() + " returns to a crossroad");
         nextPosition1 = "head to Blue River";
@@ -245,6 +262,8 @@ public class Game {
         userInput();
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays options when player gets to the crossroad
     private void crossroad() {
         System.out.println(player.getName() + " comes to a crossroad");
         nextPosition1 = "head west";
@@ -256,7 +275,8 @@ public class Game {
         userInput();
     }
 
-
+    //MODIFIES: this
+    //EFFECTS: takes player to the Blue River location and display available options
     private void blueRiver() {
         System.out.println(player.getName() + " finds an extremely blue river"
                 + "\n" + player.getName() + " feels a bit thirsty");
@@ -268,6 +288,10 @@ public class Game {
         userInput();
     }
 
+    //MODIFIES:this
+    //EFFECTS: player drinks mystery water that can increase or decrease
+    // the players HP by 2 heart points, then displays option to return to crossroad
+    // Also, player can die if heartpoints get to low, so end command is also implemented
     private void drinkMysteryWater() {
         MysteryWater mysteryWater = new MysteryWater();
         System.out.println(player.getName() + " has decided to drink the water");
@@ -294,6 +318,8 @@ public class Game {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: returns true if player HP is too low to continue
     private boolean lowPlayerHP() {
         if (player.getPlayerHP() <= 0) {
             System.out.println(player.getName() + " has perished");
@@ -303,6 +329,9 @@ public class Game {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: takes player to Stoole Rock location from crossroad and
+    // displays available options
     private void stooleRock() {
         System.out.println(player.getName() + " comes across a place called"
                 + "\n" + " and see a writing engraved on the wall");
@@ -314,6 +343,9 @@ public class Game {
         userInput();
     }
 
+    //MODIFIES: this
+    //EFFECTS: prints out writing found at Stoole Rock location provides
+    // return command to return to crossroad
     private void readTheWriting() {
         System.out.println("The writing reads, “The path to Boregon Trail will have no avail "
                 + "unless you are willing to face challenges from folk tale");
@@ -326,6 +358,9 @@ public class Game {
     }
 
 
+    //MODIFIES: this
+    //EFFECTS: adds immortal potion to player's inventory if they can afford, and
+    // displays advancement options
     private void purchaseImmortalPotion() {
         ImmortalPotion ip = new ImmortalPotion();
         if (player.getWallet() < ip.getCost()) {
@@ -346,6 +381,9 @@ public class Game {
         userInput();
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays available options, intakes user command,
+    // and processes their choices
     private void userInput() {
         showChoices();
         String command;
@@ -353,6 +391,8 @@ public class Game {
         processChoice(command);
     }
 
+    // MODIFIES: this
+    // EFFECTS: starts wizard event after player decides to move forwards
     private void startTheTrail() {
         System.out.println("While " + player.getName() + " is walking, a wizard pops out of nowhere."
                 + "\n The wizard says for just 3 dollars they will give a magic potion that will "
@@ -366,6 +406,9 @@ public class Game {
         userInput();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds Kentucky Rifle Weapon to player inventory, sets it as default weapon
+    // and displays available options
     private void setupWeaponKentucky() {
         KentuckyRifle kentuckyRifle = new KentuckyRifle();
         player.addItem(kentuckyRifle);
@@ -385,6 +428,9 @@ public class Game {
         userInput();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds Knife Weapon to player inventory, sets it as default weapon
+    //  and displays available options
     private void setupWeaponKnife() {
         Knife knife = new Knife();
         player.addItem(knife);
@@ -404,6 +450,8 @@ public class Game {
         userInput();
     }
 
+    // MODIFIES: this
+    // EFFECTS: this is an easter egg kill command, that will kill the player in a variety of ways
     private void waitForSaviour() {
         System.out.println("So " + player.getName() + " has chosen to wait for a saviour to arrive. Unfortunately");
         int value = 0;
@@ -424,6 +472,9 @@ public class Game {
         alive = false;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds Sword Weapon to player inventory, sets it as default weapon
+    //  and displays available options
     private void setupWeaponSword() {
         Sword sword = new Sword();
         player.addItem(sword);
@@ -473,6 +524,8 @@ public class Game {
         System.out.println(nextPosition5);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up player name
     private void setupName() {
         String command;
         System.out.println("What would you like to name your character?");
@@ -480,6 +533,9 @@ public class Game {
         this.player = new Player(command);
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays weapon choices and takes user input to decide
+    // which one is assigned to player as default weapon
     private void setupWeapon() {
         System.out.println("What would weapon would you like? \n"
                 + "You have " + player.getWallet() + " dollars in your wallet");
