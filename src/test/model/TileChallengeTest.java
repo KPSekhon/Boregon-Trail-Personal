@@ -40,7 +40,7 @@ public class TileChallengeTest {
             b1 = true;
         }
         if (tc2 == tc.getTileOne()) {
-            b1 = true;
+            b2 = true;
         } else if ((tc2 == tc.getTileTwo())) {
             b2 = true;
         } else if ((tc2 == tc.getTileThree())) {
@@ -51,6 +51,7 @@ public class TileChallengeTest {
         assertTrue(b1);
         assertTrue(b2);
     }
+
 
     @Test
     public void testRollMarblesNoMarbles() {
@@ -92,7 +93,7 @@ public class TileChallengeTest {
         } else if (Objects.equals(hint1, "\n a triangle has ... sides " + "\n don't be such a square ")) {
             c1 = true;
         }
-        assertEquals(hint1, "b");
+        assertTrue(c1);
     }
 
     @Test
@@ -118,4 +119,26 @@ public class TileChallengeTest {
     public void getHintBeforeEvent() {
         assertEquals("", tc.hint);
     }
+
+    @Test
+    public void testGetTileOne() {
+        assertEquals(1, tc.getTileOne());
+    }
+
+    @Test
+    public void testGetTileTwo() {
+        assertEquals(2, tc.getTileTwo());
+    }
+    @Test
+    public void testGetTileThree() {
+        assertEquals(3, tc.getTileThree());
+    }
+
+    @Test
+    public void testGetTileFour() {
+        assertEquals(4, tc.getTileFour());
+    }
+
+
+
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 // this class is for the main PLayer
 
 public class Player {
@@ -85,7 +86,14 @@ public class Player {
     //EFFECTS: produces true if player has item in inventory
     // ,false otherwise
     public boolean hasItem(Item item) {
-        return inventory.contains(item);
+        boolean b = false;
+        for (Item i : inventory) {
+            if (Objects.equals(i.getName(), item.getName())) {
+                b = true;
+                break;
+            }
+        }
+        return b;
     }
 
     // getters and setters

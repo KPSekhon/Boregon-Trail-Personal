@@ -9,7 +9,7 @@ public class TileChallenge {
     private int tileTwo = 2;
     private int tileThree = 3;
     private int tileFour = 4;
-    private MarblesBag marblesBag;
+    private MarblesBag marblesBag = new MarblesBag();
     String hint = "";
 
     TileChallenge() {
