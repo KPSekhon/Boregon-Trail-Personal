@@ -103,6 +103,13 @@ public class Game {
             case "head to Stoole Rock":
                 stooleRock();
                 break;
+            case "read the writing":
+                readTheWriting();
+                break;
+            case "run for your life":
+            case "return to crossroad":
+                returnToCrossroad();
+                break;
         }
         selectPositionCanyonBridgeOnwards(nextPosition);
     }
@@ -114,13 +121,6 @@ public class Game {
             case "head north":
                 monsterEncounterInitial();
                 break;
-            case "read the writing":
-                readTheWriting();
-                break;
-            case "run for your life":
-            case "return to crossroad":
-                returnToCrossroad();
-                break;
             case "head to Canyon Bridge":
                 monsterEncounterAdditional();
                 break;
@@ -130,19 +130,18 @@ public class Game {
             case "attack Hytos":
                 attackMonster();
                 break;
-        }
-        selectPositionVictoryOnwards(nextPosition);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: completes command chosen by user to after fighting Monster Battle
-    private void selectPositionVictoryOnwards(String nextPosition) {
-        switch (nextPosition) {
             case "move forwards":
                 victory();
                 break;
+            case "limp away rich":
+                unicornEnding();
+            case "accept the offer":
+                happyEnding();
+            case "continue to walk":
+                badEnding();
         }
     }
+
 
     //MODIFIES: this
     //EFFECTS: allows user to look at current inventory
@@ -256,6 +255,40 @@ public class Game {
         nextPosition4 = "";
         nextPosition5 = "";
         position = "limp away rich";
+        userInput();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: ends the game and takes player to Oregon
+    private void unicornEnding() {
+        System.out.println(player.getName() + " encounters a sorceresses");
+        System.out.println("The sorceresses offers" + player.getName()
+                + " a ride on her flying horse to Oregon because she's going to visit "
+                + "her sister in Seattle anyways");
+        nextPosition1 = "look at inventory";
+        nextPosition2 = "accept the offer";
+        nextPosition3 = "continue to walk";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        userInput();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: ends the game , provides player with satisfaction
+    private void happyEnding() {
+        System.out.println(player.getName() + " is able to get to Oregon "
+                + "and claim" + player.getName() + "'s inheritance");
+        alive = false;
+        processChoice("");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: ends the game , provides player with dissatisfaction
+    private void badEnding() {
+        System.out.println(player.getName() + " ignores the offer and continues to walk into the"
+                + " Maze Woods, where" + player.getName() + " gets lost until the end of their days");
+        alive = false;
+        processChoice("");
     }
 
 
@@ -313,6 +346,7 @@ public class Game {
         position = "return to the crossroad";
         userInput();
     }
+
 
     //MODIFIES: this
     //EFFECTS: increases player HP by 27 heartpoints by applying potion to player
