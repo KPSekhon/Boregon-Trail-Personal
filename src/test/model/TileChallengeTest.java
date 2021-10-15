@@ -75,7 +75,9 @@ public class TileChallengeTest {
         tc.assignValue();
         p.addItem(mb);
         assertTrue(p.hasItem(mb));
-        String hint1 = tc.rollMarbles(p);
+        tc.rollMarbles(p);
+        int b = 0;
+        String hint1 = tc.getHint();
         boolean c1 = false;
         if (Objects.equals(hint1, "\n juan is right " + "\n unos,... ")) {
             c1 = true;
@@ -90,6 +92,30 @@ public class TileChallengeTest {
         } else if (Objects.equals(hint1, "\n a triangle has ... sides " + "\n don't be such a square ")) {
             c1 = true;
         }
+        assertEquals(hint1, "b");
+    }
+
+    @Test
+    public void getHintAfterEvent() {
+        tc.assignValue();
+        tc.rollMarbles(p);
+        String hint1 = tc.getHint();
+        boolean c1 = false;
+        assertFalse(p.hasItem(mb));
+        if (Objects.equals(hint1, "\n juan is right ")) {
+            c1 = true;
+        } else if (Objects.equals(hint1, "\n unos,... ")) {
+            c1 = true;
+        } else if (Objects.equals(hint1, "\n a triangle has ... sides ")) {
+            c1 = true;
+        } else if (Objects.equals(hint1, "\n don't be such a square ")) {
+            c1 = true;
+        }
         assertTrue(c1);
+    }
+
+    @Test
+    public void getHintBeforeEvent() {
+        assertEquals("", tc.hint);
     }
 }

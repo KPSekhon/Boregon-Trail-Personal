@@ -50,20 +50,15 @@ public class TileChallenge {
         }
     }
 
+    // MODIFIES: this
+    //EFFECTS: returns two hints if player has a marbles bag in inventory
+    // or one hint, if player does not, reveals one or two of tiles
     public String rollMarbles(Player player) {
         if (player.hasItem(marblesBag)) {
-            if (tileOne == 0) {
-                hint += "\n juan is right ";
-            }
-            if (tileTwo == 0) {
-                hint += "\n unos,... ";
-            }
-            if (tileThree == 0) {
-                hint += "\n a triangle has ... sides ";
-            }
-            if (tileFour == 0) {
-                hint += "\n don't be such a square ";
-            }
+            checkTileOne();
+            checkTileTwo();
+            checkTileThree();
+            checkTileFour();
         } else if (tileOne == 0) {
             hint = "\n juan is right ";
         } else if (tileTwo == 0) {
@@ -75,6 +70,39 @@ public class TileChallenge {
         }
         return hint;
     }
+
+    //MODIFIES: this
+    //EFFECTS: check to see if TileOne was chosen
+    private void checkTileOne() {
+        if (tileOne == 0) {
+            hint += "\n juan is right ";
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: check to see if TileTwo was chosen
+    private void checkTileTwo() {
+        if (tileTwo == 0) {
+            hint += "\n unos,... ";
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: check to see if TileThree was chosen
+    private void checkTileThree() {
+        if (tileThree == 0) {
+            hint += "\n a triangle has ... sides ";
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: check to see if TileFour was chosen
+    private void checkTileFour() {
+        if (tileFour == 0) {
+            hint += "\n don't be such a square ";
+        }
+    }
+
 
     // getters
 
