@@ -73,17 +73,6 @@ public class Player {
         return false;
     }
 
-    // MODIFIES: monster
-    // EFFECTS: applies weapon damage onto monster if you are using weapon
-    // and returns true, otherwise returns false
-    public boolean useWeapon(Monster monster) {
-        if (weapon.isTypeWeapon()) {
-            int hurt = weapon.damageChooser();
-            monster.loseHP(hurt);
-            return true;
-        }
-        return false;
-    }
 
     //MODIFIES: this
     // EFFECTS: adds item healing value to player

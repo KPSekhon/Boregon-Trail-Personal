@@ -155,14 +155,18 @@ public class Game {
         player.loseHP(monsterAttack);
         System.out.println(monster.getName() + " attacks "
                 + player.getName() + " for " + monsterAttack + " HP");
-        lowPlayerHP();
-        System.out.println(player.getName() + " has " + player.getPlayerHP() + " HP remaining");
-        nextPosition1 = "attack Hytos";
-        nextPosition2 = "run for your life";
-        nextPosition3 = "";
-        nextPosition4 = "";
-        nextPosition5 = "";
-        userInput();
+        if (lowPlayerHP()) {
+            alive = false;
+            processChoice("");
+        } else {
+            System.out.println(player.getName() + " has " + player.getPlayerHP() + " HP remaining");
+            nextPosition1 = "attack Hytos";
+            nextPosition2 = "run for your life";
+            nextPosition3 = "";
+            nextPosition4 = "";
+            nextPosition5 = "";
+            userInput();
+        }
     }
 
     private void attackMonster() {
@@ -277,19 +281,25 @@ public class Game {
             System.out.println(player.getName() + " has lost 2 HP"
                     + "\n" + player.getName() + " has " + player.getPlayerHP() + " HP remaining");
         }
-        lowPlayerHP();
-        nextPosition1 = position;
-        nextPosition2 = "";
-        nextPosition3 = "";
-        nextPosition4 = "";
-        nextPosition5 = "";
-        userInput();
+        if (lowPlayerHP()) {
+            alive = false;
+            position = "";
+        } else {
+            nextPosition1 = position;
+            nextPosition2 = "";
+            nextPosition3 = "";
+            nextPosition4 = "";
+            nextPosition5 = "";
+            userInput();
+        }
     }
 
-    private void lowPlayerHP() {
+    private boolean lowPlayerHP() {
         if (player.getPlayerHP() <= 0) {
             System.out.println(player.getName() + " has perished");
-            alive = false;
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -345,7 +355,7 @@ public class Game {
 
     private void startTheTrail() {
         System.out.println("While " + player.getName() + " is walking, a wizard pops out of nowhere."
-                + "\n The wizard says for just 4 dollars they will give a magic potion that will "
+                + "\n The wizard says for just 3 dollars they will give a magic potion that will "
                 + "\nkeep you nourished and safe for the rest of your trip.");
         System.out.println("\t You have " + player.getWallet() + " dollars in your wallet remaining");
         nextPosition1 = "Buy the supposed potion";

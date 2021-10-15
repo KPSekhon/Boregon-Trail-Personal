@@ -188,13 +188,6 @@ public class PlayerTest {
         assertEquals(0, player.getInventorySize());
     }
 
-    @Test
-    public void testUseWeapon() {
-        player.addItem(e);
-        assertEquals(20, m.getHP());
-        assertTrue(player.useWeapon(m));
-        assertEquals(0, m.getHP());
-    }
 
     @Test
     public void testHealPlayer() {
@@ -235,6 +228,48 @@ public class PlayerTest {
         setup();
         assertFalse(player.hasItem(f));
         assertFalse(player.hasItem(e));
+        setup();
+    }
+    @Test
+    public void testGetWeapon() {
+        setup();
+        player.addItem(sword);
+        assertEquals(sword, player.getWeapon());
+    }
+
+    @Test
+    public void testGetInventoryItemWithinBounds() {
+        setup();
+        player.addItem(sword);
+        assertEquals(1, player.getInventorySize());
+        assertEquals(sword.getName(), player.getWeaponName());
+        assertEquals(sword, player.getInventoryItem(0));
+    }
+    @Test
+    public void testGetInventoryItemsWithinBounds() {
+        setup();
+        player.addItem(sword);
+        assertEquals(1, player.getInventorySize());
+        player.addItem(marblesBag);
+        assertEquals(2, player.getInventorySize());
+        assertEquals(sword.getName(), player.getWeaponName());
+        assertEquals(sword, player.getInventoryItem(0));
+        assertEquals(marblesBag, player.getInventoryItem(1));
+    }
+
+    @Test
+    public void testGetInventoryItemOutsideBounds() {
+        setup();
+        EmptyItem emptyItem = new EmptyItem();
+        assertEquals(emptyItem.getName(), player.getInventoryItem(0).getName());
+        setup();
+    }
+    @Test
+    public void testGetInventoryItemsOutsideBounds() {
+        setup();
+        EmptyItem emptyItem = new EmptyItem();
+        assertEquals(emptyItem.getName(), player.getInventoryItem(0).getName());
+        assertEquals(emptyItem.getName(), player.getInventoryItem(1).getName());
         setup();
     }
 
