@@ -13,10 +13,11 @@ public class KentuckyRifle extends Item {
     public int damageChooser() {
         Random d = new Random();
         int damageAmount = damage;
-        for (int i = 0; i < 7; i++) {
-            damageAmount = d.nextInt(2);
+        int random = 0;
+        for (int i = 0; i < 5; i++) {
+            random = d.nextInt(10);
         }
-        if (damageAmount == 1) {
+        if (random > 5) {
             damageAmount = 12;
         }
         return damageAmount;
