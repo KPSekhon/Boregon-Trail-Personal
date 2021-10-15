@@ -52,6 +52,7 @@ public class Game {
     // MODIFIES: this
     // EFFECTS: completes command chosen by user
     // influenced by video (linked)
+    @SuppressWarnings("CheckStyle")
     private void selectPosition(String nextPosition) {
         switch (nextPosition) {
             case "Kentucky Rifle":
@@ -109,6 +110,8 @@ public class Game {
                 break;
             case "attack Hytos":
                 attackMonster();
+            case "move forwards":
+                victory();
         }
     }
 
@@ -151,6 +154,7 @@ public class Game {
         player.loseHP(monsterAttack);
         System.out.println(monster.getName() + " attacks "
                 + player.getName() + " for " + monsterAttack + " HP");
+        lowPlayerHP();
         System.out.println(player.getName() + " has " + player.getPlayerHP() + " HP remaining");
         nextPosition1 = "attack Hytos";
         nextPosition2 = "run for your life";
@@ -182,6 +186,21 @@ public class Game {
             position = "move forwards";
             userInput();
         }
+    }
+
+    private void victory() {
+        HytosTooth hytosTooth = new HytosTooth();
+        System.out.println("You were able to injure " + monster.getName() + " but they managed to get away."
+                + "\n However, you were able to snag a tooth, a troll tooth, which is extremely valuable");
+        player.addItem(hytosTooth);
+        System.out.println(hytosTooth.getName() + ", a collectible item, was added to "
+                + player.getName() + "'s inventory");
+        nextPosition1 = "limp away rich";
+        nextPosition2 = "";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        position = "limp away rich";
     }
 
 
@@ -257,12 +276,20 @@ public class Game {
             System.out.println(player.getName() + " has lost 2 HP"
                     + "\n" + player.getName() + " has " + player.getPlayerHP() + " HP remaining");
         }
+        lowPlayerHP();
         nextPosition1 = position;
         nextPosition2 = "";
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";
         userInput();
+    }
+
+    private void lowPlayerHP() {
+        if (player.getPlayerHP() <= 0) {
+            System.out.println(player.getName() + " has perished");
+            alive = false;
+        }
     }
 
     private void stooleRock() {
