@@ -73,6 +73,12 @@ public class Game {
             case "Buy the supposed potion":
                 purchaseImmortalPotion();
                 break;
+        }
+        selectPositionCrossroad(nextPosition);
+    }
+
+    private void selectPositionCrossroad(String nextPosition) {
+        switch (nextPosition) {
             case "head to the crossroad":
             case "return to the crossroad":
             case "Leave the thing alone":
@@ -110,9 +116,12 @@ public class Game {
                 break;
             case "attack Hytos":
                 attackMonster();
+                break;
             case "move forwards":
                 victory();
+                break;
         }
+
     }
 
     //MODIFIES: this
