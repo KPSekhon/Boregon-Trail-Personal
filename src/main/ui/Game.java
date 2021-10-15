@@ -205,6 +205,7 @@ public class Game {
     //EFFECTS: applies chosen weapon's damage to monster HP and continues battle
     private void attackMonster() {
         int attack = player.getWeapon().damageChooser();
+        misfire(attack);
         System.out.println(player.getName() + " attacks " + monster.getName()
                 + "\n for " + attack + " HP");
         monster.loseHP(attack);
@@ -226,6 +227,15 @@ public class Game {
             userInput();
         }
     }
+
+    // MODIFIES: this
+    //EFFECTS: produces message if player's weapon damage is zero
+    private void misfire(int i) {
+        if (i == 0) {
+            System.out.println("Oops, " + player.getName() + " dropped " + player.getName() + "'s weapon");
+        }
+    }
+
 
     // MODIFIES: this
     // EFFECTS: progresses player after defeating Hytos the troll
