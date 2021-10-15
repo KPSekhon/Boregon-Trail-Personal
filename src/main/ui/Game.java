@@ -78,6 +78,7 @@ public class Game {
 
     // MODIFIES: this
     // EFFECTS: completes command chosen by user to just before monster event
+    @SuppressWarnings("CheckStyle")
     private void selectPositionCrossroad(String nextPosition) {
         switch (nextPosition) {
             case "head to the crossroad":
@@ -87,6 +88,9 @@ public class Game {
                 break;
             case "look at inventory":
                 lookAtInventory();
+                break;
+            case "use Temporary Immortal Potion":
+                useImmortalPotion();
                 break;
             case "head west":
             case "head to Blue River":
@@ -307,6 +311,22 @@ public class Game {
         nextPosition4 = "look at inventory";
         nextPosition5 = "";
         position = "return to the crossroad";
+        userInput();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: increases player HP by 27 heartpoints by applying potion to player
+    private void useImmortalPotion() {
+        System.out.println(player.getName() + " decides to drink the potion"
+                + "\n ," + player.getName() + " begins to glow and feels light as a feather");
+        player.healPlayer(player.getInventoryItem(1));
+        System.out.println(player.getName() + " has " + player.getPlayerHP() + " HP remaining");
+        player.loseItem(player.getInventoryItem(1));
+        nextPosition1 = "look at inventory";
+        nextPosition2 = position;
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
         userInput();
     }
 
