@@ -13,7 +13,7 @@ public class TileChallenge {
     String hint = "";
 
     //EFFECTS: instantiates the tile challenge
-    TileChallenge() {
+    public TileChallenge() {
     }
 
     // EFFECTS: chooses a random value between one and four

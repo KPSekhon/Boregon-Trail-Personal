@@ -154,9 +154,6 @@ public class Game {
     }
 
 
-
-
-
     //MODIFIES: this
     //EFFECTS: allows user to look at current inventory
     private void lookAtInventory() {
@@ -273,6 +270,67 @@ public class Game {
         position = "limp away rich";
         userInput();
     }
+
+    //MODIFIES: this
+    //EFFECTS: sets up the tiles Challenges
+    private void tilesChallenge() {
+        TileChallenge tc = new TileChallenge();
+        tc.assignValue();
+        tc.rollMarbles(player);
+        int a = tc.getTileOne();
+        int b = tc.getTileTwo();
+        int c = tc.getTileThree();
+        int d = tc.getTileFour();
+        System.out.println(player.getName() + " is faced with another challenge, Hytos the troll"
+                + " managed to leave another problem for " + player.getName());
+        System.out.println("Hytos the troll left a message, there are four tiles ahead,"
+                + " only two shall not end with dread! ");
+        travellerReward();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: displays a message only shown to those who were kind to the traveller
+    private void kindnessRepayed() {
+        MarblesBag marblesBag = new MarblesBag();
+        if (player.hasItem(marblesBag)) {
+            System.out.println("However, with quick thinking " + player.getName() + " remembers "
+                    + player.getName() + " has marbles given to them by the traveller " + player.getName()
+                    + " rolls those marbles onto the tiles and a mystical hint appears...");
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: creates a traveller event, if player decides to help traveller
+    //they will be rewarded onwards in tilesChallenge
+    private void travellerEvent() {
+        System.out.println("While " + player.getName() + " is walking along the Boregon Trail"
+                + player.getName() + " encounters a traveller");
+        System.out.println("Hello, would you be willing to help me, I need to get home to my family"
+                + " all, I need is one dollar");
+        nextPosition1 = "help traveller";
+        nextPosition2 = "ignore traveller";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        userInput();
+    }
+
+    //MODIFIES: this
+    //EFFECTS: player is shown gratification and given MarblesBag for helping traveller
+    private void travellerReward() {
+        System.out.println("Thank you for your help, all I can give in return is this bag of marbles ");
+        MarblesBag marblesBag = new MarblesBag();
+        player.addItem(marblesBag);
+        System.out.println(marblesBag.getName() + " has been added to your inventory for being kind");
+        nextPosition1 = "look at inventory";
+        nextPosition2 = "walk onwards";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        position = "walk onwards";
+        userInput();
+    }
+
 
     // MODIFIES: this
     // EFFECTS: ends the game and takes player to Oregon
