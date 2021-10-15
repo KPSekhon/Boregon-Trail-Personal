@@ -78,7 +78,7 @@ public class Game {
 
     // MODIFIES: this
     // EFFECTS: completes command chosen by user to just before monster event
-    @SuppressWarnings("CheckStyle")
+
     private void selectPositionCrossroad(String nextPosition) {
         switch (nextPosition) {
             case "head to the crossroad":
@@ -99,6 +99,14 @@ public class Game {
             case "drink the water":
                 drinkMysteryWater();
                 break;
+        }
+        selectPositionCanyonBridgeOnwardsInitial(nextPosition);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: completes command chosen by user until initial encounter of monster
+    private void selectPositionCanyonBridgeOnwardsInitial(String nextPosition) {
+        switch (nextPosition) {
             case "head east":
             case "head to Stoole Rock":
                 stooleRock();
@@ -106,21 +114,20 @@ public class Game {
             case "read the writing":
                 readTheWriting();
                 break;
+            case "head north":
+                monsterEncounterInitial();
             case "run for your life":
             case "return to crossroad":
                 returnToCrossroad();
                 break;
         }
-        selectPositionCanyonBridgeOnwards(nextPosition);
+        selectPositionCanyonBridgeOnwardsAdditional(nextPosition);
     }
 
     // MODIFIES: this
-    // EFFECTS: completes command chosen by user until end of Monster Battle
-    private void selectPositionCanyonBridgeOnwards(String nextPosition) {
+    // EFFECTS: completes command chosen by user after initial encounter of monster
+    private void selectPositionCanyonBridgeOnwardsAdditional(String nextPosition) {
         switch (nextPosition) {
-            case "head north":
-                monsterEncounterInitial();
-                break;
             case "head to Canyon Bridge":
                 monsterEncounterAdditional();
                 break;
@@ -141,6 +148,9 @@ public class Game {
                 badEnding();
         }
     }
+
+
+
 
 
     //MODIFIES: this
