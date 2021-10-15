@@ -124,6 +124,7 @@ public class Game {
         userInput();
     }
 
+
     private void inventoryChecker() {
         if (player.getInventoryItem(1) == null) {
             nextPosition1 = "";

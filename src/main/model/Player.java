@@ -129,7 +129,11 @@ public class Player {
     }
 
     public Item getInventoryItem(int i) {
-        return inventory.get(i);
+        if (i > (getInventorySize() - 1)) {
+            return new EmptyItem();
+        } else {
+            return inventory.get(i);
+        }
     }
 
 }
