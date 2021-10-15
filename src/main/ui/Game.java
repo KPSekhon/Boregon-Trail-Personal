@@ -50,9 +50,8 @@ public class Game {
     }
 
     // MODIFIES: this
-    // EFFECTS: completes command chosen by user
+    // EFFECTS: completes command chosen by user to just before crossroad
     // influenced by video (linked)
-    @SuppressWarnings("CheckStyle")
     private void selectPosition(String nextPosition) {
         switch (nextPosition) {
             case "Kentucky Rifle":
@@ -77,6 +76,8 @@ public class Game {
         selectPositionCrossroad(nextPosition);
     }
 
+    // MODIFIES: this
+    // EFFECTS: completes command chosen by user to just before monster event
     private void selectPositionCrossroad(String nextPosition) {
         switch (nextPosition) {
             case "head to the crossroad":
@@ -98,6 +99,14 @@ public class Game {
             case "head to Stoole Rock":
                 stooleRock();
                 break;
+        }
+        selectPositionCanyonBridgeOnwards(nextPosition);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: completes command chosen by user until end of Monster Battle
+    private void selectPositionCanyonBridgeOnwards(String nextPosition) {
+        switch (nextPosition) {
             case "head north":
                 monsterEncounterInitial();
                 break;
@@ -117,11 +126,18 @@ public class Game {
             case "attack Hytos":
                 attackMonster();
                 break;
+        }
+        selectPositionVictoryOnwards(nextPosition);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: completes command chosen by user to after fighting Monster Battle
+    private void selectPositionVictoryOnwards(String nextPosition) {
+        switch (nextPosition) {
             case "move forwards":
                 victory();
                 break;
         }
-
     }
 
     //MODIFIES: this
