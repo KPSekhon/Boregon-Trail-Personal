@@ -496,7 +496,7 @@ public class Game {
     //EFFECTS: takes player to Stoole Rock location from crossroad and
     // displays available options
     private void stooleRock() {
-        System.out.println(player.getName() + " comes across a place called"
+        System.out.println(player.getName() + " comes across a place called Stoole Rock"
                 + "\n" + " and see a writing engraved on the wall");
         nextPosition1 = "read the writing";
         nextPosition2 = position;
