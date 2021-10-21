@@ -3,6 +3,7 @@ package model;
 
 //EFFECTS: instantiates a marbles bag item
 public class MarblesBag extends Item {
+    //EFFECTS: instantiates a marbles bag item
     public MarblesBag() {
         super("Marbles Bag", 1,0,false);
     }

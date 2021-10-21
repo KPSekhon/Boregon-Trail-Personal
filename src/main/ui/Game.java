@@ -263,7 +263,7 @@ public class Game {
         System.out.println(hytosTooth.getName() + ", a collectible item, was added to "
                 + player.getName() + "'s inventory");
         nextPosition1 = "limp away rich";
-        nextPosition2 = "";
+        nextPosition2 = "one and two, one and three";
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";

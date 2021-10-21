@@ -3,8 +3,9 @@ package model;
 import java.util.Random;
 // This class is for a knife item, a weapon
 
-// EFFECTS: instantiates a knife item
+
 public class Knife extends Item {
+    // EFFECTS: instantiates a knife item
     public Knife() {
         super("Knife", 3, 3, true);
         typeWeapon = true;
