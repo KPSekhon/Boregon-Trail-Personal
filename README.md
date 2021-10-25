@@ -7,6 +7,8 @@
 - As a user, I want to see my choices reflected in the story
 - As a user, I want to move further in the map and progress in the story
 - As a user, I want to be able to use an item
+- As a user, I want to be able to save my current game to file during freeroam periods
+- As a user, I want to be able to load my previous save from file
 
 
 

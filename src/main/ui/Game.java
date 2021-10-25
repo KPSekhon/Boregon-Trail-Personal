@@ -2,6 +2,7 @@ package ui;
 
 
 import model.*;
+import model.exceptions.InvalidCommandException;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -43,7 +44,11 @@ public class Game {
             if (command.equals("q")) {
                 alive = false;
             } else {
-                processChoice(command);
+                try {
+                    processChoice(command);
+                } catch (InvalidCommandException e) {
+                    System.out.println("Invalid Command, please try again");
+                }
             }
         }
         System.out.println("\n Game Over...");
@@ -202,7 +207,11 @@ public class Game {
                 + player.getName() + " for " + monsterAttack + " HP");
         if (lowPlayerHP()) {
             alive = false;
-            processChoice("");
+            try {
+                processChoice("");
+            } catch (InvalidCommandException e) {
+                e.printStackTrace();
+            }
         } else {
             System.out.println(player.getName() + " has " + player.getPlayerHP() + " HP remaining");
             nextPosition1 = "attack Hytos";
@@ -353,7 +362,11 @@ public class Game {
         System.out.println(player.getName() + " is able to get to Oregon "
                 + "and claim" + player.getName() + "'s inheritance");
         alive = false;
-        processChoice("");
+        try {
+            processChoice("");
+        } catch (InvalidCommandException e) {
+            e.printStackTrace();
+        }
     }
 
     // MODIFIES: this
@@ -362,7 +375,11 @@ public class Game {
         System.out.println(player.getName() + " ignores the offer and continues to walk into the"
                 + " Maze Woods, where" + player.getName() + " gets lost until the end of their days");
         alive = false;
-        processChoice("");
+        try {
+            processChoice("");
+        } catch (InvalidCommandException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -551,7 +568,12 @@ public class Game {
         showChoices();
         String command;
         command = in.nextLine();
-        processChoice(command);
+        try {
+            processChoice(command);
+        } catch (InvalidCommandException e) {
+            System.out.println("Invalid command please try again");
+            userInput();
+        }
     }
 
     // MODIFIES: this
@@ -660,10 +682,11 @@ public class Game {
 
     //MODIFIES: this
     //EFFECTS: process user input command
+    // if input command is not as any of shown commands, throws InvalidCommandException
     // This method references code from the Teller app and video (linked)
     // Link:
     // https://www.youtube.com/watch?v=j99EeUjvLVQ&list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV&index=5&ab_channel=RyiSnow
-    private void processChoice(String command) {
+    private void processChoice(String command) throws InvalidCommandException {
         if (command.equals(nextPosition1)) {
             selectPosition(nextPosition1);
         } else if (command.equals(nextPosition2)) {
@@ -674,6 +697,8 @@ public class Game {
             selectPosition(nextPosition4);
         } else if (command.equals(nextPosition5)) {
             selectPosition(nextPosition5);
+        } else {
+            throw new InvalidCommandException();
         }
     }
 
