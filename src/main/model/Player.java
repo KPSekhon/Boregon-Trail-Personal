@@ -1,11 +1,17 @@
 package model;
 
+import model.exceptions.UnknownItemException;
+import model.persistance.Writable;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 // this class is for the main PLayer
 
-public class Player {
+public class Player extends Writable {
     private HeartPoints heartPoints;
     private String name;
     private int wallet;
@@ -20,10 +26,62 @@ public class Player {
         this.inventory = new ArrayList<>();
     }
 
+    public Player(JSONObject json) {
+        super(json);
+    }
+
     // MODIFIES: this
     // EFFECTS: adds input hp to player's overall hp
     public void addHP(int hp) {
         this.heartPoints.addHP(hp);
+    }
+
+    @Override
+    //EFFECTS: stores Player as an JsonObject
+    // Source: JSonSerializationDemo
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("heartpoints", this.heartPoints.getHp());
+        json.put("wallet", this.wallet);
+        json.put("inventory", inventoryToJson());
+        json.put("weapon", this.weapon);
+        return json;
+    }
+
+    @Override
+    protected void fromJson(JSONObject json) {
+        this.name = json.getString("name");
+        this.heartPoints = new HeartPoints(json.getInt("heartpoints"));
+        this.wallet = json.getInt("wallet");
+        this.inventory = new ArrayList<Item>();
+        JSONArray rawInventory = json.getJSONArray("inventory");
+        for (int i = 0; i < rawInventory.length(); i++) {
+            try {
+                Item item = ItemFactory.getItem(rawInventory.getJSONObject(i));
+                addItem(item);
+            } catch (UnknownItemException e) {
+                continue;
+            }
+        }
+        try {
+            this.weapon = ItemFactory.getItem(json.getJSONObject("weapon"));
+        } catch (UnknownItemException e) {
+            this.weapon = new EmptyWeapon();
+        } catch (JSONException e) {
+            this.weapon = new EmptyWeapon();
+        }
+    }
+
+
+    // EFFECTS: returns items in inventory as a JSON array
+    // Source: JSonSerializationDemo
+    private JSONArray inventoryToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Item i : inventory) {
+            jsonArray.put(i.toJson());
+        }
+        return jsonArray;
     }
 
     // MODIFIES: this
@@ -100,6 +158,22 @@ public class Player {
     // getters and setters
     public void setName(String s) {
         this.name = s;
+    }
+
+    public void setHeartPoints(HeartPoints heartPoints) {
+        this.heartPoints = heartPoints;
+    }
+
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
+    }
+
+    public void setWeapon(Item weapon) {
+        this.weapon = weapon;
+    }
+
+    public void setWallet(int wallet) {
+        this.wallet = wallet;
     }
 
     public String getName() {

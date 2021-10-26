@@ -1,5 +1,6 @@
 package model;
 
+
 import java.util.Random;
 // This class is for a knife item, a weapon
 
@@ -22,4 +23,5 @@ public class Knife extends Item {
         }
         return damageAmount;
     }
+
 }

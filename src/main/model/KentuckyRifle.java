@@ -1,10 +1,11 @@
 package model;
 
+
 import java.util.Random;
 // This class is for a Kentucky Rifle with 4 bullets, a weapon
 
 
-public class KentuckyRifle extends Item {
+public class KentuckyRifle extends Item  {
     // EFFECTS: instantiates a kentucky rifle item
     public KentuckyRifle() {
         super("Kentucky Rifle with 4 bullets", 8, 12, true);
@@ -26,4 +27,6 @@ public class KentuckyRifle extends Item {
         }
         return damageAmount;
     }
+
+
 }

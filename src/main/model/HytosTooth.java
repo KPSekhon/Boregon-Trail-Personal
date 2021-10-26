@@ -1,7 +1,8 @@
 package model;
 // This class is for the collectible: Hytos the troll's tooth
 
-public class HytosTooth extends Item {
+
+public class HytosTooth extends Item  {
 
     //EFFECTS: initializes the tooth with name and high value
     public HytosTooth() {
@@ -13,4 +14,6 @@ public class HytosTooth extends Item {
     public int damageChooser() {
         return damage;
     }
+
+
 }

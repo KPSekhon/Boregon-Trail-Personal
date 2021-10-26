@@ -3,7 +3,15 @@ package ui;
 
 import model.*;
 import model.exceptions.InvalidCommandException;
+import model.persistance.GameJsonReader;
+import model.persistance.GameJsonWriter;
+import model.persistance.Writable;
+import org.json.JSONObject;
 
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,8 +21,8 @@ import java.util.Scanner;
 // Linked video was used to determine how to implement choices based on chosen actions
 // The video also has a heavy influence on this class
 
-public class Game {
-    private Scanner in = new Scanner(System.in);
+public class Game extends Writable {
+    private final Scanner in = new Scanner(System.in);
     String nextPosition1;
     String nextPosition2;
     String nextPosition3;
@@ -27,13 +35,17 @@ public class Game {
 
     // EFFECTS: runs the game
     public Game() {
-        runGame();
+
+    }
+
+    public Game(JSONObject json) {
+        super(json);
     }
 
     // MODIFIES: this
     // EFFECTS: processes user input
     // This method references code from the Teller App
-    private void runGame() {
+    public void runGame() {
         String command;
 
         while (alive) {
@@ -47,11 +59,53 @@ public class Game {
                 try {
                     processChoice(command);
                 } catch (InvalidCommandException e) {
-                    System.out.println("Invalid Command, please try again");
+                    //
                 }
             }
         }
         System.out.println("\n Game Over...");
+    }
+
+
+    //EFFECTS: stores Game as an JsonObject
+    // Source: JSonSerializationDemo
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("player", getPlayer().toJson());
+        json.put("position", getCurrentPosition());
+        json.put("nextPosition1", getNextPosition1());
+        json.put("nextPosition2", getNextPosition2());
+        json.put("nextPosition3", getNextPosition3());
+        json.put("nextPosition4", getNextPosition4());
+        json.put("nextPosition5", getNextPosition5());
+        json.put("monster", getMonster().toJson());
+        json.put("alive", isAlive());
+        return json;
+    }
+
+    public void saveGame() {
+        GameJsonWriter gs = new GameJsonWriter("");
+        try {
+            gs.open();
+        } catch (FileNotFoundException e) {
+            //add default save location
+        }
+        gs.write(this);
+        gs.close();
+    }
+
+    public void loadGame() throws {
+        GameJsonReader gr = new GameJsonReader("");
+        try {
+            fromJson(gr.read());
+        } catch (IOException e) {
+            throw IOException
+        }
+    }
+
+    @Override
+    protected void fromJson(JSONObject json) {
+    this.player = new Player(json.getJSONObject("player"));
     }
 
     // MODIFIES: this
@@ -743,6 +797,78 @@ public class Game {
         nextPosition4 = "";
         nextPosition5 = "";
         userInput();
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public String getCurrentPosition() {
+        return this.position;
+    }
+
+    public String getNextPosition1() {
+        return nextPosition1;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public Monster getMonster() {
+        return monster;
+    }
+
+    public String getNextPosition2() {
+        return nextPosition2;
+    }
+
+    public String getNextPosition3() {
+        return nextPosition3;
+    }
+
+    public String getNextPosition4() {
+        return nextPosition4;
+    }
+
+    public String getNextPosition5() {
+        return nextPosition5;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public void setMonster(Monster monster) {
+        this.monster = monster;
+    }
+
+    public void setNextPosition1(String nextPosition1) {
+        this.nextPosition1 = nextPosition1;
+    }
+
+    public void setNextPosition2(String nextPosition2) {
+        this.nextPosition2 = nextPosition2;
+    }
+
+    public void setNextPosition3(String nextPosition3) {
+        this.nextPosition3 = nextPosition3;
+    }
+
+    public void setNextPosition4(String nextPosition4) {
+        this.nextPosition4 = nextPosition4;
+    }
+
+    public void setNextPosition5(String nextPosition5) {
+        this.nextPosition5 = nextPosition5;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
 

@@ -1,13 +1,19 @@
 package model;
 // this class if for a Monster object
 
+import model.persistance.Writable;
+import org.json.JSONObject;
+
 import java.util.Random;
 
-public class Monster {
+public class Monster extends Writable {
     private HeartPoints heartPoints;
     private String name;
     private HeartPoints initialHealth;
     private int attack;
+
+
+
 
     //EFFECTS: instantiates a new monster with specific value traits
     public Monster() {
@@ -28,6 +34,25 @@ public class Monster {
         return attackAmount;
     }
 
+    @Override
+    //EFFECTS: stores Monster as an JsonObject
+    // Source: JSonSerializationDemo
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("heartPoints", this.heartPoints);
+        json.put("initialHealth", this.initialHealth);
+        json.put("attack",this.attack);
+        return json;
+    }
+
+    @Override
+    protected void fromJson(JSONObject json) {
+        this.name = json.getString("name");
+        this.heartPoints = new HeartPoints(json.getInt("heartPoints"));
+        this.initialHealth = new HeartPoints(json.getInt("initialHealth"));
+        this.attack = json.getInt("attack");
+    }
 
 
     // MODIFIES: this

@@ -1,9 +1,11 @@
 package model;
 
+
+
 import java.util.Random;
 // this class is a mysterious water bottle that can heal or reduce a player's HP by +/- 2
 
-public class MysteryWater extends Item {
+public class MysteryWater extends Item  {
 
     // EFFECTS: instantiates a mystery water item
     public MysteryWater() {
@@ -34,4 +36,5 @@ public class MysteryWater extends Item {
         }
         return val;
     }
+
 }

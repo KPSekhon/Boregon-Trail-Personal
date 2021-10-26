@@ -1,7 +1,10 @@
 package model;
 // This class is a general abstract class for items
 
-public abstract class Item {
+import model.persistance.Writable;
+import org.json.JSONObject;
+
+public abstract class Item extends Writable {
     protected String name;
     protected int cost;
     protected int damage;
@@ -18,6 +21,9 @@ public abstract class Item {
         typeWeapon = this.typeWeapon;
     }
 
+    Item(JSONObject json) {
+        super(json);
+    }
     // MODIFIES: this
     // EFFECTS: determines the value item can damage other objects
     public abstract int damageChooser();
@@ -60,5 +66,22 @@ public abstract class Item {
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    //EFFECTS: stores item as an JsonObject
+    // Source: JSonSerializationDemo
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", this.name);
+        json.put("cost", this.cost);
+        json.put("damage", this.damage);
+        json.put("IsWeapon",typeWeapon);
+        return json;
+    }
+
+    @Override
+    public void fromJson(JSONObject json) {
+        json.getString("name");
     }
 }
