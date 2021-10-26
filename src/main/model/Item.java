@@ -12,7 +12,7 @@ public abstract class Item extends Writable {
     protected HeartPoints heartValue;
 
     // EFFECTS: instantiates an item with general item behaviour depending on type
-    public Item(String name,int cost,int damage, boolean typeWeapon) {
+    public Item(String name, int cost, int damage, boolean typeWeapon) {
         heartValue = new HeartPoints(0);
         setDamage(damage);
         setHeartValue(heartValue);
@@ -24,6 +24,7 @@ public abstract class Item extends Writable {
     Item(JSONObject json) {
         super(json);
     }
+
     // MODIFIES: this
     // EFFECTS: determines the value item can damage other objects
     public abstract int damageChooser();
@@ -76,12 +77,15 @@ public abstract class Item extends Writable {
         json.put("name", this.name);
         json.put("cost", this.cost);
         json.put("damage", this.damage);
-        json.put("IsWeapon",typeWeapon);
+        json.put("IsWeapon", typeWeapon);
         return json;
     }
 
     @Override
     public void fromJson(JSONObject json) {
-        json.getString("name");
+        this.name = json.getString("name");
+        this.cost = json.getInt("cost");
+        this.damage = json.getInt("damage");
+        this.typeWeapon = json.getBoolean("IsWeapon");
     }
 }

@@ -23,6 +23,10 @@ public class Monster extends Writable {
         attack = attackChooser();
     }
 
+    public Monster(JSONObject json) {
+        super(json);
+    }
+
     //MODIFIES: this
     //EFFECTS: chooses amount of damage to be applied
     public int attackChooser() {

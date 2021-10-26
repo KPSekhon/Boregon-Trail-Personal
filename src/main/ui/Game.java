@@ -84,7 +84,7 @@ public class Game extends Writable {
     }
 
     public void saveGame() {
-        GameJsonWriter gs = new GameJsonWriter("");
+        GameJsonWriter gs = new GameJsonWriter("./data/game.json");
         try {
             gs.open();
         } catch (FileNotFoundException e) {
@@ -94,18 +94,26 @@ public class Game extends Writable {
         gs.close();
     }
 
-    public void loadGame() throws {
-        GameJsonReader gr = new GameJsonReader("");
+    public void loadGame()  {
+        GameJsonReader gr = new GameJsonReader("./data/game.json");
         try {
             fromJson(gr.read());
+            userInput();
         } catch (IOException e) {
-            throw IOException
+            // fix this
         }
     }
 
     @Override
     protected void fromJson(JSONObject json) {
-    this.player = new Player(json.getJSONObject("player"));
+        setPlayer(new Player(json.getJSONObject("player")));
+        setNextPosition1((json.getString("nextPosition1")));
+        setNextPosition2((json.getString("nextPosition2")));
+        setNextPosition3((json.getString("nextPosition3")));
+        setNextPosition4((json.getString("nextPosition4")));
+        setNextPosition5((json.getString("nextPosition5")));
+        setAlive(json.getBoolean("alive"));
+        setMonster(new Monster(json.getJSONObject("monster")));
     }
 
     // MODIFIES: this

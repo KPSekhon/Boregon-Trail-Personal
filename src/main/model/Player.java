@@ -45,7 +45,7 @@ public class Player extends Writable {
         json.put("heartpoints", this.heartPoints.getHp());
         json.put("wallet", this.wallet);
         json.put("inventory", inventoryToJson());
-        json.put("weapon", this.weapon);
+        json.put("weapon", getInventoryItem(0));
         return json;
     }
 
