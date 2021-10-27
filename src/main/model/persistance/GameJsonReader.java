@@ -34,33 +34,10 @@ public class GameJsonReader {
         StringBuilder contentBuilder = new StringBuilder();
 
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
-            stream.forEach(s -> contentBuilder.append(s));
+            stream.forEach(contentBuilder::append);
         }
 
         return contentBuilder.toString();
-    }
-
-    // EFFECTS: parses game from JSON object and returns it
-    // source:JsonSerialization's constructor method
-    private Game parseGame(JSONObject jsonObject) {
-        Game game = new Game();
-        addFields(game, jsonObject);
-        return game;
-    }
-
-    // MODIFIES: game
-    // EFFECTS: parses fields from JSON object and adds them to game
-    // source:JsonSerialization's constructor method
-    private void addFields(Game game, JSONObject jsonObject) {
-//        game.setPlayer((jsonObject.getJSONObject("player")));
-//        game.setPosition((jsonObject.getString("position")));
-//        game.setNextPosition1((jsonObject.getString("nextPosition1")));
-//        game.setNextPosition2((jsonObject.getString("nextPosition2")));
-//        game.setNextPosition3((jsonObject.getString("nextPosition3")));
-//        game.setNextPosition4((jsonObject.getString("nextPosition4")));
-//        game.setNextPosition5((jsonObject.getString("nextPosition5")));
-//        game.setMonster((jsonObject.getJSONObject("monster")));
-//        game.setAlive(jsonObject.getBoolean("alive"));
     }
 
 }

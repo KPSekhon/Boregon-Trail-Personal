@@ -45,4 +45,32 @@ public class JsonWriterTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testWriteGame() {
+        Game g = new Game();
+        try {
+            gs.open();
+            gs.write(g);
+            gs.close();
+            JSONObject json = gr.read();
+            System.out.println(json);
+            Game loadedGame = new Game(json);
+            gs.open();
+            gs.write(loadedGame);
+            gs.close();
+            JSONObject json1 = gr.read();
+//            JSONArray inventory = json.getJSONArray("inventory");
+//            JSONObject rawItem = inventory.getJSONObject(0);
+            System.out.println(json1);
+//            System.out.println(rawItem);
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            fail("should not fail");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

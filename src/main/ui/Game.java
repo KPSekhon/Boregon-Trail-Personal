@@ -23,11 +23,14 @@ import java.util.Scanner;
 
 public class Game extends Writable {
     private final Scanner in = new Scanner(System.in);
+    String saveLocation = "./data/game.json";
     String nextPosition1;
     String nextPosition2;
     String nextPosition3;
     String nextPosition4;
     String nextPosition5;
+    String nextPosition6 = "save game";
+    String nextPosition7 = "load game";
     Player player;
     String position;
     Monster monster = new Monster();
@@ -66,55 +69,6 @@ public class Game extends Writable {
         System.out.println("\n Game Over...");
     }
 
-
-    //EFFECTS: stores Game as an JsonObject
-    // Source: JSonSerializationDemo
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("player", getPlayer().toJson());
-        json.put("position", getCurrentPosition());
-        json.put("nextPosition1", getNextPosition1());
-        json.put("nextPosition2", getNextPosition2());
-        json.put("nextPosition3", getNextPosition3());
-        json.put("nextPosition4", getNextPosition4());
-        json.put("nextPosition5", getNextPosition5());
-        json.put("monster", getMonster().toJson());
-        json.put("alive", isAlive());
-        return json;
-    }
-
-    public void saveGame() {
-        GameJsonWriter gs = new GameJsonWriter("./data/game.json");
-        try {
-            gs.open();
-        } catch (FileNotFoundException e) {
-            //add default save location
-        }
-        gs.write(this);
-        gs.close();
-    }
-
-    public void loadGame()  {
-        GameJsonReader gr = new GameJsonReader("./data/game.json");
-        try {
-            fromJson(gr.read());
-            userInput();
-        } catch (IOException e) {
-            // fix this
-        }
-    }
-
-    @Override
-    protected void fromJson(JSONObject json) {
-        setPlayer(new Player(json.getJSONObject("player")));
-        setNextPosition1((json.getString("nextPosition1")));
-        setNextPosition2((json.getString("nextPosition2")));
-        setNextPosition3((json.getString("nextPosition3")));
-        setNextPosition4((json.getString("nextPosition4")));
-        setNextPosition5((json.getString("nextPosition5")));
-        setAlive(json.getBoolean("alive"));
-        setMonster(new Monster(json.getJSONObject("monster")));
-    }
 
     // MODIFIES: this
     // EFFECTS: completes command chosen by user to just before crossroad
@@ -216,6 +170,18 @@ public class Game extends Writable {
                 break;
             case "continue to walk":
                 badEnding();
+                break;
+        }
+        selectGameChanger(nextPosition);
+    }
+
+    private void selectGameChanger(String nextPosition) {
+        switch (nextPosition) {
+            case "save game":
+                saveGame();
+                break;
+            case "load game":
+                loadGame();
                 break;
         }
     }
@@ -759,6 +725,10 @@ public class Game extends Writable {
             selectPosition(nextPosition4);
         } else if (command.equals(nextPosition5)) {
             selectPosition(nextPosition5);
+        } else if (command.equals(nextPosition6)) {
+            selectPosition(nextPosition6);
+        } else if (command.equals(nextPosition7)) {
+            selectPosition(nextPosition7);
         } else {
             throw new InvalidCommandException();
         }
@@ -776,6 +746,8 @@ public class Game extends Writable {
         System.out.println(nextPosition3);
         System.out.println(nextPosition4);
         System.out.println(nextPosition5);
+        System.out.println(nextPosition6);
+        System.out.println(nextPosition7);
     }
 
     // MODIFIES: this
@@ -783,7 +755,12 @@ public class Game extends Writable {
     private void setupName() {
         String command;
         System.out.println("What would you like to name your character?");
-        command = in.next();
+        nextPosition1 = "";
+        nextPosition2 = "";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        command = in.nextLine();
         this.player = new Player(command);
     }
 
@@ -877,6 +854,63 @@ public class Game extends Writable {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    //EFFECTS: stores Game as an JsonObject
+    // Source: JSonSerializationDemo
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("player", getPlayer().toJson());
+        json.put("position", getCurrentPosition());
+        json.put("nextPosition1", getNextPosition1());
+        json.put("nextPosition2", getNextPosition2());
+        json.put("nextPosition3", getNextPosition3());
+        json.put("nextPosition4", getNextPosition4());
+        json.put("nextPosition5", getNextPosition5());
+        json.put("monster", getMonster().toJson());
+        json.put("alive", isAlive());
+        return json;
+    }
+
+    // EFFECTS: saves the game to a file
+    public void saveGame() {
+        GameJsonWriter gs = new GameJsonWriter(saveLocation);
+        try {
+            gs.open();
+            gs.write(this);
+            gs.close();
+            System.out.println("Saved game to " + saveLocation);
+            userInput();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + saveLocation);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads game from file
+    public void loadGame() {
+        GameJsonReader gr = new GameJsonReader(saveLocation);
+        try {
+            fromJson(gr.read());
+            System.out.println("Loaded game from " + saveLocation);
+            userInput();
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + saveLocation);
+        }
+    }
+
+    @Override
+    // MODIFIES: this
+    // EFFECTS: transforms JSONObject into Game
+    protected void fromJson(JSONObject json) {
+        setPlayer(new Player(json.getJSONObject("player")));
+        setNextPosition1((json.getString("nextPosition1")));
+        setNextPosition2((json.getString("nextPosition2")));
+        setNextPosition3((json.getString("nextPosition3")));
+        setNextPosition4((json.getString("nextPosition4")));
+        setNextPosition5((json.getString("nextPosition5")));
+        setAlive(json.getBoolean("alive"));
+        setMonster(new Monster(json.getJSONObject("monster")));
     }
 }
 

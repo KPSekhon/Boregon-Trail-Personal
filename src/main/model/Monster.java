@@ -44,8 +44,8 @@ public class Monster extends Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", this.name);
-        json.put("heartPoints", this.heartPoints);
-        json.put("initialHealth", this.initialHealth);
+        json.put("heartPoints", this.heartPoints.getHp());
+        json.put("initialHealth", this.initialHealth.getHp());
         json.put("attack",this.attack);
         return json;
     }
