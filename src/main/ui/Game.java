@@ -165,18 +165,18 @@ public class Game extends Writable {
             case "limp away rich":
                 unicornEnding();
                 break;
-            case "accept the offer":
-                happyEnding();
-                break;
-            case "continue to walk":
-                badEnding();
-                break;
         }
         selectGameChanger(nextPosition);
     }
 
     private void selectGameChanger(String nextPosition) {
         switch (nextPosition) {
+            case "accept the offer":
+                happyEnding();
+                break;
+            case "continue to walk":
+                badEnding();
+                break;
             case "save game":
                 saveGame();
                 break;
