@@ -31,9 +31,9 @@ public class ItemFactory {
             case "broken weapon":
                 return new EmptyWeapon();
             case "Kentucky Rifle with 4 bullets":
-                new KentuckyRifle();
+                return new KentuckyRifle();
             case "Knife":
-                new Knife();
+                return new Knife();
             case "Sword":
                 return new Sword();
             default:
