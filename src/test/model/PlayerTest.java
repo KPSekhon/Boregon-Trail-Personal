@@ -273,5 +273,16 @@ public class PlayerTest {
         setup();
     }
 
+    @Test
+    public void setPlayerWhoAlreadyHasAWeapon() {
+        setup();
+        EmptyWeapon emptyWeapon = new EmptyWeapon();
+        ElfSword elfSword = new ElfSword();
+        player.addItem(emptyWeapon);
+        assertEquals(player.getInventorySize(), 1);
+        player.addItem(elfSword);
+        assertEquals(player.getInventorySize(), 1);
+    }
+
 
 }

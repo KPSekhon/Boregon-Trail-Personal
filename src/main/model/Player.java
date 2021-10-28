@@ -65,11 +65,13 @@ public class Player extends Writable {
             }
         }
         try {
-            this.weapon = ItemFactory.getItem(json.getJSONObject("weapon"));
-        } catch (UnknownItemException e) {
+            this.weapon = inventory.get(0);
+        } catch (IndexOutOfBoundsException e) {
             this.weapon = new EmptyWeapon();
+            inventory.add(this.weapon);
         } catch (JSONException e) {
             this.weapon = new EmptyWeapon();
+            inventory.add(this.weapon);
         }
     }
 
@@ -116,9 +118,10 @@ public class Player extends Writable {
     // if item is a weapon, that item is set to
     // current weapon
     public void addItem(Item item) {
-        inventory.add(item);
         if (item.isTypeWeapon()) {
-            weapon = item;
+            setWeapon(item);
+        } else {
+            inventory.add(item);
         }
     }
 
@@ -169,7 +172,14 @@ public class Player extends Writable {
     }
 
     public void setWeapon(Item weapon) {
-        this.weapon = weapon;
+        if (!(this.weapon == null)) {
+            this.inventory.remove(0);
+            this.inventory.add(0, weapon);
+            this.weapon = weapon;
+        } else {
+            this.weapon = weapon;
+            this.inventory.add(weapon);
+        }
     }
 
     public void setWallet(int wallet) {

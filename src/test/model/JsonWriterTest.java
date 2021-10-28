@@ -10,6 +10,7 @@ import ui.Game;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class JsonWriterTest {
@@ -18,7 +19,7 @@ public class JsonWriterTest {
     GameJsonReader gr = new GameJsonReader(saveLocation);
 
     @Test
-    public void testWrite() {
+    public void testWritePlayerWithItem() {
         Player player = new Player("bob");
         player.addItem(new ElfSword());
         try {
@@ -26,18 +27,13 @@ public class JsonWriterTest {
             gs.write(player);
             gs.close();
             JSONObject json = gr.read();
-            System.out.println(json);
-            Player loadedp = new Player(json);
-            gs.open();
-            gs.write(loadedp);
-            gs.close();
-            JSONObject json1 = gr.read();
-//            JSONArray inventory = json.getJSONArray("inventory");
-//            JSONObject rawItem = inventory.getJSONObject(0);
-           System.out.println(json1);
-//            System.out.println(rawItem);
-
-
+            Player loadedPlayer = new Player(json);
+            JSONArray inventory = json.getJSONArray("inventory");
+            assertEquals(loadedPlayer.getWeapon().getName(),player.getWeapon().getName());
+            assertEquals(inventory.length(),player.getInventorySize());
+            assertEquals(loadedPlayer.getPlayerHP(), player.getPlayerHP());
+            assertEquals(loadedPlayer.getName(), player.getName());
+            assertEquals(loadedPlayer.getWallet(),player.getWallet());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             fail("should not fail");
@@ -47,25 +43,24 @@ public class JsonWriterTest {
     }
 
     @Test
-    public void testWriteGame() {
-        Game g = new Game();
+    public void testWritePlayerWhoStartsWithoutItem() {
+        Player player = new Player("bob");
+        EmptyWeapon emptyWeapon = new EmptyWeapon();
+        ElfSword elfSword = new ElfSword();
         try {
             gs.open();
-            gs.write(g);
+            gs.write(player);
             gs.close();
             JSONObject json = gr.read();
-            System.out.println(json);
-            Game loadedGame = new Game(json);
-            gs.open();
-            gs.write(loadedGame);
-            gs.close();
-            JSONObject json1 = gr.read();
-//            JSONArray inventory = json.getJSONArray("inventory");
-//            JSONObject rawItem = inventory.getJSONObject(0);
-            System.out.println(json1);
-//            System.out.println(rawItem);
-
-
+            Player loadedPlayer = new Player(json);
+            JSONArray inventory = json.getJSONArray("inventory");
+            assertEquals(inventory.length(),player.getInventorySize());
+            assertEquals(loadedPlayer.getPlayerHP(), player.getPlayerHP());
+            assertEquals(loadedPlayer.getName(), player.getName());
+            assertEquals(loadedPlayer.getWallet(),player.getWallet());
+            assertEquals(loadedPlayer.getWeapon().getName(), emptyWeapon.getName());
+            loadedPlayer.addItem(elfSword);
+            assertEquals(loadedPlayer.getWeaponName(),elfSword.getName());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             fail("should not fail");
@@ -73,4 +68,26 @@ public class JsonWriterTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testWriteMonster() {
+        Monster monster = new Monster();
+        try {
+            gs.open();
+            gs.write(monster);
+            gs.close();
+            JSONObject json = gr.read();
+            Monster monster1 = new Monster(json);
+            assertEquals(monster1.getName(), monster.getName());
+            assertEquals(monster1.getHP(),monster.getHP());
+            assertEquals(monster1.getInitialHP(),monster.getInitialHP());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            fail("should not fail");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
