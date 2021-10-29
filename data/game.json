@@ -1,26 +1,27 @@
 {
     "alive": true,
-    "nextPosition1": "Buy the supposed potion",
-    "nextPosition2": "Leave the thing alone",
-    "nextPosition3": "",
-    "nextPosition4": "",
+    "nextPosition1": "head west",
+    "nextPosition2": "head east",
+    "nextPosition3": "head north",
+    "nextPosition4": "look at inventory",
     "nextPosition5": "",
+    "position": "return to the crossroad",
     "player": {
-        "weapon": "model.Knife@6f94fa3e",
-        "wallet": 7,
-        "name": "b",
+        "weapon": "model.KentuckyRifle@6f94fa3e",
+        "wallet": 2,
+        "name": "bob",
         "heartpoints": 10,
         "inventory": [{
-            "damage": 3,
-            "cost": 3,
+            "damage": 12,
+            "cost": 8,
             "IsWeapon": true,
-            "name": "Knife"
+            "name": "Kentucky Rifle with 4 bullets"
         }]
     },
     "monster": {
         "heartPoints": 20,
         "initialHealth": 20,
-        "attack": 3,
+        "attack": 2,
         "name": "Hytos the troll"
     }
 }
