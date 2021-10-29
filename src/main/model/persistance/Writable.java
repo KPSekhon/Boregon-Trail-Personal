@@ -5,10 +5,15 @@ import org.json.JSONObject;
 
 public abstract class Writable {
 
+    // MODIFIES: this
+    // EFFECTS: This overloaded constructor method is to assist items that implement this
+    // class to be able to be initialized via JSON
     public Writable(JSONObject json) {
         fromJson(json);
     }
 
+    // MODIFIES: this
+    // EFFECTS: default constructor
     public Writable() {
     }
 

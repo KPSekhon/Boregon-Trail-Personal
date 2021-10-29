@@ -21,6 +21,8 @@ public abstract class Item extends Writable {
         typeWeapon = this.typeWeapon;
     }
 
+    // MODIFIES: this
+    // EFFECTS: allows Item to be saved and loaded as a JSON object and back
     Item(JSONObject json) {
         super(json);
     }
@@ -82,6 +84,8 @@ public abstract class Item extends Writable {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: re-instantiates item from JsonObject
     public void fromJson(JSONObject json) {
         this.name = json.getString("name");
         this.cost = json.getInt("cost");

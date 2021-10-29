@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 // This class comes from JsonSerialization's JsonWriter class and is modified to suit the need of this Game
-// Represents a writer that writes JSON representation of Game to file
+// Represents a writer that writes JSON representation to file
 public class GameJsonWriter {
     private PrintWriter writer;
     private final String saveLocation;
@@ -30,7 +30,7 @@ public class GameJsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of game to file
+    // EFFECTS: writes JSON representation to file
     // source:JsonSerialization's constructor method
     public void write(Writable json) {
         saveToFile(json.toJson().toString(TAB));

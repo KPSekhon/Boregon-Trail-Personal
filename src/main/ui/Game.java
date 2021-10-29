@@ -41,6 +41,7 @@ public class Game extends Writable {
 
     }
 
+    // EFFECTS: allows game to be stored as JSONObject
     public Game(JSONObject json) {
         super(json);
     }
@@ -158,6 +159,8 @@ public class Game extends Writable {
         selectGameChanger(nextPosition);
     }
 
+    // MODIFIES: this
+    // EFFECTS: completes command chosen by user for saving/loading or the endings
     private void selectGameChanger(String nextPosition) {
         switch (nextPosition) {
             case "accept the offer":
@@ -235,6 +238,8 @@ public class Game extends Writable {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: resets all available positions/choices
     private void resetPositions() {
         nextPosition1 = "";
         nextPosition2 = "";
@@ -648,7 +653,7 @@ public class Game extends Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: this is an easter egg kill command, that will kill the player in a variety of ways
+    // EFFECTS: this is an Easter egg kill command, that will kill the player in a variety of ways
     private void waitForSaviour() {
         System.out.println("So " + player.getName() + " has chosen to wait for a saviour to arrive. Unfortunately");
         int value = 0;
@@ -669,6 +674,9 @@ public class Game extends Writable {
         gameEnder();
     }
 
+    //MODIFIES: this
+    // EFFECTS: sets all positions to empty, ends while loop and processes empty
+    // command to end game
     public void gameEnder() {
         resetPositions();
         alive = false;
@@ -778,6 +786,12 @@ public class Game extends Writable {
         userInput();
     }
 
+    //EFFECTS: returns true, if player is still alive
+    public boolean isAlive() {
+        return alive;
+    }
+
+    // getters and setters
     public Player getPlayer() {
         return player;
     }
@@ -788,10 +802,6 @@ public class Game extends Writable {
 
     public String getNextPosition1() {
         return nextPosition1;
-    }
-
-    public boolean isAlive() {
-        return alive;
     }
 
     public Monster getMonster() {
@@ -850,6 +860,7 @@ public class Game extends Writable {
         this.player = player;
     }
 
+
     //EFFECTS: stores Game as an JsonObject
     // Source: JSonSerializationDemo
     public JSONObject toJson() {
@@ -898,6 +909,7 @@ public class Game extends Writable {
     // EFFECTS: transforms JSONObject into Game
     protected void fromJson(JSONObject json) {
         setPlayer(new Player(json.getJSONObject("player")));
+        setPosition(json.getString("position"));
         setNextPosition1((json.getString("nextPosition1")));
         setNextPosition2((json.getString("nextPosition2")));
         setNextPosition3((json.getString("nextPosition3")));

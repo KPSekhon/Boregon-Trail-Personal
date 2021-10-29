@@ -1,0 +1,12 @@
+{
+    "weapon": "model.ElfSword@1d29cf23",
+    "wallet": 10,
+    "name": "bob",
+    "heartpoints": 10,
+    "inventory": [{
+        "damage": 50,
+        "cost": 0,
+        "IsWeapon": true,
+        "name": "Elf Sword"
+    }]
+}

@@ -7,7 +7,7 @@
 - As a user, I want to see my choices reflected in the story
 - As a user, I want to move further in the map and progress in the story
 - As a user, I want to be able to use an item
-- As a user, I want to be able to save my current game to file during freeroam periods
+- As a user, I want to be able to save my current game to file 
 - As a user, I want to be able to load my previous save from file
 
 
@@ -15,7 +15,7 @@
 What will the application do?  
 - This application is a text based game that involves moving a player from one location
 to the next. The player has the ability to decide what the character does from the 
-options that are provided. The in-game decisions a character makes, determine the
+options that are provided. The in-game decisions a character makes, determine 
 how difficult the challenges within the game will be. For example, the weapon a player
 initially chooses can have a big impact on the scalability of how difficult a challenge is.
 

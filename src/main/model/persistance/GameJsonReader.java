@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// This class is for reconstructing JSON objects stored within a file
 public class GameJsonReader {
     private String source;
 

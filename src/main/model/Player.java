@@ -50,6 +50,10 @@ public class Player extends Writable {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: if there is no item in inventory, re-instantiates with nothing in inventory
+    // if there is no weapon already instantiated, places broken weapon as place-holder weapon
+    // re-instantiates Player from JsonObject
     protected void fromJson(JSONObject json) {
         this.name = json.getString("name");
         this.heartPoints = new HeartPoints(json.getInt("heartpoints"));
@@ -67,11 +71,9 @@ public class Player extends Writable {
         try {
             this.weapon = inventory.get(0);
         } catch (IndexOutOfBoundsException e) {
-            this.weapon = new EmptyWeapon();
-            inventory.add(this.weapon);
+            addItem(new EmptyWeapon());
         } catch (JSONException e) {
-            this.weapon = new EmptyWeapon();
-            inventory.add(this.weapon);
+            addItem(new EmptyWeapon());
         }
     }
 

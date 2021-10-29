@@ -23,6 +23,8 @@ public class Monster extends Writable {
         attack = attackChooser();
     }
 
+    // MODIFIES: this
+    // EFFECTS: allows Monster to be saved and loaded as a JSON object and back
     public Monster(JSONObject json) {
         super(json);
     }
@@ -51,6 +53,8 @@ public class Monster extends Writable {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: re-instantiates Monster from JsonObject
     protected void fromJson(JSONObject json) {
         this.name = json.getString("name");
         this.heartPoints = new HeartPoints(json.getInt("heartPoints"));

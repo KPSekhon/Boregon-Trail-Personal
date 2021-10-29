@@ -1,0 +1,26 @@
+{
+    "alive": true,
+    "nextPosition1": "Buy the supposed potion",
+    "nextPosition2": "Leave the thing alone",
+    "nextPosition3": "",
+    "nextPosition4": "",
+    "nextPosition5": "",
+    "player": {
+        "weapon": "model.Knife@6f94fa3e",
+        "wallet": 7,
+        "name": "b",
+        "heartpoints": 10,
+        "inventory": [{
+            "damage": 3,
+            "cost": 3,
+            "IsWeapon": true,
+            "name": "Knife"
+        }]
+    },
+    "monster": {
+        "heartPoints": 20,
+        "initialHealth": 20,
+        "attack": 3,
+        "name": "Hytos the troll"
+    }
+}
