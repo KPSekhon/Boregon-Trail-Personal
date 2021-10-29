@@ -172,7 +172,7 @@ public class Player extends Writable {
     }
 
     public void setWeapon(Item weapon) {
-        if (!(this.weapon == null)) {
+        if ((!(this.weapon == null)) && this.weapon.isTypeWeapon()) {
             this.inventory.remove(0);
             this.inventory.add(0, weapon);
             this.weapon = weapon;

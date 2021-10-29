@@ -3,6 +3,7 @@ package model;
 public class EmptyWeapon extends Item {
     EmptyWeapon() {
         super("broken weapon", 0, 0, true);
+        typeWeapon = true;
     }
 
 
