@@ -26,6 +26,7 @@ public class ItemFactoryTest {
         }
     }
 
+
     @Test
     public void getFullHealthPotion() {
         try {

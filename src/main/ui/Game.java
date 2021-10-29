@@ -49,22 +49,10 @@ public class Game extends Writable {
     // EFFECTS: processes user input
     // This method references code from the Teller App
     public void runGame() {
-        String command;
 
         while (alive) {
             setupName();
             setupWeapon();
-            command = in.nextLine();
-
-            if (command.equals("q")) {
-                alive = false;
-            } else {
-                try {
-                    processChoice(command);
-                } catch (InvalidCommandException e) {
-                    //
-                }
-            }
         }
         System.out.println("\n Game Over...");
     }
@@ -138,6 +126,7 @@ public class Game extends Writable {
                 break;
             case "head north":
                 monsterEncounterInitial();
+                break;
             case "run for your life":
             case "return to crossroad":
                 returnToCrossroad();
@@ -234,12 +223,7 @@ public class Game extends Writable {
         System.out.println(monster.getName() + " attacks "
                 + player.getName() + " for " + monsterAttack + " HP");
         if (lowPlayerHP()) {
-            alive = false;
-            try {
-                processChoice("");
-            } catch (InvalidCommandException e) {
-                e.printStackTrace();
-            }
+            gameEnder();
         } else {
             System.out.println(player.getName() + " has " + player.getPlayerHP() + " HP remaining");
             nextPosition1 = "attack Hytos";
@@ -249,6 +233,17 @@ public class Game extends Writable {
             nextPosition5 = "";
             userInput();
         }
+    }
+
+    private void resetPositions() {
+        nextPosition1 = "";
+        nextPosition2 = "";
+        nextPosition3 = "";
+        nextPosition4 = "";
+        nextPosition5 = "";
+        nextPosition6 = "";
+        nextPosition7 = "";
+        position = "";
     }
 
     //MODIFIES: this
@@ -300,7 +295,7 @@ public class Game extends Writable {
         System.out.println(hytosTooth.getName() + ", a collectible item, was added to "
                 + player.getName() + "'s inventory");
         nextPosition1 = "limp away rich";
-        nextPosition2 = "one and two, one and three";
+        nextPosition2 = "";
         nextPosition3 = "";
         nextPosition4 = "";
         nextPosition5 = "";
@@ -388,26 +383,16 @@ public class Game extends Writable {
     // EFFECTS: ends the game , provides player with satisfaction
     private void happyEnding() {
         System.out.println(player.getName() + " is able to get to Oregon "
-                + "and claim" + player.getName() + "'s inheritance");
-        alive = false;
-        try {
-            processChoice("");
-        } catch (InvalidCommandException e) {
-            e.printStackTrace();
-        }
+                + "and claim " + player.getName() + "'s inheritance");
+        gameEnder();
     }
 
     // MODIFIES: this
     // EFFECTS: ends the game , provides player with dissatisfaction
     private void badEnding() {
         System.out.println(player.getName() + " ignores the offer and continues to walk into the"
-                + " Maze Woods, where" + player.getName() + " gets lost until the end of their days");
-        alive = false;
-        try {
-            processChoice("");
-        } catch (InvalidCommandException e) {
-            e.printStackTrace();
-        }
+                + " Maze Woods, where " + player.getName() + " gets lost until the end of their days");
+        gameEnder();
     }
 
 
@@ -514,8 +499,7 @@ public class Game extends Writable {
                     + "\n" + player.getName() + " has " + player.getPlayerHP() + " HP remaining");
         }
         if (lowPlayerHP()) {
-            alive = false;
-            position = "";
+            gameEnder();
         } else {
             nextPosition1 = position;
             nextPosition2 = "";
@@ -682,7 +666,17 @@ public class Game extends Writable {
         } else {
             System.out.println(player.getName() + " was trampled by a horse");
         }
+        gameEnder();
+    }
+
+    public void gameEnder() {
+        resetPositions();
         alive = false;
+        try {
+            processChoice("");
+        } catch (InvalidCommandException e) {
+            alive = false;
+        }
     }
 
     // MODIFIES: this
