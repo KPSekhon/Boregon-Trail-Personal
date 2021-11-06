@@ -22,42 +22,10 @@ public class Story extends Writable {
         this.vm = vm;
     }
 
-    //MODIFIES: this
-    //EFFECTS: allows user to look at current inventory, for items that they have picked up
-    // shows empty item slots, for slots that still have items to be added to
-    private void inventoryChecker() {
-        if (player.getInventoryItem(1) == null) {
-            ui.itemButton1.setText("");
-        } else {
-            ui.itemButton1.setText(player.getInventoryItem(1).getName());
-        }
-        if (player.getInventoryItem(2) == null) {
-            ui.itemButton2.setText("");
-        } else {
-            ui.itemButton2.setText(player.getInventoryItem(2).getName());
-        }
-        if (player.getInventoryItem(3) == null) {
-            ui.itemButton3.setText("");
-        } else {
-            ui.itemButton3.setText(player.getInventoryItem(3).getName());
-        }
-        if (player.getInventoryItem(4) == null) {
-            ui.itemButton4.setText("");
-        } else {
-            ui.itemButton4.setText(player.getInventoryItem(4).getName());
-        }
-        if (player.getInventoryItem(5) == null) {
-            ui.itemButton5.setText("");
-        } else {
-            ui.itemButton5.setText(player.getInventoryItem(5).getName());
-        }
-    }
-
 
     public void setup() {
         player = ui.player;
         ui.inventoryStatus = "close";
-        inventoryChecker();
         EmptyWeapon emptyWeapon = new EmptyWeapon();
         player.setWeapon(emptyWeapon);
         ui.weaponNameLabel.setText(player.getWeaponName());
@@ -236,7 +204,6 @@ public class Story extends Writable {
     private void crossroad() {
         ui.mainTextArea.setText(player.getName() + " comes to a crossroad \n"
                 + " What will " + player.getName() + " do?");
-        inventoryChecker();
         ui.option1.setText("head west");
         ui.option2.setText("head east");
         ui.option3.setText("head north");
@@ -286,16 +253,20 @@ public class Story extends Writable {
                     + player.getName() + " for " + monsterAttack + " HP \n"
                     + player.getName() + " has " + player.getPlayerHP() + " HP remaining");
             ui.hpNumberLabel.setText("" + player.getPlayerHP());
-            ui.option1.setText("attack Hytos");
-            ui.option2.setText("run for your life");
-            ui.option3.setText("");
-            ui.option4.setText("");
-
-            game1.nextPos1 = "attack Hytos";
-            game1.nextPos2 = "run for your life";
-            game1.nextPos3 = "";
-            game1.nextPos4 = "";
+            hytosAttackSlots();
         }
+    }
+
+    private void hytosAttackSlots() {
+        ui.option1.setText("attack Hytos");
+        ui.option2.setText("run for your life");
+        ui.option3.setText("");
+        ui.option4.setText("");
+
+        game1.nextPos1 = "attack Hytos";
+        game1.nextPos2 = "run for your life";
+        game1.nextPos3 = "";
+        game1.nextPos4 = "";
     }
 
     //MODIFIES: this
@@ -311,15 +282,7 @@ public class Story extends Writable {
             ui.mainTextArea.setText(player.getName() + " attacks " + game1.monster.getName()
                     + "\n for " + attack + " HP"
                     + "\n" + game1.monster.getName() + " has " + game1.monster.getHP() + " HP remaining");
-            ui.option1.setText("fight Hytos");
-            ui.option2.setText("run for your life");
-            ui.option3.setText("");
-            ui.option4.setText("");
-
-            game1.nextPos1 = "fight Hytos";
-            game1.nextPos2 = "run for your life";
-            game1.nextPos3 = "";
-            game1.nextPos4 = "";
+            hytosFightSlots();
         } else if (game1.monster.getHP() < 1) {
             ui.mainTextArea.setText(player.getName() + " attacks " + game1.monster.getName()
                     + "\n for " + attack + " HP"
@@ -335,6 +298,18 @@ public class Story extends Writable {
             game1.nextPos3 = "";
             game1.nextPos4 = "";
         }
+    }
+
+    private void hytosFightSlots() {
+        ui.option1.setText("fight Hytos");
+        ui.option2.setText("run for your life");
+        ui.option3.setText("");
+        ui.option4.setText("");
+
+        game1.nextPos1 = "fight Hytos";
+        game1.nextPos2 = "run for your life";
+        game1.nextPos3 = "";
+        game1.nextPos4 = "";
     }
 
     // MODIFIES: this
@@ -372,15 +347,7 @@ public class Story extends Writable {
         String trollYell = " Oye " + player.getName() + " ,didn't I tell ya already, no one crosses Canyon Bridge!!!";
         ui.mainTextArea.setText("A troll appears and yells" + trollYell
                 + "the troll starts to charge at you");
-        ui.option1.setText("fight Hytos");
-        ui.option2.setText("run for your life");
-        ui.option3.setText("");
-        ui.option4.setText("");
-
-        game1.nextPos1 = "fight Hytos";
-        game1.nextPos2 = "run for your life";
-        game1.nextPos3 = "";
-        game1.nextPos4 = "";
+        hytosFightSlots();
     }
 
     // MODIFIES: this
@@ -404,15 +371,7 @@ public class Story extends Writable {
         ui.mainTextArea.setText("A troll appears and yells" + " Oye " + player.getName()
                 + " , no one crosses Hytos's Canyon Bridge!!!"
                 + "\n The troll starts to charge at you");
-        ui.option1.setText("fight Hytos");
-        ui.option2.setText("run for your life");
-        ui.option3.setText("");
-        ui.option4.setText("");
-
-        game1.nextPos1 = "fight Hytos";
-        game1.nextPos2 = "run for your life";
-        game1.nextPos3 = "";
-        game1.nextPos4 = "";
+        hytosFightSlots();
     }
 
     //MODIFIES: this
@@ -541,7 +500,6 @@ public class Story extends Writable {
                     + ip.getName() + " has been added to your inventory \n"
                     + player.getName() + " has " + player.getWallet() + " dollars in your wallet remaining");
         }
-        inventoryChecker();
         ui.option1.setText(">");
         ui.option2.setText("");
         ui.option3.setText("");
@@ -560,7 +518,7 @@ public class Story extends Writable {
                 + "\n The wizard says for just 3 dollars they will give a magic potion that will "
                 + "\nkeep you nourished and safe for the rest of your trip."
                 + "\n You have " + player.getWallet() + " dollars in your wallet remaining");
-        inventoryChecker();
+
         ui.option1.setText("Buy potion");
         ui.option2.setText("Leave it alone");
         ui.option3.setText("");
@@ -575,7 +533,7 @@ public class Story extends Writable {
     // MODIFIES: this
     // EFFECTS: this is an Easter egg kill command, that will kill the player in a variety of ways
     private void waitForSaviour() {
-        inventoryChecker();
+
         int value = 0;
         Random b = new Random();
         for (int i = 0; i < 5; i++) {
@@ -614,7 +572,7 @@ public class Story extends Writable {
                 + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
                 + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
                 + "treacherous trail with an ironic name, the Boregon Trail.");
-        inventoryChecker();
+
         ui.option1.setText("start trail");
         ui.option2.setText("wait");
         ui.option3.setText("");
@@ -641,7 +599,7 @@ public class Story extends Writable {
                 + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
                 + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
                 + "treacherous trail with an ironic name, the Boregon Trail.");
-        inventoryChecker();
+
         ui.option1.setText("start trail");
         ui.option2.setText("wait");
         ui.option3.setText("");
@@ -669,7 +627,7 @@ public class Story extends Writable {
                 + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
                 + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
                 + "treacherous trail with an ironic name, the Boregon Trail.");
-        inventoryChecker();
+
         ui.option1.setText("start trail");
         ui.option2.setText("wait");
         ui.option3.setText("");

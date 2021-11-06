@@ -47,7 +47,6 @@ public class UI {
     }
 
 
-
     InventoryHandler inventoryHandler = new InventoryHandler(this);
 
     public void createVisualUI(ChoiceHandler c) {
@@ -217,7 +216,7 @@ public class UI {
         choiceButtonPanel.add(option4);
     }
 
-    public void setInventory(InventoryHandler inventoryHandler) {
+    public void setInventoryButton(InventoryHandler inventoryHandler) {
         inventoryButton = new JButton("Inventory");
         inventoryButton.setBackground(Color.black);
         inventoryButton.setForeground(Color.white);
@@ -226,13 +225,16 @@ public class UI {
         inventoryButton.addActionListener(inventoryHandler);
         inventoryButton.setActionCommand("inventoryButton");
         choiceButtonPanel.add(inventoryButton);
+    }
 
+    public void setInventoryPanel() {
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(550, 350, 200, 200);
         inventoryPanel.setBackground(Color.black);
         inventoryPanel.setLayout(new GridLayout(5, 1));
-        window.add(inventoryPanel);
+    }
 
+    public void setItemButton1(InventoryHandler inventoryHandler) {
         itemButton1 = new JButton();
         itemButton1.setBackground(Color.black);
         itemButton1.setForeground(Color.white);
@@ -241,7 +243,9 @@ public class UI {
         itemButton1.addActionListener(inventoryHandler);
         itemButton1.setActionCommand("item1");
         inventoryPanel.add(itemButton1);
+    }
 
+    public void setItemButton2(InventoryHandler inventoryHandler) {
         itemButton2 = new JButton();
         itemButton2.setBackground(Color.black);
         itemButton2.setForeground(Color.white);
@@ -250,7 +254,9 @@ public class UI {
         itemButton2.addActionListener(inventoryHandler);
         itemButton2.setActionCommand("item2");
         inventoryPanel.add(itemButton2);
+    }
 
+    public void setItemButton3(InventoryHandler inventoryHandler) {
         itemButton3 = new JButton();
         itemButton3.setBackground(Color.black);
         itemButton3.setForeground(Color.white);
@@ -259,7 +265,9 @@ public class UI {
         itemButton3.addActionListener(inventoryHandler);
         itemButton3.setActionCommand("item3");
         inventoryPanel.add(itemButton3);
+    }
 
+    public void setItemButton4(InventoryHandler inventoryHandler) {
         itemButton4 = new JButton();
         itemButton4.setBackground(Color.black);
         itemButton4.setForeground(Color.white);
@@ -268,7 +276,9 @@ public class UI {
         itemButton4.addActionListener(inventoryHandler);
         itemButton4.setActionCommand("item4");
         inventoryPanel.add(itemButton4);
+    }
 
+    public void setItemButton5(InventoryHandler inventoryHandler) {
         itemButton5 = new JButton();
         itemButton5.setBackground(Color.black);
         itemButton5.setForeground(Color.white);
@@ -277,7 +287,19 @@ public class UI {
         itemButton5.addActionListener(inventoryHandler);
         itemButton5.setActionCommand("item5");
         inventoryPanel.add(itemButton5);
+    }
 
+    public void setInventory(InventoryHandler inventoryHandler) {
+        setInventoryButton(inventoryHandler);
+
+        setInventoryPanel();
+        window.add(inventoryPanel);
+
+        setItemButton1(inventoryHandler);
+        setItemButton2(inventoryHandler);
+        setItemButton3(inventoryHandler);
+        setItemButton4(inventoryHandler);
+        setItemButton5(inventoryHandler);
         inventoryPanel.setVisible(false);
     }
 

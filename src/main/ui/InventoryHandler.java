@@ -65,6 +65,10 @@ public class InventoryHandler implements ActionListener {
         } else {
             ui.itemButton3.setText(player.getInventoryItem(3).getName());
         }
+        inventoryCheckerContinued();
+    }
+
+    private void inventoryCheckerContinued() {
         if (player.getInventoryItem(4) == null) {
             ui.itemButton4.setText("");
         } else {
@@ -100,6 +104,12 @@ public class InventoryHandler implements ActionListener {
                     ui.inventoryStatus = "close";
                 }
                 break;
+        }
+        itemUsage();
+    }
+
+    public void itemUsage() {
+        switch (chosen) {
             case "item1":
                 useItem(1);
                 break;

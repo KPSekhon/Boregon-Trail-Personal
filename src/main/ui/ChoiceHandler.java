@@ -27,6 +27,13 @@ public class ChoiceHandler implements ActionListener {
                 game1.ui.setPlayer(new Player(name));
                 game1.vm.titleToGame();
                 game1.story.setup();
+                break;
+        }
+        actionPerformedContinued();
+    }
+
+    public void actionPerformedContinued() {
+        switch (input) {
             case "choice1":
                 game1.story.selectPosition(game1.nextPos1);
                 break;
@@ -39,6 +46,7 @@ public class ChoiceHandler implements ActionListener {
             case "choice4":
                 game1.story.selectPosition(game1.nextPos4);
                 break;
+
         }
     }
 }
