@@ -1,5 +1,7 @@
 package ui;
 
+import model.Player;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,13 +16,17 @@ public class ChoiceHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.input = e.getActionCommand();
+        String name;
 
         switch (input) {
             case "start":
                 game1.vm.playerInput();
+                break;
+            case "enter":
+                name = game1.ui.nameInput.getText();
+                game1.ui.setPlayer(new Player(name));
                 game1.vm.titleToGame();
                 game1.story.setup();
-                break;
             case "choice1":
                 game1.story.selectPosition(game1.nextPos1);
                 break;

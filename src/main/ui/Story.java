@@ -55,9 +55,8 @@ public class Story extends Writable {
 
 
     public void setup() {
-        player = new Player("you");
+        player = ui.player;
         ui.inventoryStatus = "close";
-        ui.setPlayer(player);
         inventoryChecker();
         EmptyWeapon emptyWeapon = new EmptyWeapon();
         player.setWeapon(emptyWeapon);

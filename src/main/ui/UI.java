@@ -39,13 +39,14 @@ public class UI {
     JTextField nameInput;
     String inventoryStatus;
     Player player;
-    InputHandler inputHandler = new InputHandler(this);
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 40);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 20);
 
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+
 
     InventoryHandler inventoryHandler = new InventoryHandler(this);
 
@@ -79,12 +80,12 @@ public class UI {
         setHpNumberLabel();
         setWeaponLabel();
         setWeaponNameLabel();
-        setInputScreen();
+        setInputScreen(c);
 
         window.setVisible(true);
     }
 
-    public void setInputScreen() {
+    public void setInputScreen(ChoiceHandler c) {
         inputPanel = new JPanel();
         inputPanel.setBounds(15, 250, 500, 100);
         inputPanel.setBackground(Color.black);
@@ -104,7 +105,8 @@ public class UI {
 
         enterButton = new JButton("ENTER");
         enterButton.setForeground(Color.black);
-        enterButton.addActionListener(inputHandler);
+        enterButton.addActionListener(c);
+        enterButton.setActionCommand("enter");
         enterButton.setFocusPainted(false);
         namePanel.add(enterButton);
 

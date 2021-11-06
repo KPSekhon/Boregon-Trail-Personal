@@ -2,6 +2,7 @@ package ui;
 
 public class VisibilityManager {
     UI ui;
+    Story story;
 
     public VisibilityManager(UI ui) {
         this.ui = ui;
