@@ -1,7 +1,7 @@
 package model;
 // this class if for a Monster object
 
-import model.persistance.Writable;
+import persistance.Writable;
 import org.json.JSONObject;
 
 import java.util.Random;

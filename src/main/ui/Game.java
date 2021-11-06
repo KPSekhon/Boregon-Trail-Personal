@@ -3,15 +3,14 @@ package ui;
 
 import model.*;
 import model.exceptions.InvalidCommandException;
-import model.persistance.GameJsonReader;
-import model.persistance.GameJsonWriter;
-import model.persistance.Writable;
+import persistance.GameJsonReader;
+import persistance.GameJsonWriter;
+import persistance.Writable;
 import org.json.JSONObject;
 
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 

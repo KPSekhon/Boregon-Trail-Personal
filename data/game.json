@@ -1,27 +1,35 @@
 {
     "alive": true,
-    "nextPosition1": "head west",
-    "nextPosition2": "head east",
-    "nextPosition3": "head north",
-    "nextPosition4": "look at inventory",
+    "nextPosition1": "limp away rich",
+    "nextPosition2": "",
+    "nextPosition3": "",
+    "nextPosition4": "",
     "nextPosition5": "",
-    "position": "return to the crossroad",
+    "position": "limp away rich",
     "player": {
         "weapon": "model.KentuckyRifle@6f94fa3e",
         "wallet": 2,
         "name": "bob",
-        "heartpoints": 10,
-        "inventory": [{
-            "damage": 12,
-            "cost": 8,
-            "IsWeapon": true,
-            "name": "Kentucky Rifle with 4 bullets"
-        }]
+        "heartpoints": 7,
+        "inventory": [
+            {
+                "damage": 12,
+                "cost": 8,
+                "IsWeapon": true,
+                "name": "Kentucky Rifle with 4 bullets"
+            },
+            {
+                "damage": 0,
+                "cost": 400,
+                "IsWeapon": false,
+                "name": "The tooth of Hytos the troll"
+            }
+        ]
     },
     "monster": {
-        "heartPoints": 20,
+        "heartPoints": 0,
         "initialHealth": 20,
-        "attack": 2,
+        "attack": 3,
         "name": "Hytos the troll"
     }
 }

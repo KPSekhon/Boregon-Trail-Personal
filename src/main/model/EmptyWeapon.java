@@ -4,7 +4,7 @@ package model;
 public class EmptyWeapon extends Item {
     // MODIFIES: this
     //EFFECTS: instantiates an empty broken weapon
-    EmptyWeapon() {
+    public EmptyWeapon() {
         super("broken weapon", 0, 0, true);
         typeWeapon = true;
     }

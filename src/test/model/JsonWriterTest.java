@@ -1,11 +1,10 @@
 package model;
 
-import model.persistance.GameJsonReader;
-import model.persistance.GameJsonWriter;
+import persistance.GameJsonReader;
+import persistance.GameJsonWriter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import ui.Game;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

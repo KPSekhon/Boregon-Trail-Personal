@@ -6,7 +6,8 @@ import org.json.JSONObject;
 
 // EFFECTS: creates a place-holder item
 public class EmptyItem extends Item {
-    EmptyItem() {
+
+    public EmptyItem() {
         super("",0,0,false);
     }
 

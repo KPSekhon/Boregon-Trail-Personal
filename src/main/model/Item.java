@@ -1,7 +1,7 @@
 package model;
 // This class is a general abstract class for items
 
-import model.persistance.Writable;
+import persistance.Writable;
 import org.json.JSONObject;
 
 public abstract class Item extends Writable {

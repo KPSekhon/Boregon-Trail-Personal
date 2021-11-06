@@ -1,7 +1,7 @@
 package model;
 
 import model.exceptions.UnknownItemException;
-import model.persistance.Writable;
+import persistance.Writable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -159,6 +159,7 @@ public class Player extends Writable {
         }
         return b;
     }
+
 
     // getters and setters
     public void setName(String s) {

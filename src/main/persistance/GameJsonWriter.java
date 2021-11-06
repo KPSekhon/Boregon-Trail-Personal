@@ -1,8 +1,4 @@
-package model.persistance;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import ui.Game;
+package persistance;
 
 import java.io.File;
 import java.io.FileNotFoundException;
