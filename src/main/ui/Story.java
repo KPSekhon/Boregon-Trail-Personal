@@ -181,6 +181,7 @@ public class Story {
         game1.nextPos2 = "";
         game1.nextPos3 = "";
         game1.nextPos4 = "";
+        game1.currPos = "end";
     }
 
     // MODIFIES: this, ui, game1

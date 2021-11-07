@@ -1,6 +1,8 @@
 package ui;
 
 import model.Player;
+import org.json.JSONObject;
+import persistance.Writable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,6 +59,11 @@ public class UI {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
+    //EFFECTS: creates basic UI
+    public UI() {
+    }
+
 
 
     // MODIFIES: this
@@ -475,4 +482,8 @@ public class UI {
         weaponNameLabel.setForeground(Color.white);
         playerPanel.add(weaponNameLabel);
     }
+
+
+
+
 }

@@ -49,12 +49,23 @@ public class Game1 extends Writable {
         json.put("nextPos2", nextPos2);
         json.put("nextPos3", nextPos3);
         json.put("nextPos4", nextPos4);
-        json.put("mainField", ui.mainTextArea.getText());
+        json.put("inventoryStatus", ui.inventoryStatus);
+        json.put("option1", ui.option1.getText());
+        json.put("option2", ui.option2.getText());
+        json.put("option3", ui.option3.getText());
+        json.put("option4", ui.option4.getText());
+        json.put("itemButton1", ui.itemButton1.getText());
+        json.put("itemButton2", ui.itemButton2.getText());
+        json.put("itemButton3", ui.itemButton3.getText());
+        json.put("itemButton4", ui.itemButton4.getText());
+        json.put("itemButton5", ui.itemButton5.getText());
+        json.put("mainTextArea", ui.mainTextArea.getText());
+        json.put("weaponNameLabel", ui.weaponNameLabel.getText());
+        json.put("hpNumberLabel", ui.hpNumberLabel.getText());
         json.put("monster", monster.toJson());
         return json;
     }
-    public void getUistuff(){
-    }
+
 
     // EFFECTS: saves the game to a file
     public void saveGame() {
@@ -94,10 +105,23 @@ public class Game1 extends Writable {
         setNextPos3((json.getString("nextPos3")));
         setNextPos4((json.getString("nextPos4")));
         setMonster(new Monster(json.getJSONObject("monster")));
-        setMainText((json.getString("mainField")));
+        ui.option1.setText(json.getString("option1"));
+        ui.option2.setText(json.getString("option2"));
+        ui.option3.setText(json.getString("option3"));
+        ui.option4.setText(json.getString("option4"));
+        ui.itemButton1.setText(json.getString("itemButton1"));
+        ui.itemButton2.setText(json.getString("itemButton2"));
+        ui.itemButton3.setText(json.getString("itemButton3"));
+        ui.itemButton4.setText(json.getString("itemButton4"));
+        ui.itemButton5.setText(json.getString("itemButton5"));
+        ui.mainTextArea.setText(json.getString("mainTextArea"));
+        ui.weaponNameLabel.setText(json.getString("weaponNameLabel"));
+        ui.hpNumberLabel.setText(json.getString("hpNumberLabel"));
     }
 
     // setters
+
+
     private void setMainText(String mainText) {
         ui.mainTextArea.setText(mainText);
     }
@@ -124,10 +148,16 @@ public class Game1 extends Writable {
 
     private void setCurrentPos(String currentPosition) {
         this.currPos = currentPosition;
+        if (!(currPos == "end")) {
+            ui.inventoryButton.setVisible(true);
+            ui.choiceButtonPanel.setVisible(true);
+        }
     }
 
     private void setPlayer(Player player) {
         this.player = player;
+        ui.setPlayer(player);
+        story.player = player;
     }
 
 
