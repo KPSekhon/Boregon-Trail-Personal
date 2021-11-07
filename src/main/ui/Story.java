@@ -181,6 +181,7 @@ public class Story extends Writable {
         ui.option3.setText("");
         ui.option4.setText("");
         ui.inventoryButton.setVisible(false);
+        ui.choiceButtonPanel.setVisible(false);
 
         game1.nextPos1 = "";
         game1.nextPos2 = "";
