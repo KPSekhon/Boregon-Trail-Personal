@@ -32,6 +32,7 @@ public class ChoiceHandler implements ActionListener {
             case "enter":
                 name = game1.ui.nameInput.getText();
                 game1.ui.setPlayer(new Player(name));
+                game1.player = game1.ui.player;
                 game1.vm.titleToGame();
                 game1.story.setup();
                 break;
@@ -56,6 +57,12 @@ public class ChoiceHandler implements ActionListener {
                 break;
             case "choice4":
                 game1.story.selectPosition(game1.nextPos4);
+                break;
+            case "save":
+                game1.saveGame();
+                break;
+            case "load":
+                game1.loadGame();
                 break;
 
         }

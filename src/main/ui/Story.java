@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Random;
 
 // This class represents the visual representation of the in-game story
-public class Story extends Writable {
+public class Story {
     UI ui;
     VisibilityManager vm;
     Game1 game1;
@@ -160,12 +160,6 @@ public class Story extends Writable {
                 break;
             case "continue to walk":
                 badEnding();
-                break;
-            case "save game":
-                saveGame();
-                break;
-            case "load game":
-                loadGame();
                 break;
         }
     }
@@ -659,94 +653,9 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    //EFFECTS: stores Game as an JsonObject
-    // Source: JSonSerializationDemo
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("player", player.toJson());
-        json.put("currPos", game1.currPos);
-        json.put("nextPos1", game1.nextPos1);
-        json.put("nextPos2", game1.nextPos2);
-        json.put("nextPos3", game1.nextPos3);
-        json.put("nextPos4", game1.nextPos4);
-        json.put("mainField", ui.mainTextArea.getText());
-        json.put("monster", game1.monster.toJson());
-        return json;
-    }
-
-    // EFFECTS: saves the game to a file
-    public void saveGame() {
-        GameJsonWriter gs = new GameJsonWriter(game1.saveLocation);
-        try {
-            gs.open();
-            gs.write(this);
-            gs.close();
-            ui.mainTextArea.setText("Saved game to " + game1.saveLocation);
-        } catch (FileNotFoundException e) {
-            ui.mainTextArea.setText("Unable to write to file: " + game1.saveLocation);
-        }
-    }
-
-    // MODIFIES: this
-    // EFFECTS: loads game from file
-    public void loadGame() {
-        GameJsonReader gr = new GameJsonReader(game1.saveLocation);
-        try {
-            fromJson(gr.read());
-            String previous = ui.mainTextArea.getText();
-            ui.mainTextArea.setText("Loaded game from " + game1.saveLocation + "\n"
-                    + previous);
-        } catch (IOException e) {
-            ui.mainTextArea.setText("Unable to read from file: " + game1.saveLocation);
-        }
-    }
-
-    @Override
-    // MODIFIES: this
-    // EFFECTS: transforms JSONObject into Game
-    protected void fromJson(JSONObject json) {
-        setPlayer(new Player(json.getJSONObject("player")));
-        setCurrentPos(json.getString("currPos"));
-        setNextPos1((json.getString("nextPos1")));
-        setNextPos2((json.getString("nextPos2")));
-        setNextPos3((json.getString("nextPos3")));
-        setNextPos4((json.getString("nextPos4")));
-        setMonster(new Monster(json.getJSONObject("monster")));
-        setMainText((json.getString("mainField")));
-    }
 
 
-    // setters
-    private void setMainText(String mainText) {
-        ui.mainTextArea.setText(mainText);
-    }
 
-    private void setMonster(Monster monster) {
-        game1.monster = monster;
-    }
 
-    private void setNextPos1(String nextPos1) {
-        game1.nextPos1 = nextPos1;
-    }
-
-    private void setNextPos2(String nextPos2) {
-        game1.nextPos2 = nextPos2;
-    }
-
-    private void setNextPos3(String nextPos3) {
-        game1.nextPos3 = nextPos3;
-    }
-
-    private void setNextPos4(String nextPos4) {
-        game1.nextPos4 = nextPos4;
-    }
-
-    private void setCurrentPos(String currentPosition) {
-        game1.currPos = currentPosition;
-    }
-
-    private void setPlayer(Player player) {
-        this.player = player;
-    }
 
 }

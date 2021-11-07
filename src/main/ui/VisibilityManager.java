@@ -21,6 +21,7 @@ public class VisibilityManager {
         ui.mainTextPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(false);
         ui.playerPanel.setVisible(false);
+        ui.persistencePanel.setVisible(false);
 
         ui.inputPanel.setVisible(false);
         ui.namePanel.setVisible(false);
@@ -37,6 +38,7 @@ public class VisibilityManager {
         ui.mainTextPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(true);
         ui.playerPanel.setVisible(true);
+        ui.persistencePanel.setVisible(true);
 
         ui.inputPanel.setVisible(false);
         ui.namePanel.setVisible(false);
@@ -53,6 +55,7 @@ public class VisibilityManager {
         ui.mainTextPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(false);
         ui.playerPanel.setVisible(false);
+        ui.persistencePanel.setVisible(false);
 
         ui.inputPanel.setVisible(true);
         ui.namePanel.setVisible(true);

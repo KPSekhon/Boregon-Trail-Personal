@@ -5,7 +5,7 @@ import model.Player;
 import javax.swing.*;
 import java.awt.*;
 
-// This UI Class is heavily (extremely hevaily) dependant on the linked playlist
+// This UI Class is heavily (extremely heavily) dependent on the linked playlist
 // https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
 // The playlist was used to learn how Java Swing works and how to implement
 // functionality
@@ -25,6 +25,7 @@ public class UI {
     JPanel inputPanel;
     JPanel namePanel;
     JPanel inventoryPanel;
+    JPanel persistencePanel;
     JLabel inputLabel;
     JLabel hpLabel;
     JLabel hpNumberLabel;
@@ -37,6 +38,8 @@ public class UI {
     JButton option4;
     JButton enterButton;
     JButton inventoryButton;
+    JButton saveButton;
+    JButton loadButton;
     JButton itemButton1;
     JButton itemButton2;
     JButton itemButton3;
@@ -73,8 +76,6 @@ public class UI {
         setTitleScreen();
         setStartButton(c);
 
-        window.add(titleNamePanel);
-        window.add(startButtonPanel);
 
         // GAME SCREEN
         setMainTextPanel();
@@ -95,6 +96,8 @@ public class UI {
         setWeaponLabel();
         setWeaponNameLabel();
         setInputScreen(c);
+        setPersistencePanel();
+        setupLoadAndSave(c);
 
         window.setVisible(true);
     }
@@ -153,6 +156,38 @@ public class UI {
     }
 
     //MODIFIES: this
+    //EFFECTS: sets up Persistence Panel
+    public void setPersistencePanel() {
+        persistencePanel = new JPanel();
+        persistencePanel.setBounds(50, 380, 90, 100);
+        persistencePanel.setBackground(Color.black);
+        persistencePanel.setLayout(new GridLayout(2, 1));
+        window.add(persistencePanel);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets up save and load buttons
+    public void setupLoadAndSave(ChoiceHandler c) {
+        saveButton = new JButton("SAVE");
+        saveButton.setBackground(Color.black);
+        saveButton.setForeground(Color.white);
+        saveButton.setFont(normalFont);
+        saveButton.setFocusPainted(false);
+        saveButton.addActionListener(c);
+        saveButton.setActionCommand("save");
+        persistencePanel.add(saveButton);
+
+        loadButton = new JButton("LOAD");
+        loadButton.setBackground(Color.black);
+        loadButton.setForeground(Color.white);
+        loadButton.setFont(normalFont);
+        loadButton.setFocusPainted(false);
+        loadButton.addActionListener(c);
+        loadButton.setActionCommand("load");
+        persistencePanel.add(loadButton);
+    }
+
+    //MODIFIES: this
     //EFFECTS: sets up main text area
     // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
     // This playlist assisted in determining how to use JSwing functionality
@@ -184,6 +219,8 @@ public class UI {
         startButton.addActionListener(c);
         startButton.setActionCommand("start");
         startButtonPanel.add(startButton);
+        window.add(titleNamePanel);
+        window.add(startButtonPanel);
     }
 
     //MODIFIES: this
