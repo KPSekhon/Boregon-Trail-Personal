@@ -3,6 +3,7 @@ package ui;
 
 import model.Monster;
 
+// This class represents the visual GUI representation of the game
 public class Game1 {
     ChoiceHandler choiceHandler = new ChoiceHandler(this);
     UI ui = new UI();
@@ -22,6 +23,8 @@ public class Game1 {
         new Game1();
     }
 
+    // MODIFIES: ui, Visibility Manager, ChoiceHandler
+    // EFFECTS: create screen and begins chain of game commands
     public Game1() {
         ui.createVisualUI(choiceHandler);
         vm.showTitleScreen();

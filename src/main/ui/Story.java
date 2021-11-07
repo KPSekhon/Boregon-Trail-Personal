@@ -10,12 +10,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Random;
 
+// This class represents the visual representation of the in-game story
 public class Story extends Writable {
     UI ui;
     VisibilityManager vm;
     Game1 game1;
     Player player;
 
+    // MODIFIES: this
+    // EFFECTS: instantiates the story
     public Story(Game1 game1, UI ui, VisibilityManager vm) {
         this.game1 = game1;
         this.ui = ui;
@@ -23,6 +26,8 @@ public class Story extends Writable {
     }
 
 
+    // MODIFIES: this, ui, game1
+    // EFFECTS: sets up player name and story
     public void setup() {
         player = ui.player;
         ui.inventoryStatus = "close";
@@ -165,6 +170,8 @@ public class Story extends Writable {
         }
     }
 
+    // MODIFIES: this, ui, game1
+    // EFFECTS: sets all options to death of player scenario
     private void setPlayerDeath() {
         HeartPoints hp = new HeartPoints(0);
         player.setHeartPoints(hp);
@@ -181,7 +188,7 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, game1
     // EFFECTS: ends the game , provides player with satisfaction
     private void happyEnding() {
         ui.mainTextArea.setText(player.getName() + " is able to get to Oregon "
@@ -190,7 +197,7 @@ public class Story extends Writable {
         setPlayerDeath();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, game1
     // EFFECTS: ends the game , provides player with dissatisfaction
     private void badEnding() {
         ui.mainTextArea.setText(player.getName() + " ignores the offer and continues to walk into the"
@@ -199,7 +206,7 @@ public class Story extends Writable {
         setPlayerDeath();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, game1
     // EFFECTS: displays options when player gets to the crossroad
     private void crossroad() {
         ui.mainTextArea.setText(player.getName() + " comes to a crossroad \n"
@@ -216,7 +223,7 @@ public class Story extends Writable {
         game1.currPos = "return to the crossroad";
     }
 
-    // MODIFIES: this
+    // MODIFIES: this,ui, and game1
     // EFFECTS: ends the game and takes player to Oregon
     private void unicornEnding() {
         ui.mainTextArea.setText(player.getName() + " encounters a sorceresses \n"
@@ -234,7 +241,7 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    //MODIFIES: this
+    //MODIFIES: this, ui, and game1
     //EFFECTS: the player initiates battle and gets attacked by Hytos the troll
     // if at some point player's HP is too low, ends program
     private void fightMonster() {
@@ -257,6 +264,8 @@ public class Story extends Writable {
         }
     }
 
+    // MODIFIES: this, ui, game1
+    // EFFECTS: sets all options to attacking Hytos the troll scenario
     private void hytosAttackSlots() {
         ui.option1.setText("attack Hytos");
         ui.option2.setText("run for your life");
@@ -269,22 +278,22 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    //MODIFIES: this
+    //MODIFIES: this, ui, and game1
     //EFFECTS: applies chosen weapon's damage to monster HP and continues battle
     // This method references similar code to fit this game's purpose from video (linked)
     // Link:
     // https://www.youtube.com/watch?v=j99EeUjvLVQ&list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV&index=5&ab_channel=RyiSnow
     private void attackMonster() {
         int attack = player.getWeapon().damageChooser();
-        misfire(attack);
+        String misfire = misfire(attack);
         game1.monster.loseHP(attack);
         if (game1.monster.getHP() > 0) {
-            ui.mainTextArea.setText(player.getName() + " attacks " + game1.monster.getName()
+            ui.mainTextArea.setText(misfire + "\n" + player.getName() + " attacks " + game1.monster.getName()
                     + "\n for " + attack + " HP"
                     + "\n" + game1.monster.getName() + " has " + game1.monster.getHP() + " HP remaining");
             hytosFightSlots();
         } else if (game1.monster.getHP() < 1) {
-            ui.mainTextArea.setText(player.getName() + " attacks " + game1.monster.getName()
+            ui.mainTextArea.setText(misfire + "\n" + player.getName() + " attacks " + game1.monster.getName()
                     + "\n for " + attack + " HP"
                     + "\n" + game1.monster.getName() + " has " + game1.monster.getHP() + " HP remaining \n"
                     + player.getName() + " is victorious!!!");
@@ -300,6 +309,18 @@ public class Story extends Writable {
         }
     }
 
+    // MODIFIES: this
+    //EFFECTS: produces message if player's weapon damage is zero
+    private String misfire(int i) {
+        if (i == 0) {
+            return "Oops, " + player.getName() + " dropped " + player.getName() + "'s weapon";
+        } else {
+            return "";
+        }
+    }
+
+    // MODIFIES: this, ui, game1
+    // EFFECTS: sets all options to fighting Hytos the troll scenario
     private void hytosFightSlots() {
         ui.option1.setText("fight Hytos");
         ui.option2.setText("run for your life");
@@ -312,7 +333,7 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, and game1
     // EFFECTS: progresses player after defeating Hytos the troll
     private void victory() {
         HytosTooth hytosTooth = new HytosTooth();
@@ -332,15 +353,8 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    // MODIFIES: this
-    //EFFECTS: produces message if player's weapon damage is zero
-    private void misfire(int i) {
-        if (i == 0) {
-            System.out.println("Oops, " + player.getName() + " dropped " + player.getName() + "'s weapon");
-        }
-    }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, game1
     // EFFECTS: displays message when monster additionally encounters Hytos the Troll
     private void monsterEncounterAdditional() {
         game1.monster.resetHp();
@@ -350,7 +364,7 @@ public class Story extends Writable {
         hytosFightSlots();
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, and game1
     // EFFECTS: displays options if player chooses to run away from Hytos the Troll
     private void returnToCrossroad() {
         ui.mainTextArea.setText(player.getName() + " returns to a crossroad");
@@ -365,7 +379,7 @@ public class Story extends Writable {
         game1.currPos = "return to crossroad";
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, and game1
     // EFFECTS: displays message when monster initially encounters Hytos the Troll
     private void monsterEncounterInitial() {
         ui.mainTextArea.setText("A troll appears and yells" + " Oye " + player.getName()
@@ -374,7 +388,7 @@ public class Story extends Writable {
         hytosFightSlots();
     }
 
-    //MODIFIES: this
+    //MODIFIES: this, ui, and game1
     //EFFECTS: prints out writing found at Stoole Rock location provides
     // return command to return to crossroad
     private void readTheWriting() {
@@ -391,7 +405,7 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    //MODIFIES: this
+    //MODIFIES: this, ui, and game1
     //EFFECTS: takes player to Stoole Rock location from crossroad and
     // displays available options
     private void stooleRock() {
@@ -408,7 +422,7 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    //MODIFIES: this
+    //MODIFIES: this, ui, and game1
     //EFFECTS: takes player to the Blue River location and display available options
     private void blueRiver() {
         ui.mainTextArea.setText(player.getName() + " finds an extremely blue river"
@@ -425,6 +439,8 @@ public class Story extends Writable {
 
     }
 
+    //MODIFIES: this, ui, and game1
+    //EFFECTS: displays player's decision and provides player with next option
     private void decideToDrinkMysteryWater() {
         ui.mainTextArea.setText(player.getName() + " has decided to drink the water");
         ui.option1.setText(">");
@@ -439,7 +455,7 @@ public class Story extends Writable {
     }
 
 
-    //MODIFIES:this
+    //MODIFIES:this, ui, and game1
     //EFFECTS: player drinks mystery water that can increase or decrease
     // the players HP by 2 heart points, then displays option to return to crossroad
     // Also, player can die if heartpoints get to low, so end command is also implemented
@@ -467,6 +483,9 @@ public class Story extends Writable {
         }
     }
 
+    //MODIFIES: this, ui, and game1
+    //EFFECTS: displays player's decision and provides player with next option
+    // to return to currPos
     private void setReturnToPreviousSpot() {
         ui.option1.setText(">");
         ui.option2.setText("");
@@ -485,7 +504,7 @@ public class Story extends Writable {
         return player.getPlayerHP() <= 0;
     }
 
-    //MODIFIES: this
+    //MODIFIES: this, ui, and game1
     //EFFECTS: adds immortal potion to player's inventory if they can afford, and
     // displays advancement options
     private void purchaseImmortalPotion() {
@@ -511,7 +530,7 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, and game1
     // EFFECTS: starts wizard event after player decides to move forwards
     private void startTheTrail() {
         ui.mainTextArea.setText("While " + player.getName() + " is walking, a wizard pops out of nowhere."
@@ -530,7 +549,7 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, and game1
     // EFFECTS: this is an Easter egg kill command, that will kill the player in a variety of ways
     private void waitForSaviour() {
 
@@ -557,7 +576,7 @@ public class Story extends Writable {
         }
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, and game1
     // EFFECTS: adds Kentucky Rifle Weapon to player inventory, sets it as default weapon
     // and displays available options
     private void setupWeaponKentucky() {
@@ -569,8 +588,8 @@ public class Story extends Writable {
                 + " and it has been set as your default weapon. \n"
                 + " You have " + player.getWallet() + " dollars in your wallet remaining \n"
                 + player.getName() + " is a cautious person but they need to get to Oregon City \n"
-                + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
-                + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
+                + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail "
+                + "littered with dysentery, " + player.getName() + " decides to take the mystical, \n"
                 + "treacherous trail with an ironic name, the Boregon Trail.");
 
         ui.option1.setText("start trail");
@@ -584,7 +603,7 @@ public class Story extends Writable {
         game1.nextPos4 = "";
     }
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, and game1
     // EFFECTS: adds Knife Weapon to player inventory, sets it as default weapon
     //  and displays available options
     private void setupWeaponKnife() {
@@ -596,8 +615,8 @@ public class Story extends Writable {
                 + " and it has been set as your default weapon. \n"
                 + " You have " + player.getWallet() + " dollars in your wallet remaining \n"
                 + player.getName() + " is a cautious person but they need to get to Oregon City \n"
-                + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
-                + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
+                + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail "
+                + "littered with dysentery, " + player.getName() + " decides to take the mystical, \n"
                 + "treacherous trail with an ironic name, the Boregon Trail.");
 
         ui.option1.setText("start trail");
@@ -612,7 +631,7 @@ public class Story extends Writable {
     }
 
 
-    // MODIFIES: this
+    // MODIFIES: this, ui, and game1
     // EFFECTS: adds Sword Weapon to player inventory, sets it as default weapon
     //  and displays available options
     private void setupWeaponSword() {
@@ -624,8 +643,8 @@ public class Story extends Writable {
                 + " and it has been set as your default weapon. \n"
                 + " You have " + player.getWallet() + " dollars in your wallet remaining \n"
                 + player.getName() + " is a cautious person but they need to get to Oregon City \n"
-                + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail \n"
-                + "littered with dysentery," + player.getName() + " decides to take the mystical, \n"
+                + " for their inheritance of 10,000 dollars. Instead of taking the long copyrighted trail "
+                + "littered with dysentery, " + player.getName() + " decides to take the mystical, \n"
                 + "treacherous trail with an ironic name, the Boregon Trail.");
 
         ui.option1.setText("start trail");
@@ -695,6 +714,8 @@ public class Story extends Writable {
         setMainText((json.getString("mainField")));
     }
 
+
+    // setters
     private void setMainText(String mainText) {
         ui.mainTextArea.setText(mainText);
     }

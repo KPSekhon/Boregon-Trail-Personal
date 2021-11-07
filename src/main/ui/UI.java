@@ -5,6 +5,13 @@ import model.Player;
 import javax.swing.*;
 import java.awt.*;
 
+// This UI Class is heavily (extremely hevaily) dependant on the linked playlist
+// https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+// The playlist was used to learn how Java Swing works and how to implement
+// functionality
+
+// This class creates and implements the Visual UI of the game
+
 public class UI {
 
 
@@ -42,13 +49,21 @@ public class UI {
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 40);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 20);
 
+    //MODIFIES: this, game1
+    // EFFECTS: sets up player for the game
     public void setPlayer(Player player) {
         this.player = player;
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: sets up inventory Handler
     InventoryHandler inventoryHandler = new InventoryHandler(this);
 
+    // MODIFIES: this
+    // EFFECTS: sets up Visual UI
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist was used extensively to determine how to implement the code
     public void createVisualUI(ChoiceHandler c) {
         //WINDOW
         setWindowInitial();
@@ -84,6 +99,8 @@ public class UI {
         window.setVisible(true);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets up the name Input Screen
     public void setInputScreen(ChoiceHandler c) {
         inputPanel = new JPanel();
         inputPanel.setBounds(15, 250, 500, 100);
@@ -114,6 +131,10 @@ public class UI {
     }
 
 
+    //MODIFIES: this
+    //EFFECTS: sets up choice button panel
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setChoiceButtonPanel() {
         choiceButtonPanel = new JPanel();
         choiceButtonPanel.setBounds(250, 380, 300, 175);
@@ -121,12 +142,20 @@ public class UI {
         choiceButtonPanel.setLayout(new GridLayout(5, 1));
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up main text panel
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setMainTextPanel() {
         mainTextPanel = new JPanel();
         mainTextPanel.setBounds(100, 100, 600, 250);
         mainTextPanel.setBackground(Color.black);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up main text area
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setMainTextArea() {
         mainTextArea = new JTextArea("This is the main text area");
         mainTextArea.setBounds(100, 100, 600, 250);
@@ -139,6 +168,10 @@ public class UI {
         mainTextPanel.add(mainTextArea);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up start button
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setStartButton(ChoiceHandler c) {
         startButtonPanel = new JPanel();
         startButtonPanel.setBounds(300, 400, 200, 100);
@@ -153,8 +186,11 @@ public class UI {
         startButtonPanel.add(startButton);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up window
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setWindowInitial() {
-        //WINDOW
         window = new JFrame();
         window.setSize(900, 600);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -162,6 +198,10 @@ public class UI {
         window.setLayout(null);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up title screen
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setTitleScreen() {
         titleNamePanel = new JPanel();
         titleNamePanel.setBounds(100, 100, 600, 300);
@@ -172,6 +212,10 @@ public class UI {
         titleNamePanel.add(titleNameLabel);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up first choice
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setOption1(ChoiceHandler c) {
         option1 = new JButton("option1");
         option1.setBackground(Color.black);
@@ -183,6 +227,10 @@ public class UI {
         choiceButtonPanel.add(option1);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up second choice
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setOption2(ChoiceHandler c) {
         option2 = new JButton("option2");
         option2.setBackground(Color.black);
@@ -194,6 +242,10 @@ public class UI {
         choiceButtonPanel.add(option2);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up third choice
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setOption3(ChoiceHandler c) {
         option3 = new JButton("option3");
         option3.setBackground(Color.black);
@@ -205,6 +257,10 @@ public class UI {
         choiceButtonPanel.add(option3);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up fourth choice
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setOption4(ChoiceHandler c) {
         option4 = new JButton("option4");
         option4.setBackground(Color.black);
@@ -216,6 +272,9 @@ public class UI {
         choiceButtonPanel.add(option4);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up inventory button
+    // Source: https://www.youtube.com/watch?v=vW2EV9En6vA&ab_channel=RyiSnow
     public void setInventoryButton(InventoryHandler inventoryHandler) {
         inventoryButton = new JButton("Inventory");
         inventoryButton.setBackground(Color.black);
@@ -227,6 +286,9 @@ public class UI {
         choiceButtonPanel.add(inventoryButton);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up inventory panel
+    // Source: https://www.youtube.com/watch?v=vW2EV9En6vA&ab_channel=RyiSnow
     public void setInventoryPanel() {
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(550, 350, 200, 200);
@@ -234,6 +296,9 @@ public class UI {
         inventoryPanel.setLayout(new GridLayout(5, 1));
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up inventory item button 1
+    // Source: https://www.youtube.com/watch?v=vW2EV9En6vA&ab_channel=RyiSnow
     public void setItemButton1(InventoryHandler inventoryHandler) {
         itemButton1 = new JButton();
         itemButton1.setBackground(Color.black);
@@ -245,6 +310,9 @@ public class UI {
         inventoryPanel.add(itemButton1);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up inventory item button 2
+    // Source: https://www.youtube.com/watch?v=vW2EV9En6vA&ab_channel=RyiSnow
     public void setItemButton2(InventoryHandler inventoryHandler) {
         itemButton2 = new JButton();
         itemButton2.setBackground(Color.black);
@@ -256,6 +324,9 @@ public class UI {
         inventoryPanel.add(itemButton2);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up inventory item button 3
+    // Source: https://www.youtube.com/watch?v=vW2EV9En6vA&ab_channel=RyiSnow
     public void setItemButton3(InventoryHandler inventoryHandler) {
         itemButton3 = new JButton();
         itemButton3.setBackground(Color.black);
@@ -267,6 +338,9 @@ public class UI {
         inventoryPanel.add(itemButton3);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up inventory item button 4
+    // Source: https://www.youtube.com/watch?v=vW2EV9En6vA&ab_channel=RyiSnow
     public void setItemButton4(InventoryHandler inventoryHandler) {
         itemButton4 = new JButton();
         itemButton4.setBackground(Color.black);
@@ -278,6 +352,9 @@ public class UI {
         inventoryPanel.add(itemButton4);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up inventory item button 5
+    // Source: https://www.youtube.com/watch?v=vW2EV9En6vA&ab_channel=RyiSnow
     public void setItemButton5(InventoryHandler inventoryHandler) {
         itemButton5 = new JButton();
         itemButton5.setBackground(Color.black);
@@ -289,6 +366,9 @@ public class UI {
         inventoryPanel.add(itemButton5);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up player inventory
+    // Source: https://www.youtube.com/watch?v=vW2EV9En6vA&ab_channel=RyiSnow
     public void setInventory(InventoryHandler inventoryHandler) {
         setInventoryButton(inventoryHandler);
 
@@ -303,6 +383,10 @@ public class UI {
         inventoryPanel.setVisible(false);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up player panel
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setPlayerPanel() {
         playerPanel = new JPanel();
         playerPanel.setBounds(100, 15, 690, 50);
@@ -311,6 +395,10 @@ public class UI {
         window.add(playerPanel);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up Hp Label
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setHpLabel() {
         hpLabel = new JLabel("HP:");
         hpLabel.setFont(normalFont);
@@ -318,6 +406,10 @@ public class UI {
         playerPanel.add(hpLabel);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up Hp display HpNumberLabel
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setHpNumberLabel() {
         hpNumberLabel = new JLabel();
         hpNumberLabel.setFont(normalFont);
@@ -325,6 +417,10 @@ public class UI {
         playerPanel.add(hpNumberLabel);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up Hp display WeaponLabel
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setWeaponLabel() {
         weaponLabel = new JLabel("Weapon:");
         weaponLabel.setFont(normalFont);
@@ -332,6 +428,10 @@ public class UI {
         playerPanel.add(weaponLabel);
     }
 
+    //MODIFIES: this
+    //EFFECTS: sets up weapon display WeaponNameLabel
+    // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
+    // This playlist assisted in determining how to use JSwing functionality
     public void setWeaponNameLabel() {
         weaponNameLabel = new JLabel();
         weaponNameLabel.setFont(normalFont);

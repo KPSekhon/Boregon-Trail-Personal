@@ -5,15 +5,22 @@ import model.Player;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// This class handles the in-game choices made by clicking the buttons
 public class ChoiceHandler implements ActionListener {
     String input;
     Game1 game1;
 
+    //MODIFIES: this
+    // EFFECTS: instantiates the game choice handler acts upon
     public ChoiceHandler(Game1 game1) {
         this.game1 = game1;
     }
 
     @Override
+    //MODIFIES: game1,this
+    //EFFECTS: completes action associated with the button pressed
+    // This method references code from linked playlist:
+    // link - https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
     public void actionPerformed(ActionEvent e) {
         this.input = e.getActionCommand();
         String name;
@@ -32,6 +39,10 @@ public class ChoiceHandler implements ActionListener {
         actionPerformedContinued();
     }
 
+    //MODIFIES: game1, this
+    //EFFECTS: completes action associated with the button pressed
+    // This method references code from linked playlist:
+    // link - https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
     public void actionPerformedContinued() {
         switch (input) {
             case "choice1":
