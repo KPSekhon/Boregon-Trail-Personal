@@ -5,7 +5,6 @@ import model.Player;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.net.URL;
 
 // This UI Class is heavily (extremely heavily) dependent on the linked playlist
 // https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
@@ -571,12 +570,12 @@ public class UI {
     //https://stackoverflow.com/questions/16134549/how-to-make-a-splash-screen-for-gui
     private void setupLabel() {
         this.border = BorderFactory.createLineBorder(new Color(0xF3867A));
-        URL url = this.getClass().getResource("Dancing_Guy.gif");
-        this.icon = new ImageIcon(url);
-        //this.icon = new ImageIcon("./ui/soick.jpg");
+        this.icon = new ImageIcon("./data/Dancing_Guy.gif");
+        //       this.icon = new ImageIcon("./data/soick.jpg");
         this.label = new JLabel();
         label.setText("loading, maybe?");
         label.setFont(normalFont);
+        //       label.setForeground(Color.white);
         label.setIcon(this.icon);
         label.setBorder(this.border);
         label.setBounds(0, 0, 900, 600);
