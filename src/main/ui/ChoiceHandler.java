@@ -36,6 +36,9 @@ public class ChoiceHandler implements ActionListener {
                 game1.vm.titleToGame();
                 game1.story.setup();
                 break;
+            case "restart":
+                new Game1();
+                break;
         }
         actionPerformedContinued();
     }

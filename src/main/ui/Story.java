@@ -166,6 +166,7 @@ public class Story {
 
     // MODIFIES: this, ui, game1
     // EFFECTS: sets all options to death of player scenario
+    // and provides restart option
     private void setPlayerDeath() {
         HeartPoints hp = new HeartPoints(0);
         player.setHeartPoints(hp);
@@ -176,6 +177,7 @@ public class Story {
         ui.option4.setText("");
         ui.inventoryButton.setVisible(false);
         ui.choiceButtonPanel.setVisible(false);
+        ui.restartButton.setVisible(true);
 
         game1.nextPos1 = "";
         game1.nextPos2 = "";

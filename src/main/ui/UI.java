@@ -34,6 +34,7 @@ public class UI {
     JLabel weaponLabel;
     JLabel weaponNameLabel;
     JButton startButton;
+    JButton restartButton;
     JButton option1;
     JButton option2;
     JButton option3;
@@ -63,7 +64,6 @@ public class UI {
     //EFFECTS: creates basic UI
     public UI() {
     }
-
 
 
     // MODIFIES: this
@@ -103,8 +103,7 @@ public class UI {
         setWeaponLabel();
         setWeaponNameLabel();
         setInputScreen(c);
-        setPersistencePanel();
-        setupLoadAndSave(c);
+        setPersistencePanel(c);
 
         window.setVisible(true);
     }
@@ -164,12 +163,14 @@ public class UI {
 
     //MODIFIES: this
     //EFFECTS: sets up Persistence Panel
-    public void setPersistencePanel() {
+    public void setPersistencePanel(ChoiceHandler c) {
         persistencePanel = new JPanel();
-        persistencePanel.setBounds(50, 380, 90, 100);
+        persistencePanel.setBounds(50, 380, 180, 100);
         persistencePanel.setBackground(Color.black);
-        persistencePanel.setLayout(new GridLayout(2, 1));
+        persistencePanel.setLayout(new GridLayout(3, 1));
         window.add(persistencePanel);
+        setupLoadAndSave(c);
+        setupRestartButton(c);
     }
 
     //MODIFIES: this
@@ -192,6 +193,20 @@ public class UI {
         loadButton.addActionListener(c);
         loadButton.setActionCommand("load");
         persistencePanel.add(loadButton);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: setups Restart Button
+    public void setupRestartButton(ChoiceHandler c) {
+        restartButton = new JButton("NEW GAME");
+        restartButton.setBackground(Color.black);
+        restartButton.setForeground(Color.white);
+        restartButton.setFont(normalFont);
+        restartButton.setFocusPainted(false);
+        restartButton.addActionListener(c);
+        restartButton.setActionCommand("restart");
+        persistencePanel.add(restartButton);
+        restartButton.setVisible(false);
     }
 
     //MODIFIES: this
@@ -482,8 +497,6 @@ public class UI {
         weaponNameLabel.setForeground(Color.white);
         playerPanel.add(weaponNameLabel);
     }
-
-
 
 
 }
