@@ -27,9 +27,6 @@ public class Game1 extends Writable {
     Monster monster = new Monster();
 
 
-    public static void main(String[] args) {
-        new Game1();
-    }
 
     // MODIFIES: ui, Visibility Manager, ChoiceHandler
     // EFFECTS: create screen and begins chain of game commands
@@ -43,7 +40,7 @@ public class Game1 extends Writable {
     // Source: JSonSerializationDemo
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("player", player.toJson());
+        json.put("player", story.player.toJson());
         json.put("currPos", currPos);
         json.put("nextPos1", nextPos1);
         json.put("nextPos2", nextPos2);
@@ -122,9 +119,7 @@ public class Game1 extends Writable {
     // setters
 
 
-    private void setMainText(String mainText) {
-        ui.mainTextArea.setText(mainText);
-    }
+
 
     private void setMonster(Monster monster) {
         this.monster = monster;
@@ -146,6 +141,9 @@ public class Game1 extends Writable {
         this.nextPos4 = nextPos4;
     }
 
+    //MODIFIES:this
+    //EFFECTS: if saved position is end, then the choices and inventory
+    // options are not available, otherwise they are shown
     private void setCurrentPos(String currentPosition) {
         this.currPos = currentPosition;
         if (!(currPos == "end")) {
@@ -154,6 +152,8 @@ public class Game1 extends Writable {
         }
     }
 
+    //MODIFIES:this, ui, story
+    //EFFECTS: sets same player across interloping classes
     private void setPlayer(Player player) {
         this.player = player;
         ui.setPlayer(player);

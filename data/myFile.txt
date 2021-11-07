@@ -1,5 +1,5 @@
 {
-    "weapon": "model.ElfSword@1d29cf23",
+    "weapon": "model.ElfSword@4b1c1ea0",
     "wallet": 10,
     "name": "bob",
     "heartpoints": 10,

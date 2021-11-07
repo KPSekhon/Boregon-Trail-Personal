@@ -11,9 +11,6 @@ public class InventoryHandler implements ActionListener {
     String chosen;
     Player player;
     ImmortalPotion immortalPotion = new ImmortalPotion();
-    HytosTooth hytosTooth = new HytosTooth();
-    MarblesBag marblesBag = new MarblesBag();
-    MysteryWater mysteryWater = new MysteryWater();
     FullHealthPotion fullHealthPotion = new FullHealthPotion();
 
     //MODIFIES: this
@@ -37,7 +34,7 @@ public class InventoryHandler implements ActionListener {
             player.loseItem(item);
             itemMessage(item);
         } else {
-            ui.mainTextArea.setText(" A nice collectible " + item.getName() + " is");
+            ui.mainTextArea.setText(" A nice collectible, " + item.getName() + ", is");
         }
         inventoryChecker();
     }
