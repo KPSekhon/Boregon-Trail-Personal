@@ -32,6 +32,7 @@ public class Story {
         player = ui.player;
         ui.inventoryStatus = "close";
         EmptyWeapon emptyWeapon = new EmptyWeapon();
+        changeProgress(0);
         player.setWeapon(emptyWeapon);
         ui.weaponNameLabel.setText(player.getWeaponName());
         ui.hpNumberLabel.setText("" + player.getPlayerHP());
@@ -52,6 +53,17 @@ public class Story {
         game1.nextPos2 = "Knife";
         game1.nextPos3 = "Sword";
         game1.nextPos4 = "";
+    }
+
+    //MODIFIES: ui
+    //EFFECTS: shows player progress in story
+    public void changeProgress(int i) {
+        if (i == 0) {
+            ui.progressBar.setVisible(true);
+        } else if (i == 99) {
+            ui.progressBar.setVisible(false);
+        }
+        ui.progressBar.setValue(i);
     }
 
     // MODIFIES: this
@@ -178,6 +190,7 @@ public class Story {
         ui.inventoryButton.setVisible(false);
         ui.choiceButtonPanel.setVisible(false);
         ui.restartButton.setVisible(true);
+        changeProgress(99);
 
         game1.nextPos1 = "";
         game1.nextPos2 = "";
@@ -189,6 +202,7 @@ public class Story {
     // MODIFIES: this, ui, game1
     // EFFECTS: ends the game , provides player with satisfaction
     private void happyEnding() {
+        changeProgress(100);
         ui.mainTextArea.setText(player.getName() + " is able to get to Oregon "
                 + "and claim " + player.getName() + "'s inheritance \n"
                 + "Game Over!");
@@ -198,6 +212,7 @@ public class Story {
     // MODIFIES: this, ui, game1
     // EFFECTS: ends the game , provides player with dissatisfaction
     private void badEnding() {
+        changeProgress(100);
         ui.mainTextArea.setText(player.getName() + " ignores the offer and continues to walk into the"
                 + " Maze Woods, where " + player.getName() + " gets lost until the end of their days \n"
                 + "Game Over!");
@@ -207,6 +222,7 @@ public class Story {
     // MODIFIES: this, ui, game1
     // EFFECTS: displays options when player gets to the crossroad
     private void crossroad() {
+        changeProgress(38);
         ui.mainTextArea.setText(player.getName() + " comes to a crossroad \n"
                 + " What will " + player.getName() + " do?");
         ui.option1.setText("head west");
@@ -224,6 +240,7 @@ public class Story {
     // MODIFIES: this,ui, and game1
     // EFFECTS: ends the game and takes player to Oregon
     private void unicornEnding() {
+        changeProgress(96);
         ui.mainTextArea.setText(player.getName() + " encounters a sorceresses \n"
                 + "The sorceresses offers " + player.getName()
                 + " a ride on her flying horse to Oregon because she's going to visit "
@@ -295,6 +312,7 @@ public class Story {
                     + "\n for " + attack + " HP"
                     + "\n" + game1.monster.getName() + " has " + game1.monster.getHP() + " HP remaining \n"
                     + player.getName() + " is victorious!!!");
+            changeProgress(75);
             ui.option1.setText("move forwards");
             ui.option2.setText("");
             ui.option3.setText("");
@@ -320,6 +338,7 @@ public class Story {
     // MODIFIES: this, ui, game1
     // EFFECTS: sets all options to fighting Hytos the troll scenario
     private void hytosFightSlots() {
+        changeProgress(69);
         ui.option1.setText("fight Hytos");
         ui.option2.setText("run for your life");
         ui.option3.setText("");
@@ -334,6 +353,7 @@ public class Story {
     // MODIFIES: this, ui, and game1
     // EFFECTS: progresses player after defeating Hytos the troll
     private void victory() {
+        changeProgress(84);
         HytosTooth hytosTooth = new HytosTooth();
         player.addItem(hytosTooth);
         ui.mainTextArea.setText("You were able to injure " + game1.monster.getName() + " but they managed to get away."
@@ -355,6 +375,7 @@ public class Story {
     // MODIFIES: this, ui, game1
     // EFFECTS: displays message when monster additionally encounters Hytos the Troll
     private void monsterEncounterAdditional() {
+        changeProgress(46);
         game1.monster.resetHp();
         String trollYell = " Oye " + player.getName() + " ,didn't I tell ya already, no one crosses Canyon Bridge!!!";
         ui.mainTextArea.setText("A troll appears and yells" + trollYell
@@ -365,6 +386,7 @@ public class Story {
     // MODIFIES: this, ui, and game1
     // EFFECTS: displays options if player chooses to run away from Hytos the Troll
     private void returnToCrossroad() {
+        changeProgress(38);
         ui.mainTextArea.setText(player.getName() + " returns to a crossroad");
         ui.option1.setText("head to Blue River");
         ui.option2.setText("head to Stoole Rock");
@@ -380,6 +402,7 @@ public class Story {
     // MODIFIES: this, ui, and game1
     // EFFECTS: displays message when monster initially encounters Hytos the Troll
     private void monsterEncounterInitial() {
+        changeProgress(46);
         ui.mainTextArea.setText("A troll appears and yells" + " Oye " + player.getName()
                 + " , no one crosses Hytos's Canyon Bridge!!!"
                 + "\n The troll starts to charge at you");
@@ -390,6 +413,7 @@ public class Story {
     //EFFECTS: prints out writing found at Stoole Rock location provides
     // return command to return to crossroad
     private void readTheWriting() {
+        changeProgress(38);
         ui.mainTextArea.setText("The writing reads, “The path to Boregon Trail will have no avail "
                 + "unless you are willing to face challenges from folk tale");
         ui.option1.setText(">");
@@ -407,6 +431,7 @@ public class Story {
     //EFFECTS: takes player to Stoole Rock location from crossroad and
     // displays available options
     private void stooleRock() {
+        changeProgress(38);
         ui.mainTextArea.setText(player.getName() + " comes across a place called Stoole Rock"
                 + "\n" + " and see a writing engraved on the wall");
         ui.option1.setText("read the writing");
@@ -423,6 +448,7 @@ public class Story {
     //MODIFIES: this, ui, and game1
     //EFFECTS: takes player to the Blue River location and display available options
     private void blueRiver() {
+        changeProgress(38);
         ui.mainTextArea.setText(player.getName() + " finds an extremely blue river"
                 + "\n" + player.getName() + " feels a bit thirsty");
         ui.option1.setText("drink the water");
@@ -440,6 +466,7 @@ public class Story {
     //MODIFIES: this, ui, and game1
     //EFFECTS: displays player's decision and provides player with next option
     private void decideToDrinkMysteryWater() {
+        changeProgress(38);
         ui.mainTextArea.setText(player.getName() + " has decided to drink the water");
         ui.option1.setText(">");
         ui.option2.setText("");
@@ -458,6 +485,7 @@ public class Story {
     // the players HP by 2 heart points, then displays option to return to crossroad
     // Also, player can die if heartpoints get to low, so end command is also implemented
     private void drinkMysteryWater() {
+        changeProgress(38);
         MysteryWater mysteryWater = new MysteryWater();
         int b = mysteryWater.getHeartValue();
         if (b == 2) {
@@ -506,6 +534,7 @@ public class Story {
     //EFFECTS: adds immortal potion to player's inventory if they can afford, and
     // displays advancement options
     private void purchaseImmortalPotion() {
+        changeProgress(18);
         ImmortalPotion ip = new ImmortalPotion();
         if (player.getWallet() < ip.getCost()) {
             ui.mainTextArea.setText("The wizards laughs at you and calls you a peasant, then disappears"
@@ -531,6 +560,7 @@ public class Story {
     // MODIFIES: this, ui, and game1
     // EFFECTS: starts wizard event after player decides to move forwards
     private void startTheTrail() {
+        changeProgress(12);
         ui.mainTextArea.setText("While " + player.getName() + " is walking, a wizard pops out of nowhere."
                 + "\n The wizard says for just 3 dollars they will give a magic potion that will "
                 + "\nkeep you nourished and safe for the rest of your trip."
@@ -550,6 +580,7 @@ public class Story {
     // MODIFIES: this, ui, and game1
     // EFFECTS: this is an Easter egg kill command, that will kill the player in a variety of ways
     private void waitForSaviour() {
+        changeProgress(99);
 
         int value = 0;
         Random b = new Random();
@@ -578,6 +609,7 @@ public class Story {
     // EFFECTS: adds Kentucky Rifle Weapon to player inventory, sets it as default weapon
     // and displays available options
     private void setupWeaponKentucky() {
+        changeProgress(7);
         KentuckyRifle kentuckyRifle = new KentuckyRifle();
         player.addItem(kentuckyRifle);
         player.spendMoney(kentuckyRifle.getCost());
@@ -605,6 +637,7 @@ public class Story {
     // EFFECTS: adds Knife Weapon to player inventory, sets it as default weapon
     //  and displays available options
     private void setupWeaponKnife() {
+        changeProgress(7);
         Knife knife = new Knife();
         player.addItem(knife);
         player.spendMoney(knife.getCost());
@@ -633,6 +666,7 @@ public class Story {
     // EFFECTS: adds Sword Weapon to player inventory, sets it as default weapon
     //  and displays available options
     private void setupWeaponSword() {
+        changeProgress(7);
         Sword sword = new Sword();
         player.addItem(sword);
         player.spendMoney(sword.getCost());
@@ -655,10 +689,6 @@ public class Story {
         game1.nextPos3 = "";
         game1.nextPos4 = "";
     }
-
-
-
-
 
 
 }

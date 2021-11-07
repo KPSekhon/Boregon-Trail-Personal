@@ -27,7 +27,6 @@ public class Game1 extends Writable {
     Monster monster = new Monster();
 
 
-
     // MODIFIES: ui, Visibility Manager, ChoiceHandler
     // EFFECTS: create screen and begins chain of game commands
     public Game1() {
@@ -60,6 +59,7 @@ public class Game1 extends Writable {
         json.put("weaponNameLabel", ui.weaponNameLabel.getText());
         json.put("hpNumberLabel", ui.hpNumberLabel.getText());
         json.put("monster", monster.toJson());
+        json.put("progressBarValue", ui.progressBar.getValue());
         return json;
     }
 
@@ -114,11 +114,10 @@ public class Game1 extends Writable {
         ui.mainTextArea.setText(json.getString("mainTextArea"));
         ui.weaponNameLabel.setText(json.getString("weaponNameLabel"));
         ui.hpNumberLabel.setText(json.getString("hpNumberLabel"));
+        setProgressBar(json.getInt("progressBarValue"));
     }
 
     // setters
-
-
 
 
     private void setMonster(Monster monster) {
@@ -149,6 +148,18 @@ public class Game1 extends Writable {
         if (!(currPos == "end")) {
             ui.inventoryButton.setVisible(true);
             ui.choiceButtonPanel.setVisible(true);
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: if progress bar has not been ended, then it will show progress bar
+    //otherwise it will not
+    private void setProgressBar(int val) {
+        ui.progressBar.setValue(val);
+        if (ui.progressBar.getValue() == 99) {
+            ui.progressBar.setVisible(false);
+        } else {
+            ui.progressBar.setVisible(true);
         }
     }
 

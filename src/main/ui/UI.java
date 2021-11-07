@@ -1,11 +1,11 @@
 package ui;
 
 import model.Player;
-import org.json.JSONObject;
-import persistance.Writable;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.net.URL;
 
 // This UI Class is heavily (extremely heavily) dependent on the linked playlist
 // https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
@@ -51,9 +51,15 @@ public class UI {
     JTextArea mainTextArea;
     JTextField nameInput;
     String inventoryStatus;
+    JProgressBar progressBar;
     Player player;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 40);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 20);
+    private JLabel label;
+    private JProgressBar bar;
+    private JFrame frame;
+    private Border border;
+    private ImageIcon icon;
 
     //MODIFIES: this, game1
     // EFFECTS: sets up player for the game
@@ -63,6 +69,15 @@ public class UI {
 
     //EFFECTS: creates basic UI
     public UI() {
+    }
+
+    //MODIFIES: this
+    //EFFECTS: creates loading screen, then switches to main game when bar is filled
+    public void loader() {
+        splash();
+        if (getBarTimer() == 100) {
+            frame.setVisible(false);
+        }
     }
 
 
@@ -75,6 +90,7 @@ public class UI {
     // Source: https://www.youtube.com/playlist?list=PL_QPQmz5C6WVrrmQaIwtaH23Bg8MEd9PV
     // This playlist was used extensively to determine how to implement the code
     public void createVisualUI(ChoiceHandler c) {
+        loader();
         //WINDOW
         setWindowInitial();
 
@@ -90,7 +106,6 @@ public class UI {
         setMainTextArea();
         setChoiceButtonPanel();
         setChoiceButtonPanel();
-        window.add(choiceButtonPanel);
 
         setOption1(c);
         setOption2(c);
@@ -104,8 +119,19 @@ public class UI {
         setWeaponNameLabel();
         setInputScreen(c);
         setPersistencePanel(c);
+        setupProgressBar();
 
         window.setVisible(true);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets up player panel
+    public void setupProgressBar() {
+        progressBar = new JProgressBar();
+        progressBar.setValue(0);
+        progressBar.setStringPainted(true);
+        progressBar.setVisible(false);
+        playerPanel.add(progressBar);
     }
 
     // MODIFIES: this
@@ -149,6 +175,7 @@ public class UI {
         choiceButtonPanel.setBounds(250, 380, 300, 175);
         choiceButtonPanel.setBackground(Color.black);
         choiceButtonPanel.setLayout(new GridLayout(5, 1));
+        window.add(choiceButtonPanel);
     }
 
     //MODIFIES: this
@@ -450,7 +477,7 @@ public class UI {
         playerPanel = new JPanel();
         playerPanel.setBounds(100, 15, 690, 50);
         playerPanel.setBackground(Color.black);
-        playerPanel.setLayout(new GridLayout(1, 4));
+        playerPanel.setLayout(new GridLayout(1, 5));
         window.add(playerPanel);
     }
 
@@ -496,6 +523,84 @@ public class UI {
         weaponNameLabel.setFont(normalFont);
         weaponNameLabel.setForeground(Color.white);
         playerPanel.add(weaponNameLabel);
+    }
+
+    // Sets up splash loading screen
+    //MODIFIES: this
+    //EFFECTS: instantiates splash intro loading screen method
+    //This resource was used to help make this method -
+    //https://www.youtube.com/watch?v=Kmgo00avvEw&ab_channel=BroCode
+    public void splash() {
+        setupLabel();
+        setupLoadingProgressBar();
+
+        setupFrame();
+        frame.add(label);
+        frame.add(bar);
+
+        fill();
+
+    }
+
+
+    //MODIFIES: this
+    // sets up frame for splash screen
+    private void setupFrame() {
+        this.frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(900, 600);
+        frame.getContentPane().setBackground(new Color(0xFFFE94));
+        frame.setLayout(null);
+        frame.setVisible(true);
+    }
+
+    //MODIFIES: this
+    //sets up progress bar for splash screen
+    private void setupLoadingProgressBar() {
+        this.bar = new JProgressBar();
+        bar.setValue(0);
+        bar.setBounds(400, 500, 420, 50);
+        bar.setStringPainted(true);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: sets up label to display image, border and text
+    //This resource assisted in making this method:
+    //https://stackoverflow.com/questions/149153/loading-animated-gif-from-jar-file-into-imageicon
+    //https://stackoverflow.com/questions/16134549/how-to-make-a-splash-screen-for-gui
+    private void setupLabel() {
+        this.border = BorderFactory.createLineBorder(new Color(0xF3867A));
+        URL url = this.getClass().getResource("Dancing_Guy.gif");
+        this.icon = new ImageIcon(url);
+        this.label = new JLabel();
+        label.setText("loading, maybe?");
+        label.setFont(normalFont);
+        label.setIcon(this.icon);
+        label.setBorder(this.border);
+        label.setBounds(0, 0, 900, 600);
+    }
+
+    //MODIFIES: this
+    // EFFECTS: fills the progress bar
+    //This resource assisted in making this method:
+    //https://stackoverflow.com/questions/16134549/how-to-make-a-splash-screen-for-gui
+    //https://stackoverflow.com/questions/149153/loading-animated-gif-from-jar-file-into-imageicon
+    public void fill() {
+        int max = 110;
+        for (int i = 0; i < max; i++) {
+            bar.setValue(i);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        bar.setString("Done!");
+    }
+
+    //EFFECTS: returns current value of bar progress value
+    public int getBarTimer() {
+        return this.bar.getValue();
     }
 
 
