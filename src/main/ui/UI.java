@@ -550,6 +550,7 @@ public class UI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(900, 600);
         frame.getContentPane().setBackground(new Color(0xFFFE94));
+        //frame.getContentPane().setBackground(new Color(0x000000));
         frame.setLayout(null);
         frame.setVisible(true);
     }
@@ -572,6 +573,7 @@ public class UI {
         this.border = BorderFactory.createLineBorder(new Color(0xF3867A));
         URL url = this.getClass().getResource("Dancing_Guy.gif");
         this.icon = new ImageIcon(url);
+        //this.icon = new ImageIcon("./ui/soick.jpg");
         this.label = new JLabel();
         label.setText("loading, maybe?");
         label.setFont(normalFont);
