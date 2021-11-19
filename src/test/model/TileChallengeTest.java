@@ -60,12 +60,16 @@ public class TileChallengeTest {
         boolean c1 = false;
         assertFalse(p.hasItem(mb));
         if (Objects.equals(hint1, "\n juan is right ")) {
+            assertEquals(0,tc.getTileOne());
             c1 = true;
         } else if (Objects.equals(hint1, "\n unos,... ")) {
+            assertEquals(0,tc.getTileTwo());
             c1 = true;
         } else if (Objects.equals(hint1, "\n a triangle has ... sides ")) {
+            assertEquals(0,tc.getTileThree());
             c1 = true;
         } else if (Objects.equals(hint1, "\n don't be such a square ")) {
+            assertEquals(0,tc.getTileFour());
             c1 = true;
         }
         assertTrue(c1);
@@ -82,16 +86,28 @@ public class TileChallengeTest {
         boolean c1 = false;
         if (Objects.equals(hint1, "\n juan is right " + "\n unos,... ")) {
             c1 = true;
+            assertEquals(0,tc.getTileOne());
+            assertEquals(0,tc.getTileTwo());
         } else if (Objects.equals(hint1, "\n juan is right " + "\n a triangle has ... sides ")) {
             c1 = true;
+            assertEquals(0,tc.getTileOne());
+            assertEquals(0,tc.getTileThree());
         } else if (Objects.equals(hint1, "\n juan is right " + "\n don't be such a square ")) {
             c1 = true;
+            assertEquals(0,tc.getTileOne());
+            assertEquals(0,tc.getTileFour());
         } else if (Objects.equals(hint1, "\n unos,... " + "\n a triangle has ... sides ")) {
             c1 = true;
+            assertEquals(0,tc.getTileTwo());
+            assertEquals(0,tc.getTileThree());
         } else if (Objects.equals(hint1, "\n unos,... " + "\n don't be such a square ")) {
             c1 = true;
+            assertEquals(0,tc.getTileTwo());
+            assertEquals(0,tc.getTileFour());
         } else if (Objects.equals(hint1, "\n a triangle has ... sides " + "\n don't be such a square ")) {
             c1 = true;
+            assertEquals(0,tc.getTileThree());
+            assertEquals(0,tc.getTileFour());
         }
         assertTrue(c1);
     }

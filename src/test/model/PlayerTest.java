@@ -264,6 +264,14 @@ public class PlayerTest {
         assertEquals(emptyItem.getName(), player.getInventoryItem(0).getName());
         setup();
     }
+
+    @Test
+    public void testSetHeartpoints(){
+        setup();
+        HeartPoints heartPoints = new HeartPoints(35);
+        player.setHeartPoints(heartPoints);
+        assertEquals(35, player.getPlayerHP());
+    }
     @Test
     public void testGetInventoryItemsOutsideBounds() {
         setup();

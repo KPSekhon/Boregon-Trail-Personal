@@ -170,9 +170,6 @@ public class Player extends Writable {
         this.heartPoints = heartPoints;
     }
 
-    public void setInventory(List<Item> inventory) {
-        this.inventory = inventory;
-    }
 
     public void setWeapon(Item weapon) {
         if ((!(this.weapon == null)) && this.weapon.isTypeWeapon()) {
@@ -185,9 +182,6 @@ public class Player extends Writable {
         }
     }
 
-    public void setWallet(int wallet) {
-        this.wallet = wallet;
-    }
 
     public String getName() {
         return this.name;
