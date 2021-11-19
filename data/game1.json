@@ -1,0 +1,47 @@
+{
+    "itemButton4": "",
+    "itemButton3": "",
+    "hpNumberLabel": "0",
+    "itemButton2": "",
+    "mainTextArea": "Karly is able to get to Oregon and claim Karly's inheritance \nGame Over!",
+    "itemButton1": "",
+    "inventoryStatus": "close",
+    "currPos": "end",
+    "monster": {
+        "heartPoints": 0,
+        "initialHealth": 20,
+        "attack": 3,
+        "name": "Hytos the troll"
+    },
+    "weaponNameLabel": "Kentucky Rifle",
+    "nextPos1": "",
+    "nextPos2": "",
+    "nextPos3": "",
+    "nextPos4": "",
+    "option3": "",
+    "option4": "",
+    "option1": "",
+    "option2": "",
+    "progressBarValue": 99,
+    "player": {
+        "weapon": "model.KentuckyRifle@6017056c",
+        "wallet": 2,
+        "name": "Karly",
+        "heartpoints": 0,
+        "inventory": [
+            {
+                "damage": 12,
+                "cost": 8,
+                "IsWeapon": true,
+                "name": "Kentucky Rifle with 4 bullets"
+            },
+            {
+                "damage": 0,
+                "cost": 400,
+                "IsWeapon": false,
+                "name": "The tooth of Hytos the troll"
+            }
+        ]
+    },
+    "itemButton5": ""
+}
