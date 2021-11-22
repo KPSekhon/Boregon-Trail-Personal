@@ -68,12 +68,16 @@ public class Monster extends Writable {
     // returns true if it can, returns false if entered HP exceeds
     // monster current HP and set HP to 0
     public boolean loseHP(int hp) {
+        Event event = new Event(this.name + " has lost " + hp + "hp");
+        EventLog.getInstance().logEvent(event);
         return  heartPoints.removeHP(hp);
     }
 
     //MODIFIES: this
     //EFFECTS: resets the monster's health to original value
     public void resetHp() {
+        Event event = new Event(this.name + "'s hp has been reset to " + initialHealth.getHp() + "hp");
+        EventLog.getInstance().logEvent(event);
         heartPoints = initialHealth;
     }
 

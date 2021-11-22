@@ -34,6 +34,9 @@ public class Player extends Writable {
     // EFFECTS: adds input hp to player's overall hp
     public void addHP(int hp) {
         this.heartPoints.addHP(hp);
+        int hpVal = heartPoints.getHp();
+        Event event = new Event(this.name + " has gained " + hpVal + "hp");
+        EventLog.getInstance().logEvent(event);
     }
 
     @Override
@@ -94,7 +97,10 @@ public class Player extends Writable {
     // hp is set to 0
     public int loseHP(int hp) {
         this.heartPoints.removeHP(hp);
-        return heartPoints.getHp();
+        int hpVal = heartPoints.getHp();
+        Event event = new Event(this.name + " has lost " + hpVal + "hp");
+        EventLog.getInstance().logEvent(event);
+        return hpVal;
     }
 
     // MODIFIES: this
@@ -111,6 +117,8 @@ public class Player extends Writable {
             return false;
         } else {
             this.wallet -= m;
+            Event event = new Event(this.name + " has spent " + m + " dollars");
+            EventLog.getInstance().logEvent(event);
             return true;
         }
     }
@@ -124,6 +132,9 @@ public class Player extends Writable {
             setWeapon(item);
         } else {
             inventory.add(item);
+            Event event = new Event(this.name + " has gained " + item.getName()
+                    + " which has been added to " + name + "'s inventory");
+            EventLog.getInstance().logEvent(event);
         }
     }
 
@@ -132,7 +143,9 @@ public class Player extends Writable {
     // and produces true, otherwise produces false
     public boolean loseItem(Item item) {
         if (hasItem(item)) {
+            Event event = new Event(this.name + " has lost " + item.getName());
             inventory.remove(item);
+            EventLog.getInstance().logEvent(event);
             return true;
         }
         return false;
@@ -144,6 +157,9 @@ public class Player extends Writable {
     // and reduces item healing value to 0
     public void healPlayer(Item item) {
         int heal = item.heartValue.getHp();
+        Event event = new Event(this.name + " is healed for " + heal + "hp"
+                + " via the healing value of " + item.getName());
+        EventLog.getInstance().logEvent(event);
         addHP(heal);
     }
 
@@ -176,9 +192,16 @@ public class Player extends Writable {
             this.inventory.remove(0);
             this.inventory.add(0, weapon);
             this.weapon = weapon;
+            Event event = new Event(this.name + " has gained a " + weapon.getName()
+                    + " which has been added to " + name + "'s inventory's first slot, set as the default weapon, "
+                    + " replacing the previous weapon which has been lost");
+            EventLog.getInstance().logEvent(event);
         } else {
             this.weapon = weapon;
             this.inventory.add(weapon);
+            Event event = new Event(this.name + " has gained a " + weapon.getName()
+                    + " which has been added to " + name + "'s inventory's first slot and set as the default weapon");
+            EventLog.getInstance().logEvent(event);
         }
     }
 

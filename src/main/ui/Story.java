@@ -197,6 +197,10 @@ public class Story {
         game1.nextPos3 = "";
         game1.nextPos4 = "";
         game1.currPos = "end";
+        for (Event next : EventLog.getInstance()) {
+            System.out.println(next.toString() + "\n\n");
+        }
+
     }
 
     // MODIFIES: this, ui, game1
@@ -586,7 +590,6 @@ public class Story {
         Random b = new Random();
         for (int i = 0; i < 5; i++) {
             value = 1 + b.nextInt(3);
-            setPlayerDeath();
         }
         if (value == 1) {
             ui.mainTextArea.setText("So " + player.getName() + " has chosen to wait for a saviour to arrive. "
@@ -603,6 +606,7 @@ public class Story {
             ui.mainTextArea.setText("So " + player.getName() + " has chosen to wait for a saviour to arrive. "
                     + "\n Unfortunately " + player.getName() + " was trampled by a horse");
         }
+        setPlayerDeath();
     }
 
     // MODIFIES: this, ui, and game1
