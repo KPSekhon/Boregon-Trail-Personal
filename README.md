@@ -29,3 +29,24 @@ Why is this project of interest to you?
 - This specific project interest me because I am a long-time electronical game player
 , and now I was given the opportunity to express my own thoughts and ideas into a playable game.
 For that reason, "I jumped the gun" at the chance to design my own game.
+
+
+#"Phase 4: Task 3"
+
+
+If I had more time to work on the project,
+is there any refactoring that I would do to improve my design?
+
+- One major change I would like is that I would like to refactor my weapon classes to extend
+a weapon class rather than implementing the basic abstract item class itself. I would
+make the weapon class abstract as well and make it the only one that extends Item,
+then I would add additional functionality related solely to a weapon rather than
+generalizing under the sub-item class for all my items. 
+- I would refactor my UI class
+so that it follows the single responsibility principle, my divvying up the work to more classes,
+like the intro splash loading screen would be its own class, but I would instantiate it within
+my main UI class. 
+- I would also like to reduce the large amount of coupling that occurs between my 
+UI classes. I think this would be accomplished by following the single responsibility principal method
+,as I previously mentioned, so each class would have less diverse and different methods occurring
+in the same space.
