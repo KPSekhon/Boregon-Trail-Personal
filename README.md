@@ -42,10 +42,10 @@ a weapon class rather than implementing the basic abstract item class itself. I 
 make the weapon class abstract as well and make it the only one that extends Item,
 then I would add additional functionality related solely to a weapon rather than
 generalizing under the sub-item class for all my items. 
-- I would refactor my UI class
-so that it follows the single responsibility principle, my divvying up the work to more classes,
-like the intro splash loading screen would be its own class, but I would instantiate it within
-my main UI class. 
+- I would refactor my UI class so that it follows the single responsibility principle, 
+by divvying up the work to more classes.For example, for the intro splash loading screen, it
+would be its own class, but I would instantiate it within my main UI class so that it maintains
+the current functionality,
 - I would also like to reduce the large amount of coupling that occurs between my 
 UI classes. I think this would be accomplished by following the single responsibility principal method
 ,as I previously mentioned, so each class would have less diverse and different methods occurring
