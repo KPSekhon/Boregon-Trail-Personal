@@ -1,6 +1,7 @@
 package ui;
 
 
+import model.EventLog;
 import model.Monster;
 import model.Player;
 import org.json.JSONObject;
@@ -40,11 +41,7 @@ public class Game1 extends Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("player", story.player.toJson());
-        json.put("currPos", currPos);
-        json.put("nextPos1", nextPos1);
-        json.put("nextPos2", nextPos2);
-        json.put("nextPos3", nextPos3);
-        json.put("nextPos4", nextPos4);
+        positionSaver(json);
         json.put("inventoryStatus", ui.inventoryStatus);
         json.put("option1", ui.option1.getText());
         json.put("option2", ui.option2.getText());
@@ -61,6 +58,15 @@ public class Game1 extends Writable {
         json.put("monster", monster.toJson());
         json.put("progressBarValue", ui.progressBar.getValue());
         return json;
+    }
+
+    //EFFECTS: stores positions as an JsonObject
+    private void positionSaver(JSONObject json) {
+        json.put("currPos", currPos);
+        json.put("nextPos1", nextPos1);
+        json.put("nextPos2", nextPos2);
+        json.put("nextPos3", nextPos3);
+        json.put("nextPos4", nextPos4);
     }
 
 
@@ -118,6 +124,7 @@ public class Game1 extends Writable {
     }
 
     // setters
+
 
 
     private void setMonster(Monster monster) {

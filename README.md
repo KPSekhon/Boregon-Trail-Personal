@@ -29,6 +29,132 @@ Why is this project of interest to you?
 - This specific project interest me because I am a long-time electronical game player
 , and now I was given the opportunity to express my own thoughts and ideas into a playable game.
 For that reason, "I jumped the gun" at the chance to design my own game.
+  Thu Nov 25 13:35:45 PST 2021
+  FakePlayerForEvent has gained a broken weapon which has been added to FakePlayerForEvent's inventory's first slot and set as the default weapon
+
+#"Phase 4: Task 2"
+Thu Nov 25 13:35:48 PST 2021
+FakePlayerForEvent has gained a Knife which has been added to FakePlayerForEvent's inventory's first slot, set as the default weapon,  replacing the previous weapon which has been lost
+
+
+Thu Nov 25 13:35:48 PST 2021
+FakePlayerForEvent has spent 3 dollars
+
+
+Thu Nov 25 13:35:53 PST 2021
+FakePlayerForEvent has spent 3 dollars
+
+
+Thu Nov 25 13:35:53 PST 2021
+FakePlayerForEvent has gained Temporary Immortal Potion which has been added to FakePlayerForEvent's inventory
+
+
+Thu Nov 25 13:35:55 PST 2021
+FakePlayerForEvent is healed for 27hp via the healing value of Temporary Immortal Potion
+
+
+Thu Nov 25 13:35:55 PST 2021
+FakePlayerForEvent has gained 37hp
+
+
+Thu Nov 25 13:35:55 PST 2021
+FakePlayerForEvent has lost Temporary Immortal Potion
+
+
+Thu Nov 25 13:36:01 PST 2021
+FakePlayerForEvent has lost 35hp
+
+
+Thu Nov 25 13:36:02 PST 2021
+FakePlayerForEvent has gained 37hp
+
+
+Thu Nov 25 13:36:02 PST 2021
+FakePlayerForEvent has gained 39hp
+
+
+Thu Nov 25 13:36:06 PST 2021
+FakePlayerForEvent has lost 37hp
+
+
+Thu Nov 25 13:36:07 PST 2021
+Hytos the troll has lost 2hp
+
+
+Thu Nov 25 13:36:07 PST 2021
+FakePlayerForEvent has lost 36hp
+
+
+Thu Nov 25 13:36:07 PST 2021
+Hytos the troll has lost 3hp
+
+
+Thu Nov 25 13:36:07 PST 2021
+FakePlayerForEvent has lost 34hp
+
+
+Thu Nov 25 13:36:08 PST 2021
+Hytos the troll has lost 2hp
+
+
+Thu Nov 25 13:36:08 PST 2021
+FakePlayerForEvent has lost 31hp
+
+
+Thu Nov 25 13:36:08 PST 2021
+Hytos the troll has lost 2hp
+
+
+Thu Nov 25 13:36:08 PST 2021
+FakePlayerForEvent has lost 28hp
+
+
+Thu Nov 25 13:36:09 PST 2021
+Hytos the troll has lost 1hp
+
+
+Thu Nov 25 13:36:09 PST 2021
+FakePlayerForEvent has lost 25hp
+
+
+Thu Nov 25 13:36:09 PST 2021
+Hytos the troll has lost 3hp
+
+
+Thu Nov 25 13:36:09 PST 2021
+FakePlayerForEvent has lost 22hp
+
+
+Thu Nov 25 13:36:09 PST 2021
+Hytos the troll has lost 2hp
+
+
+Thu Nov 25 13:36:10 PST 2021
+FakePlayerForEvent has lost 21hp
+
+
+Thu Nov 25 13:36:10 PST 2021
+Hytos the troll has lost 1hp
+
+
+Thu Nov 25 13:36:10 PST 2021
+FakePlayerForEvent has lost 19hp
+
+
+Thu Nov 25 13:36:10 PST 2021
+Hytos the troll has lost 3hp
+
+
+Thu Nov 25 13:36:11 PST 2021
+FakePlayerForEvent has lost 18hp
+
+
+Thu Nov 25 13:36:11 PST 2021
+Hytos the troll has lost 2hp
+
+
+Thu Nov 25 13:36:11 PST 2021
+FakePlayerForEvent has gained The tooth of Hytos the troll which has been added to FakePlayerForEvent's inventory
 
 
 #"Phase 4: Task 3"

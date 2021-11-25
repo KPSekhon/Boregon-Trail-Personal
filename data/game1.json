@@ -1,45 +1,46 @@
 {
     "itemButton4": "",
     "itemButton3": "",
-    "hpNumberLabel": "0",
+    "hpNumberLabel": "8",
     "itemButton2": "",
-    "mainTextArea": "Karly is able to get to Oregon and claim Karly's inheritance \nGame Over!",
+    "mainTextArea": "\nsds attacks Hytos the troll\n for 2 HP\nHytos the troll has 18 HP remaining",
     "itemButton1": "",
     "inventoryStatus": "close",
-    "currPos": "end",
+    "currPos": "return to the crossroad",
     "monster": {
-        "heartPoints": 0,
+        "heartPoints": 18,
         "initialHealth": 20,
-        "attack": 3,
+        "attack": 1,
         "name": "Hytos the troll"
     },
-    "weaponNameLabel": "Kentucky Rifle",
-    "nextPos1": "",
-    "nextPos2": "",
+    "weaponNameLabel": "Knife",
+    "logEvents": "model.EventLog@6e8d3ebc",
+    "nextPos1": "fight Hytos",
+    "nextPos2": "run for your life",
     "nextPos3": "",
     "nextPos4": "",
     "option3": "",
     "option4": "",
-    "option1": "",
-    "option2": "",
-    "progressBarValue": 99,
+    "option1": "fight Hytos",
+    "option2": "run for your life",
+    "progressBarValue": 69,
     "player": {
-        "weapon": "model.KentuckyRifle@6017056c",
-        "wallet": 2,
-        "name": "Karly",
-        "heartpoints": 0,
+        "weapon": "model.Knife@6277b043",
+        "wallet": 4,
+        "name": "sds",
+        "heartpoints": 8,
         "inventory": [
             {
-                "damage": 12,
-                "cost": 8,
+                "damage": 3,
+                "cost": 3,
                 "IsWeapon": true,
-                "name": "Kentucky Rifle with 4 bullets"
+                "name": "Knife"
             },
             {
                 "damage": 0,
-                "cost": 400,
+                "cost": 3,
                 "IsWeapon": false,
-                "name": "The tooth of Hytos the troll"
+                "name": "Temporary Immortal Potion"
             }
         ]
     },
