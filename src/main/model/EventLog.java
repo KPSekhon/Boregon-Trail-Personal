@@ -1,5 +1,10 @@
 package model;
 
+import model.exceptions.UnknownItemException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistance.Writable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -57,6 +62,27 @@ public class EventLog implements Iterable<Event> {
     public void clear() {
         events.clear();
         logEvent(new Event("Event log cleared."));
+    }
+
+    // EFFECTS: returns items in inventory as a JSON array
+    // Source: JSonSerializationDemo
+    public JSONArray logEventsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Event e : events) {
+            jsonArray.put(e.toJson());
+        }
+        return jsonArray;
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: re-instantiates item from JsonObject
+    public void fromJson(JSONObject json) {
+        JSONArray eventsList = json.getJSONArray("eventLog");
+        for (int i = 0; i < eventsList.length(); i++) {
+            Event event = new Event(eventsList.getJSONObject(i).getString("description"));
+            logEvent(event);
+        }
     }
 
     @Override

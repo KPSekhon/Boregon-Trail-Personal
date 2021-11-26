@@ -57,6 +57,7 @@ public class Game1 extends Writable {
         json.put("hpNumberLabel", ui.hpNumberLabel.getText());
         json.put("monster", monster.toJson());
         json.put("progressBarValue", ui.progressBar.getValue());
+        json.put("eventLog", EventLog.getInstance().logEventsToJson());
         return json;
     }
 
@@ -121,6 +122,13 @@ public class Game1 extends Writable {
         ui.weaponNameLabel.setText(json.getString("weaponNameLabel"));
         ui.hpNumberLabel.setText(json.getString("hpNumberLabel"));
         setProgressBar(json.getInt("progressBarValue"));
+        setLog(json);
+    }
+
+    //MODIFIES: EventLog
+    //EFFECTS: sets Log to stored log
+    private void setLog(JSONObject json) {
+        EventLog.getInstance().fromJson(json);
     }
 
     // setters

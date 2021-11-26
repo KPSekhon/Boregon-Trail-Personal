@@ -1,5 +1,8 @@
 package model;
 
+import org.json.JSONObject;
+import persistance.Writable;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,6 +26,15 @@ public class Event {
         dateLogged = Calendar.getInstance().getTime();
         this.description = description;
     }
+
+    //EFFECTS: stores item as an JsonObject
+    // Source: JSonSerializationDemo
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("description", this.description);
+        return json;
+    }
+
 
     /**
      * Gets the date of this event (includes time).
