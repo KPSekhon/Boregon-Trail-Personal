@@ -78,7 +78,7 @@ FakePlayerForEvent has lost 37hp
 
 
 Thu Nov 25 13:36:07 PST 2021
-Hytos the troll has lost 2hp
+Hytos the troll has lost 2 hp
 
 
 Thu Nov 25 13:36:07 PST 2021
